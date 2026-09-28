@@ -1,0 +1,13 @@
+/.agents/skills/angular-developer
+/.agents/skills/karpathy-guidelines
+/.agents/skills/nestjs-best-practices
+/.claude/skills
+/.nx/cache
+/.nx/self-healing
+/.nx/workspace-data
+/apps/client/src/polyfills.ts
+/dist
+/docs
+/legacy-fastapi-prototype
+/test/import
+/vendor
