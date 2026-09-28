@@ -378,6 +378,7 @@ export const SUPPORTED_LANGUAGE_CODES = [
   'pt',
   'tr',
   'uk',
+  'vi',
   'zh'
 ] as const;
 

@@ -4778,6 +4778,14 @@
           <context context-type="linenumber">423</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5215073819216364999" datatype="html">
+        <source>Not enough historical data to compute the Black-Litterman allocation for this portfolio.</source>
+        <target state="new">Not enough historical data to compute the Black-Litterman allocation for this portfolio.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">371</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="6762743264882388498" datatype="html">
         <source>Monthly</source>
         <target state="translated">Miesięcznie</target>
@@ -4992,6 +5000,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">139</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="4096012417328711989" datatype="html">
+        <source>Current Weight</source>
+        <target state="new">Current Weight</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">379</context>
         </context-group>
       </trans-unit>
       <trans-unit id="4097514565360345307" datatype="html">
@@ -5711,6 +5727,14 @@
           <context context-type="linenumber">286</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5503478494144437051" datatype="html">
+        <source>Optimal weights implied by the Black-Litterman model, based on the current holdings as the market-weight prior and no additional investor views</source>
+        <target state="new">Optimal weights implied by the Black-Litterman model, based on the current holdings as the market-weight prior and no additional investor views</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">360</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="5521091503920831865" datatype="html">
         <source>Add to Watchlist</source>
         <target state="new">Add to Watchlist</target>
@@ -6028,7 +6052,7 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/portfolio-proportion-chart/portfolio-proportion-chart.component.ts</context>
-          <context context-type="linenumber">462</context>
+          <context context-type="linenumber">466</context>
         </context-group>
       </trans-unit>
       <trans-unit id="6300009182465422833" datatype="html">
@@ -6101,6 +6125,10 @@
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/holding-detail-dialog/holding-detail-dialog.html</context>
           <context context-type="linenumber">337</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">378</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/i18n.ts</context>
@@ -6408,11 +6436,11 @@
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/portfolio-proportion-chart/portfolio-proportion-chart.component.ts</context>
-          <context context-type="linenumber">464</context>
+          <context context-type="linenumber">468</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/portfolio-proportion-chart/portfolio-proportion-chart.component.ts</context>
-          <context context-type="linenumber">478</context>
+          <context context-type="linenumber">482</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/top-holdings/top-holdings.component.html</context>
@@ -7588,6 +7616,14 @@
           <context context-type="linenumber">13</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="2135691536026458161" datatype="html">
+        <source>Black-Litterman Allocation</source>
+        <target state="new">Black-Litterman Allocation</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">356</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="2137905359212133111" datatype="html">
         <source><x id="INTERPOLATION" equiv-text="{{ product1().name }}"/> is Open Source Software</source>
         <target state="translated"><x id="INTERPOLATION" equiv-text="{{ product1().name }}"/> jest Oprogramowaniem Open Source</target>
@@ -8178,6 +8214,14 @@
           <context context-type="linenumber">62</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="5686606454285737389" datatype="html">
+        <source>Black-Litterman Weight</source>
+        <target state="new">Black-Litterman Weight</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">380</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="1230154438678955604" datatype="html">
         <source>Change</source>
         <target state="translated">Zmiana</target>
@@ -8670,6 +8714,14 @@
         <context-group purpose="location">
           <context context-type="sourcefile">libs/common/src/lib/routes/routes.ts</context>
           <context context-type="linenumber">307</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="5254659089051357287" datatype="html">
+        <source>No data available</source>
+        <target state="new">No data available</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">apps/client/src/app/pages/portfolio/allocations/allocations-page.html</context>
+          <context context-type="linenumber">410</context>
         </context-group>
       </trans-unit>
       <trans-unit id="5263776643657358606" datatype="html">

@@ -54,6 +54,10 @@
         "baseHref": "/uk/",
         "translation": "apps/client/src/locales/messages.uk.xlf"
       },
+      "vi": {
+        "baseHref": "/vi/",
+        "translation": "apps/client/src/locales/messages.vi.xlf"
+      },
       "zh": {
         "baseHref": "/zh/",
         "translation": "apps/client/src/locales/messages.zh.xlf"
@@ -145,6 +149,10 @@
         "development-uk": {
           "baseHref": "/uk/",
           "localize": ["uk"]
+        },
+        "development-vi": {
+          "baseHref": "/vi/",
+          "localize": ["vi"]
         },
         "development-zh": {
           "baseHref": "/zh/",
