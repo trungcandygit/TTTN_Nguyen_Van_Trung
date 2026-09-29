@@ -11,7 +11,7 @@ import { PrismaService } from '@ghostfolio/api/services/prisma/prisma.service';
 import { PropertyService } from '@ghostfolio/api/services/property/property.service';
 import { TagService } from '@ghostfolio/api/services/tag/tag.service';
 import {
-  DEFAULT_CURRENCY,
+  DEFAULT_USER_CURRENCY,
   DEFAULT_DATE_RANGE,
   DEFAULT_LOCALE,
   PROPERTY_API_KEY_GHOSTFOLIO,
@@ -225,7 +225,8 @@ export class UserService {
       }),
       settings: {
         ...resolvedUserSettings,
-        baseCurrency: resolvedUserSettings.baseCurrency ?? DEFAULT_CURRENCY,
+        baseCurrency:
+          resolvedUserSettings.baseCurrency ?? DEFAULT_USER_CURRENCY,
         locale: resolvedUserSettings.locale ?? locale
       }
     };
@@ -353,7 +354,8 @@ export class UserService {
 
     // Set default value for base currency
     if (!(user.settings.settings as UserSettings)?.baseCurrency) {
-      (user.settings.settings as UserSettings).baseCurrency = DEFAULT_CURRENCY;
+      (user.settings.settings as UserSettings).baseCurrency =
+        DEFAULT_USER_CURRENCY;
     }
 
     // Set default value for date range
@@ -579,7 +581,7 @@ export class UserService {
         ...data,
         accounts: {
           create: {
-            currency: DEFAULT_CURRENCY,
+            currency: DEFAULT_USER_CURRENCY,
             name: this.i18nService.getTranslation({
               id: 'myAccount',
               languageCode: getSupportedLanguageCode(languageCode)
@@ -589,7 +591,7 @@ export class UserService {
         settings: {
           create: {
             settings: {
-              currency: DEFAULT_CURRENCY
+              currency: DEFAULT_USER_CURRENCY
             }
           }
         }

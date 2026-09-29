@@ -95,7 +95,12 @@ export const PORTFOLIO_SNAPSHOT_COMPUTATION_QUEUE_PRIORITY_LOW =
 export const STATISTICS_GATHERING_QUEUE = 'STATISTICS_GATHERING_QUEUE';
 
 export const DEFAULT_COLOR_SCHEME: ColorScheme = 'LIGHT';
+// Internal pivot currency for exchange rates, do not change
 export const DEFAULT_CURRENCY = 'USD';
+// Default currency shown to (new) users
+export const DEFAULT_USER_CURRENCY = 'VND';
+// Currencies which are always selectable, even if not used yet
+export const ALWAYS_AVAILABLE_CURRENCIES = ['VND'];
 export const DEFAULT_DATE_FORMAT_MONTH_YEAR = 'MMM yyyy';
 export const DEFAULT_DATE_RANGE: DateRange = 'max';
 export const DEFAULT_HOST = '0.0.0.0';

@@ -22,9 +22,9 @@
       "type": "image/png"
     }
   ],
-  "name": "Ghostfolio",
+  "name": "BL Advisor",
   "orientation": "portrait",
-  "short_name": "Ghostfolio",
+  "short_name": "BL Advisor",
   "start_url": "/${languageCode}/",
   "theme_color": "#FFFFFF",
   "url": "${rootUrl}"

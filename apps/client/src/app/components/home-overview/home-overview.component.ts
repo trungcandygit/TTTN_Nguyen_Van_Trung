@@ -3,7 +3,7 @@ import { LayoutService } from '@ghostfolio/client/core/layout.service';
 import { ImpersonationStorageService } from '@ghostfolio/client/services/impersonation-storage.service';
 import { UserService } from '@ghostfolio/client/services/user/user.service';
 import {
-  DEFAULT_CURRENCY,
+  DEFAULT_USER_CURRENCY,
   DEFAULT_DATE_RANGE,
   DEFAULT_LOCALE,
   NUMERICAL_PRECISION_THRESHOLD_6_FIGURES
@@ -104,7 +104,7 @@ export class GfHomeOverviewComponent implements OnInit {
     const user = this.user();
 
     return this.showDetails()
-      ? (user?.settings?.baseCurrency ?? DEFAULT_CURRENCY)
+      ? (user?.settings?.baseCurrency ?? DEFAULT_USER_CURRENCY)
       : '%';
   });
 

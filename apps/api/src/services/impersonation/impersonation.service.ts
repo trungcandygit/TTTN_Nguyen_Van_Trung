@@ -2,7 +2,7 @@ import { AccessService } from '@ghostfolio/api/app/access/access.service';
 import { SubscriptionService } from '@ghostfolio/api/app/subscription/subscription.service';
 import { ConfigurationService } from '@ghostfolio/api/services/configuration/configuration.service';
 import { PrismaService } from '@ghostfolio/api/services/prisma/prisma.service';
-import { DEFAULT_CURRENCY } from '@ghostfolio/common/config';
+import { DEFAULT_USER_CURRENCY } from '@ghostfolio/common/config';
 import { UserSettings } from '@ghostfolio/common/interfaces';
 import { hasPermission, permissions } from '@ghostfolio/common/permissions';
 import {
@@ -79,7 +79,7 @@ export class ImpersonationService {
       userId: impersonatedUserId,
       userSettings: {
         ...(settings ?? {}),
-        baseCurrency: settings?.baseCurrency ?? DEFAULT_CURRENCY
+        baseCurrency: settings?.baseCurrency ?? DEFAULT_USER_CURRENCY
       },
       userSubscription:
         isSubscriptionEnabled && impersonatedUser

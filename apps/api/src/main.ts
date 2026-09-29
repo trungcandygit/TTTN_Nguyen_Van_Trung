@@ -101,7 +101,11 @@ async function bootstrap() {
         helmet({
           contentSecurityPolicy: {
             directives: {
-              connectSrc: ["'self'", 'https://js.stripe.com'], // Allow connections to Stripe
+              connectSrc: [
+                "'self'",
+                'https://js.stripe.com',
+                'https://pub.orcid.org'
+              ], // Allow connections to Stripe and ORCID
               frameSrc: ["'self'", 'https://js.stripe.com'], // Allow loading frames from Stripe
               scriptSrc: ["'self'", "'unsafe-inline'", 'https://js.stripe.com'], // Allow inline scripts and scripts from Stripe
               scriptSrcAttr: ["'self'", "'unsafe-inline'"], // Allow inline event handlers

@@ -2,7 +2,7 @@ import { UserService } from '@ghostfolio/api/app/user/user.service';
 import { ConfigurationService } from '@ghostfolio/api/services/configuration/configuration.service';
 import { PrismaService } from '@ghostfolio/api/services/prisma/prisma.service';
 import {
-  DEFAULT_CURRENCY,
+  DEFAULT_USER_CURRENCY,
   DEFAULT_LANGUAGE_CODE,
   HEADER_KEY_TIMEZONE
 } from '@ghostfolio/common/config';
@@ -64,7 +64,7 @@ export class JwtStrategy extends PassportStrategy(Strategy, 'jwt') {
         }
 
         if (!user.settings.settings.baseCurrency) {
-          user.settings.settings.baseCurrency = DEFAULT_CURRENCY;
+          user.settings.settings.baseCurrency = DEFAULT_USER_CURRENCY;
         }
 
         if (!user.settings.settings.language) {

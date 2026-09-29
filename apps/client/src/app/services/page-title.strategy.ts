@@ -5,8 +5,8 @@ import { RouterStateSnapshot, TitleStrategy } from '@angular/router';
 @Service({ autoProvided: false })
 export class PageTitleStrategy extends TitleStrategy {
   private static readonly DEFAULT_TITLE =
-    'Ghostfolio – Open Source Wealth Management Software';
-  private static readonly DEFAULT_TITLE_SHORT = 'Ghostfolio';
+    'BL Advisor – Hệ thống hỗ trợ phân bổ danh mục đầu tư';
+  private static readonly DEFAULT_TITLE_SHORT = 'BL Advisor';
 
   private readonly title = inject(Title);
 

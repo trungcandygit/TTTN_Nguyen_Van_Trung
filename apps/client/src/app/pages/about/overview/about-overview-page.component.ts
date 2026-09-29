@@ -1,78 +1,60 @@
-import { UserService } from '@ghostfolio/client/services/user/user.service';
-import { User } from '@ghostfolio/common/interfaces';
-import { hasPermission, permissions } from '@ghostfolio/common/permissions';
-import { publicRoutes } from '@ghostfolio/common/routes/routes';
-import { DataService } from '@ghostfolio/ui/services';
-
+import { HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  CUSTOM_ELEMENTS_SCHEMA,
   DestroyRef,
-  OnInit
+  OnInit,
+  inject
 } from '@angular/core';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { MatButtonModule } from '@angular/material/button';
-import { RouterModule } from '@angular/router';
-import { IonIcon } from '@ionic/angular/standalone';
-import { addIcons } from 'ionicons';
+import { MatCardModule } from '@angular/material/card';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+
 import {
-  logoGithub,
-  logoLinkedin,
-  logoSlack,
-  logoX,
-  mail
-} from 'ionicons/icons';
+  ORCID_ID,
+  ORCID_URL,
+  ORCID_WORKS_API_URL,
+  OrcidWork,
+  parseOrcidWorks
+} from './orcid.helper';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [IonIcon, MatButtonModule, RouterModule],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  imports: [MatCardModule, MatProgressBarModule],
   selector: 'gf-about-overview-page',
   styleUrls: ['./about-overview-page.scss'],
   templateUrl: './about-overview-page.html'
 })
 export class GfAboutOverviewPageComponent implements OnInit {
-  public hasPermissionForStatistics: boolean;
-  public hasPermissionForSubscription: boolean;
-  public isLoggedIn: boolean;
-  public routerLinkBlog = publicRoutes.blog.routerLink;
-  public routerLinkFaq = publicRoutes.faq.routerLink;
-  public routerLinkFeatures = publicRoutes.features.routerLink;
-  public routerLinkOpenStartup = publicRoutes.openStartup.routerLink;
-  public user: User;
+  protected readonly email = 'kontrungcany@gmail.com';
+  protected hasError = false;
+  protected isLoading = true;
+  protected readonly orcidId = ORCID_ID;
+  protected readonly orcidUrl = ORCID_URL;
+  protected works: OrcidWork[] = [];
 
-  public constructor(
-    private changeDetectorRef: ChangeDetectorRef,
-    private dataService: DataService,
-    private destroyRef: DestroyRef,
-    private userService: UserService
-  ) {
-    const { globalPermissions } = this.dataService.fetchInfo();
-
-    this.hasPermissionForStatistics = hasPermission(
-      globalPermissions,
-      permissions.enableStatistics
-    );
-
-    this.hasPermissionForSubscription = hasPermission(
-      globalPermissions,
-      permissions.enableSubscription
-    );
-
-    addIcons({ logoGithub, logoLinkedin, logoSlack, logoX, mail });
-  }
+  private readonly changeDetectorRef = inject(ChangeDetectorRef);
+  private readonly destroyRef = inject(DestroyRef);
+  private readonly httpClient = inject(HttpClient);
 
   public ngOnInit() {
-    this.userService.stateChanged
+    this.httpClient
+      .get(ORCID_WORKS_API_URL, { headers: { Accept: 'application/json' } })
       .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe((state) => {
-        if (state?.user) {
-          this.user = state.user;
-        }
+      .subscribe({
+        error: () => {
+          this.hasError = true;
+          this.isLoading = false;
 
-        this.changeDetectorRef.markForCheck();
+          this.changeDetectorRef.markForCheck();
+        },
+        next: (response) => {
+          this.works = parseOrcidWorks(response);
+          this.isLoading = false;
+
+          this.changeDetectorRef.markForCheck();
+        }
       });
   }
 }

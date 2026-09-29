@@ -825,7 +825,7 @@
       </trans-unit>
       <trans-unit id="8410000928786197012" datatype="html">
         <source>Watch the Ghostfol.io Trailer on YouTube</source>
-        <target state="translated">Xem video giới thiệu Ghostfolio trên YouTube</target>
+        <target state="translated">Xem video giới thiệu BL Advisor trên YouTube</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">19</context>
@@ -933,7 +933,7 @@
       </trans-unit>
       <trans-unit id="641154803270226443" datatype="html">
         <source>Find quick answers to commonly asked questions about the fully managed Ghostfolio cloud offering in our Frequently Asked Questions (FAQ) section.</source>
-        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về dịch vụ đám mây Ghostfolio được quản lý toàn phần trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
+        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về dịch vụ đám mây BL Advisor được quản lý toàn phần trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/faq/saas/saas-page.html</context>
           <context context-type="linenumber">8</context>
@@ -1729,7 +1729,7 @@
       </trans-unit>
       <trans-unit id="5924141452953678982" datatype="html">
         <source>About Ghostfolio</source>
-        <target state="translated">Giới thiệu Ghostfolio</target>
+        <target state="translated">Giới thiệu BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/header/header.component.html</context>
           <context context-type="linenumber">327</context>
@@ -1841,7 +1841,7 @@
       </trans-unit>
       <trans-unit id="2112958051825467900" datatype="html">
         <source>Welcome to Ghostfolio</source>
-        <target state="translated">Chào mừng đến với Ghostfolio</target>
+        <target state="translated">Chào mừng đến với BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/home-overview/home-overview.html</context>
           <context context-type="linenumber">11</context>
@@ -1993,7 +1993,7 @@
       </trans-unit>
       <trans-unit id="6623155069376115284" datatype="html">
         <source>Find quick answers to commonly asked questions about Ghostfolio in our Frequently Asked Questions (FAQ) section.</source>
-        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về Ghostfolio trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
+        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về BL Advisor trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/overview/resources-overview.component.ts</context>
           <context context-type="linenumber">16</context>
@@ -2233,7 +2233,7 @@
       </trans-unit>
       <trans-unit id="7827737332834169968" datatype="html">
         <source>Upgrade to Ghostfolio Premium today and gain access to exclusive features to enhance your investment experience:</source>
-        <target state="translated">Nâng cấp lên Ghostfolio Premium ngay hôm nay để có quyền truy cập vào các tính năng độc quyền nâng cao trải nghiệm đầu tư của bạn:</target>
+        <target state="translated">Nâng cấp lên BL Advisor Premium ngay hôm nay để có quyền truy cập vào các tính năng độc quyền nâng cao trải nghiệm đầu tư của bạn:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/subscription-interstitial-dialog/subscription-interstitial-dialog.html</context>
           <context context-type="linenumber">18</context>
@@ -2429,7 +2429,7 @@
       </trans-unit>
       <trans-unit id="8793726805339626615" datatype="html">
         <source>Ghostfolio in Numbers: Monthly Active Users (MAU)</source>
-        <target state="translated">Ghostfolio qua các con số: Người dùng hoạt động hằng tháng (MAU)</target>
+        <target state="translated">BL Advisor qua các con số: Người dùng hoạt động hằng tháng (MAU)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">63</context>
@@ -2689,7 +2689,7 @@
       </trans-unit>
       <trans-unit id="4102764207131986196" datatype="html">
         <source>Contributors to Ghostfolio</source>
-        <target state="translated">Những người đóng góp cho Ghostfolio</target>
+        <target state="translated">Những người đóng góp cho BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">54</context>
@@ -3285,7 +3285,7 @@
       </trans-unit>
       <trans-unit id="5152858168588361831" datatype="html">
         <source>Discover the latest Ghostfolio updates and insights on personal finance</source>
-        <target state="translated">Khám phá các cập nhật mới nhất của Ghostfolio và thông tin chuyên sâu về tài chính cá nhân</target>
+        <target state="translated">Khám phá các cập nhật mới nhất của BL Advisor và thông tin chuyên sâu về tài chính cá nhân</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/blog/blog-page.html</context>
           <context context-type="linenumber">7</context>
@@ -3365,7 +3365,7 @@
       </trans-unit>
       <trans-unit id="6823552682337895854" datatype="html">
         <source>Check out the numerous features of Ghostfolio to manage your wealth</source>
-        <target state="translated">Khám phá nhiều tính năng của Ghostfolio để quản lý tài sản của bạn</target>
+        <target state="translated">Khám phá nhiều tính năng của BL Advisor để quản lý tài sản của bạn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/features/features-page.html</context>
           <context context-type="linenumber">7</context>
@@ -3381,7 +3381,7 @@
       </trans-unit>
       <trans-unit id="4489207161748215824" datatype="html">
         <source>For security reasons, please delete all activities and accounts first before your Ghostfolio account can be closed.</source>
-        <target state="translated">Vì lý do bảo mật, vui lòng xóa toàn bộ giao dịch và tài khoản trước khi có thể đóng tài khoản Ghostfolio.</target>
+        <target state="translated">Vì lý do bảo mật, vui lòng xóa toàn bộ giao dịch và tài khoản trước khi có thể đóng tài khoản BL Advisor.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/user-account-settings/user-account-settings.html</context>
           <context context-type="linenumber">374</context>
@@ -3761,7 +3761,7 @@
       </trans-unit>
       <trans-unit id="metaDescription" datatype="html">
         <source>Ghostfolio is a personal finance dashboard to keep track of your net worth including cash, stocks, ETFs and cryptocurrencies across multiple platforms.</source>
-        <target state="translated">Ghostfolio là bảng điều khiển tài chính cá nhân giúp theo dõi giá trị tài sản ròng bao gồm tiền mặt, cổ phiếu, ETF và tiền mã hóa trên nhiều nền tảng.</target>
+        <target state="translated">BL Advisor là bảng điều khiển tài chính cá nhân giúp theo dõi giá trị tài sản ròng bao gồm tiền mặt, cổ phiếu, ETF và tiền mã hóa trên nhiều nền tảng.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/i18n/i18n-page.html</context>
           <context context-type="linenumber">7</context>
@@ -3793,7 +3793,7 @@
       </trans-unit>
       <trans-unit id="9187466252216812080" datatype="html">
         <source>Ghostfolio is a privacy-first, open source dashboard for your personal finances. Break down your asset allocation, know your net worth and make solid, data-driven investment decisions.</source>
-        <target state="translated">Ghostfolio là bảng điều khiển tài chính cá nhân mã nguồn mở, ưu tiên bảo mật riêng tư. Phân tích chi tiết phân bổ tài sản, nắm rõ giá trị tài sản ròng và đưa ra quyết định đầu tư vững chắc, dựa trên dữ liệu.</target>
+        <target state="translated">BL Advisor là bảng điều khiển tài chính cá nhân mã nguồn mở, ưu tiên bảo mật riêng tư. Phân tích chi tiết phân bổ tài sản, nắm rõ giá trị tài sản ròng và đưa ra quyết định đầu tư vững chắc, dựa trên dữ liệu.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">10</context>
@@ -3861,7 +3861,7 @@
       </trans-unit>
       <trans-unit id="541335210822318978" datatype="html">
         <source>Ghostfolio empowers busy people to keep track of stocks, ETFs or cryptocurrencies without being tracked.</source>
-        <target state="translated">Ghostfolio giúp những người bận rộn theo dõi cổ phiếu, ETF hoặc tiền mã hóa mà không bị theo dõi ngược lại.</target>
+        <target state="translated">BL Advisor giúp những người bận rộn theo dõi cổ phiếu, ETF hoặc tiền mã hóa mà không bị theo dõi ngược lại.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">132</context>
@@ -3909,7 +3909,7 @@
       </trans-unit>
       <trans-unit id="6957860293614395750" datatype="html">
         <source>Use Ghostfolio anonymously and own your financial data.</source>
-        <target state="translated">Sử dụng Ghostfolio ẩn danh và làm chủ dữ liệu tài chính của bạn.</target>
+        <target state="translated">Sử dụng BL Advisor ẩn danh và làm chủ dữ liệu tài chính của bạn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">156</context>
@@ -3941,7 +3941,7 @@
       </trans-unit>
       <trans-unit id="174909485329693389" datatype="html">
         <source>Why <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</source>
-        <target state="translated">Tại sao chọn <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</target>
+        <target state="translated">Tại sao chọn <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>BL Advisor<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/>?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">174</context>
@@ -3949,7 +3949,7 @@
       </trans-unit>
       <trans-unit id="8071481725417955188" datatype="html">
         <source>Ghostfolio is for you if you are...</source>
-        <target state="translated">Ghostfolio phù hợp với bạn nếu bạn là người...</target>
+        <target state="translated">BL Advisor phù hợp với bạn nếu bạn là người...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">176</context>
@@ -4037,7 +4037,7 @@
       </trans-unit>
       <trans-unit id="4462291849266824923" datatype="html">
         <source>Learn more about Ghostfolio</source>
-        <target state="translated">Tìm hiểu thêm về Ghostfolio</target>
+        <target state="translated">Tìm hiểu thêm về BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">221</context>
@@ -4061,7 +4061,7 @@
       </trans-unit>
       <trans-unit id="1398112848362226140" datatype="html">
         <source>Members from around the globe are using <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;pricing&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio Premium<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></source>
-        <target state="translated">Thành viên trên khắp thế giới đang sử dụng <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;pricing&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio Premium<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
+        <target state="translated">Thành viên trên khắp thế giới đang sử dụng <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;pricing&quot;&gt;"/><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>BL Advisor Premium<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/><x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">269</context>
@@ -4069,7 +4069,7 @@
       </trans-unit>
       <trans-unit id="8065260392868074625" datatype="html">
         <source>How does <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> work?</source>
-        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> hoạt động như thế nào?</target>
+        <target state="translated"><x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>BL Advisor<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> hoạt động như thế nào?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">286</context>
@@ -4141,7 +4141,7 @@
       </trans-unit>
       <trans-unit id="3824165347269033834" datatype="html">
         <source>At Ghostfolio, transparency is at the core of our values. We publish the source code as <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot; i18n-title title=&quot;Find Ghostfolio on GitHub&quot; &gt;"/>open source software<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> (OSS) under the <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://www.gnu.org/licenses/agpl-3.0.html&quot; title=&quot;GNU Affero General Public License&quot; &gt;"/>AGPL-3.0 license<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> and we openly share aggregated key metrics of the platform’s operational status.</source>
-        <target state="translated">Tại Ghostfolio, minh bạch là giá trị cốt lõi của chúng tôi. Chúng tôi công bố mã nguồn dưới dạng <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot; i18n-title title=&quot;Find Ghostfolio on GitHub&quot; &gt;"/>phần mềm mã nguồn mở<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> (OSS) theo <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://www.gnu.org/licenses/agpl-3.0.html&quot; title=&quot;GNU Affero General Public License&quot; &gt;"/>giấy phép AGPL-3.0<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> và chúng tôi công khai chia sẻ các chỉ số tổng hợp chính về tình trạng vận hành của nền tảng.</target>
+        <target state="translated">Tại BL Advisor, minh bạch là giá trị cốt lõi của chúng tôi. Chúng tôi công bố mã nguồn dưới dạng <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot; i18n-title title=&quot;Find Ghostfolio on GitHub&quot; &gt;"/>phần mềm mã nguồn mở<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> (OSS) theo <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://www.gnu.org/licenses/agpl-3.0.html&quot; title=&quot;GNU Affero General Public License&quot; &gt;"/>giấy phép AGPL-3.0<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> và chúng tôi công khai chia sẻ các chỉ số tổng hợp chính về tình trạng vận hành của nền tảng.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/open/open-page.html</context>
           <context context-type="linenumber">7</context>
@@ -4157,7 +4157,7 @@
       </trans-unit>
       <trans-unit id="4257439615478050183" datatype="html">
         <source>Ghostfolio Status</source>
-        <target state="translated">Trạng thái Ghostfolio</target>
+        <target state="translated">Trạng thái BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">64</context>
@@ -4957,7 +4957,7 @@
       </trans-unit>
       <trans-unit id="6962217007874959362" datatype="html">
         <source>Our official Ghostfolio Premium cloud offering is the easiest way to get started. Due to the time it saves, this will be the best option for most people. Revenue is used to cover operational costs for the hosting infrastructure and professional data providers, and to fund ongoing development.</source>
-        <target state="translated">Dịch vụ đám mây Ghostfolio Premium chính thức là cách dễ dàng nhất để bắt đầu. Nhờ tiết kiệm thời gian, đây sẽ là lựa chọn tốt nhất cho hầu hết mọi người. Doanh thu được dùng để trang trải chi phí vận hành hạ tầng lưu trữ và nhà cung cấp dữ liệu chuyên nghiệp, đồng thời tài trợ cho quá trình phát triển liên tục.</target>
+        <target state="translated">Dịch vụ đám mây BL Advisor Premium chính thức là cách dễ dàng nhất để bắt đầu. Nhờ tiết kiệm thời gian, đây sẽ là lựa chọn tốt nhất cho hầu hết mọi người. Doanh thu được dùng để trang trải chi phí vận hành hạ tầng lưu trữ và nhà cung cấp dữ liệu chuyên nghiệp, đồng thời tài trợ cho quá trình phát triển liên tục.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">7</context>
@@ -4973,7 +4973,7 @@
       </trans-unit>
       <trans-unit id="8362400188600186131" datatype="html">
         <source>If you prefer to run Ghostfolio on your own infrastructure, please find the source code and further instructions on <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
-        <target state="translated">Nếu bạn muốn tự vận hành Ghostfolio trên hạ tầng riêng, vui lòng tìm mã nguồn và hướng dẫn chi tiết trên <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <target state="translated">Nếu bạn muốn tự vận hành BL Advisor trên hạ tầng riêng, vui lòng tìm mã nguồn và hướng dẫn chi tiết trên <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">14</context>
@@ -4981,7 +4981,7 @@
       </trans-unit>
       <trans-unit id="195913158506780337" datatype="html">
         <source>For tech-savvy investors who prefer to run Ghostfolio on their own infrastructure.</source>
-        <target state="translated">Dành cho nhà đầu tư am hiểu công nghệ, muốn tự vận hành Ghostfolio trên hạ tầng riêng.</target>
+        <target state="translated">Dành cho nhà đầu tư am hiểu công nghệ, muốn tự vận hành BL Advisor trên hạ tầng riêng.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">26</context>
@@ -5089,7 +5089,7 @@
       </trans-unit>
       <trans-unit id="4362270378699380187" datatype="html">
         <source>Fully managed Ghostfolio cloud offering.</source>
-        <target state="translated">Dịch vụ đám mây Ghostfolio được quản lý toàn phần.</target>
+        <target state="translated">Dịch vụ đám mây BL Advisor được quản lý toàn phần.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">150</context>
@@ -5197,7 +5197,7 @@
       </trans-unit>
       <trans-unit id="201073452973037511" datatype="html">
         <source>Ghostfolio empowers you to keep track of your wealth.</source>
-        <target state="translated">Ghostfolio giúp bạn theo dõi tài sản của mình.</target>
+        <target state="translated">BL Advisor giúp bạn theo dõi tài sản của mình.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/public/public-page.html</context>
           <context context-type="linenumber">237</context>
@@ -5270,7 +5270,7 @@
       </trans-unit>
       <trans-unit id="9040028765832531851" datatype="html">
         <source>This overview page features a curated collection of personal finance tools compared to the open source alternative <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>Ghostfolio<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. If you value transparency, data privacy, and community collaboration, Ghostfolio provides an excellent opportunity to take control of your financial management.</source>
-        <target state="translated">Trang tổng quan này giới thiệu bộ sưu tập chọn lọc các công cụ tài chính cá nhân được so sánh với giải pháp mã nguồn mở thay thế <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>Ghostfolio<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. Nếu bạn coi trọng sự minh bạch, quyền riêng tư dữ liệu và sự hợp tác của cộng đồng, Ghostfolio là cơ hội tuyệt vời để bạn làm chủ việc quản lý tài chính của mình.</target>
+        <target state="translated">Trang tổng quan này giới thiệu bộ sưu tập chọn lọc các công cụ tài chính cá nhân được so sánh với giải pháp mã nguồn mở thay thế <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>BL Advisor<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>. Nếu bạn coi trọng sự minh bạch, quyền riêng tư dữ liệu và sự hợp tác của cộng đồng, BL Advisor là cơ hội tuyệt vời để bạn làm chủ việc quản lý tài chính của mình.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/personal-finance-tools-page.html</context>
           <context context-type="linenumber">9</context>
@@ -5278,7 +5278,7 @@
       </trans-unit>
       <trans-unit id="1509032395181307486" datatype="html">
         <source>Explore the links below to compare a variety of personal finance tools with Ghostfolio.</source>
-        <target state="translated">Khám phá các liên kết bên dưới để so sánh nhiều công cụ tài chính cá nhân với Ghostfolio.</target>
+        <target state="translated">Khám phá các liên kết bên dưới để so sánh nhiều công cụ tài chính cá nhân với BL Advisor.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/personal-finance-tools-page.html</context>
           <context context-type="linenumber">17</context>
@@ -5302,7 +5302,7 @@
       </trans-unit>
       <trans-unit id="5100352603258735382" datatype="html">
         <source>Are you looking for an open source alternative to <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>Ghostfolio<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> is a powerful portfolio management tool that provides individuals with a comprehensive platform to track, analyze, and optimize their investments. Whether you are an experienced investor or just starting out, Ghostfolio offers an intuitive user interface and a <x id="START_LINK_1" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot; &gt;"/>wide range of functionalities<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> to help you make informed decisions and take control of your financial future.</source>
-        <target state="translated">Bạn đang tìm giải pháp mã nguồn mở thay thế cho <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>Ghostfolio<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> là công cụ quản lý danh mục đầu tư mạnh mẽ, mang đến cho cá nhân một nền tảng toàn diện để theo dõi, phân tích và tối ưu hóa khoản đầu tư của mình. Dù bạn là nhà đầu tư dày dạn kinh nghiệm hay mới bắt đầu, Ghostfolio đều mang lại giao diện người dùng trực quan cùng <x id="START_LINK_1" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot; &gt;"/>nhiều tính năng đa dạng<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> giúp bạn đưa ra quyết định sáng suốt và làm chủ tương lai tài chính của mình.</target>
+        <target state="translated">Bạn đang tìm giải pháp mã nguồn mở thay thế cho <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>? <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkAbout&quot;&gt;"/>BL Advisor<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> là công cụ quản lý danh mục đầu tư mạnh mẽ, mang đến cho cá nhân một nền tảng toàn diện để theo dõi, phân tích và tối ưu hóa khoản đầu tư của mình. Dù bạn là nhà đầu tư dày dạn kinh nghiệm hay mới bắt đầu, BL Advisor đều mang lại giao diện người dùng trực quan cùng <x id="START_LINK_1" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot; &gt;"/>nhiều tính năng đa dạng<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> giúp bạn đưa ra quyết định sáng suốt và làm chủ tương lai tài chính của mình.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">18</context>
@@ -5318,7 +5318,7 @@
       </trans-unit>
       <trans-unit id="7314014538091101522" datatype="html">
         <source>Ghostfolio is an open source software (OSS), providing a cost-effective alternative to <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> making it particularly suitable for individuals on a tight budget, such as those <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;../en/blog/2023/07/exploring-the-path-to-fire&quot; &gt;"/>pursuing Financial Independence, Retire Early (FIRE)<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/>. By leveraging the collective efforts of a community of developers and personal finance enthusiasts, Ghostfolio continuously enhances its capabilities, security, and user experience.</source>
-        <target state="translated">Ghostfolio là phần mềm mã nguồn mở (OSS), mang lại giải pháp thay thế tiết kiệm chi phí cho <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>, đặc biệt phù hợp với những người có ngân sách hạn hẹp, chẳng hạn những người <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;../en/blog/2023/07/exploring-the-path-to-fire&quot; &gt;"/>theo đuổi con đường độc lập tài chính, nghỉ hưu sớm (FIRE)<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/>. Nhờ tận dụng nỗ lực chung của cộng đồng lập trình viên và những người đam mê tài chính cá nhân, Ghostfolio không ngừng nâng cao năng lực, tính bảo mật và trải nghiệm người dùng.</target>
+        <target state="translated">BL Advisor là phần mềm mã nguồn mở (OSS), mang lại giải pháp thay thế tiết kiệm chi phí cho <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>, đặc biệt phù hợp với những người có ngân sách hạn hẹp, chẳng hạn những người <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;../en/blog/2023/07/exploring-the-path-to-fire&quot; &gt;"/>theo đuổi con đường độc lập tài chính, nghỉ hưu sớm (FIRE)<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/>. Nhờ tận dụng nỗ lực chung của cộng đồng lập trình viên và những người đam mê tài chính cá nhân, BL Advisor không ngừng nâng cao năng lực, tính bảo mật và trải nghiệm người dùng.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">32</context>
@@ -5326,7 +5326,7 @@
       </trans-unit>
       <trans-unit id="2315631726271602419" datatype="html">
         <source>Let’s dive deeper into the detailed Ghostfolio vs <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> comparison table below to gain a thorough understanding of how Ghostfolio positions itself relative to <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>. We will explore various aspects such as features, data privacy, pricing, and more, allowing you to make a well-informed choice for your personal requirements.</source>
-        <target state="translated">Hãy cùng đi sâu vào bảng so sánh chi tiết Ghostfolio với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> bên dưới để hiểu rõ cách Ghostfolio định vị so với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>. Chúng ta sẽ khám phá nhiều khía cạnh như tính năng, quyền riêng tư dữ liệu, giá cả và nhiều hơn nữa, giúp bạn đưa ra lựa chọn sáng suốt phù hợp với nhu cầu cá nhân.</target>
+        <target state="translated">Hãy cùng đi sâu vào bảng so sánh chi tiết BL Advisor với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> bên dưới để hiểu rõ cách BL Advisor định vị so với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/>. Chúng ta sẽ khám phá nhiều khía cạnh như tính năng, quyền riêng tư dữ liệu, giá cả và nhiều hơn nữa, giúp bạn đưa ra lựa chọn sáng suốt phù hợp với nhu cầu cá nhân.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">43</context>
@@ -5334,7 +5334,7 @@
       </trans-unit>
       <trans-unit id="4909535316439940790" datatype="html">
         <source>Ghostfolio vs <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> comparison table</source>
-        <target state="translated">Bảng so sánh Ghostfolio với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/></target>
+        <target state="translated">Bảng so sánh BL Advisor với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">54</context>
@@ -5426,7 +5426,7 @@
       </trans-unit>
       <trans-unit id="237127378624497814" datatype="html">
         <source>Upgrade to Ghostfolio Premium</source>
-        <target state="translated">Nâng cấp lên Ghostfolio Premium</target>
+        <target state="translated">Nâng cấp lên BL Advisor Premium</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/premium-indicator/premium-indicator.component.html</context>
           <context context-type="linenumber">4</context>
@@ -5522,7 +5522,7 @@
       </trans-unit>
       <trans-unit id="2192861316878557060" datatype="html">
         <source>Please note that the information provided in the Ghostfolio vs <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> comparison table is based on our independent research and analysis. This website is not affiliated with <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> or any other product mentioned in the comparison. As the landscape of personal finance tools evolves, it is essential to verify any specific details or changes directly from the respective product page. Data needs a refresh? Help us maintain accurate data on <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</source>
-        <target state="translated">Xin lưu ý rằng thông tin trong bảng so sánh Ghostfolio với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> dựa trên nghiên cứu và phân tích độc lập của chúng tôi. Trang web này không liên kết với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> hay bất kỳ sản phẩm nào khác được đề cập trong bảng so sánh. Khi bối cảnh các công cụ tài chính cá nhân thay đổi, điều quan trọng là cần xác minh mọi thông tin hoặc thay đổi cụ thể trực tiếp từ trang sản phẩm tương ứng. Dữ liệu cần cập nhật lại? Hãy giúp chúng tôi duy trì dữ liệu chính xác trên <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
+        <target state="translated">Xin lưu ý rằng thông tin trong bảng so sánh BL Advisor với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> dựa trên nghiên cứu và phân tích độc lập của chúng tôi. Trang web này không liên kết với <x id="INTERPOLATION" equiv-text="{{ product2().name }}"/> hay bất kỳ sản phẩm nào khác được đề cập trong bảng so sánh. Khi bối cảnh các công cụ tài chính cá nhân thay đổi, điều quan trọng là cần xác minh mọi thông tin hoặc thay đổi cụ thể trực tiếp từ trang sản phẩm tương ứng. Dữ liệu cần cập nhật lại? Hãy giúp chúng tôi duy trì dữ liệu chính xác trên <x id="START_LINK" ctype="x-a" equiv-text="&lt;a href=&quot;https://github.com/ghostfolio/ghostfolio&quot;&gt;"/>GitHub<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">355</context>
@@ -5546,7 +5546,7 @@
       </trans-unit>
       <trans-unit id="9169772418374159113" datatype="html">
         <source>Effortlessly track, analyze, and visualize your wealth with Ghostfolio.</source>
-        <target state="translated">Theo dõi, phân tích và trực quan hóa tài sản của bạn dễ dàng với Ghostfolio.</target>
+        <target state="translated">Theo dõi, phân tích và trực quan hóa tài sản của bạn dễ dàng với BL Advisor.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/product-page.html</context>
           <context context-type="linenumber">372</context>
@@ -5630,7 +5630,7 @@
       </trans-unit>
       <trans-unit id="3453373677180899990" datatype="html">
         <source>My Ghostfolio</source>
-        <target state="translated">Ghostfolio của tôi</target>
+        <target state="translated">BL Advisor của tôi</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/header/header.component.html</context>
           <context context-type="linenumber">280</context>
@@ -6038,7 +6038,7 @@
       </trans-unit>
       <trans-unit id="3298117765569632011" datatype="html">
         <source>Switch to Ghostfolio Premium or Ghostfolio Open Source easily</source>
-        <target state="translated">Dễ dàng chuyển sang Ghostfolio Premium hoặc Ghostfolio mã nguồn mở</target>
+        <target state="translated">Dễ dàng chuyển sang BL Advisor Premium hoặc BL Advisor mã nguồn mở</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/i18n.ts</context>
           <context context-type="linenumber">18</context>
@@ -6046,7 +6046,7 @@
       </trans-unit>
       <trans-unit id="1631940846690193897" datatype="html">
         <source>Switch to Ghostfolio Premium easily</source>
-        <target state="translated">Dễ dàng chuyển sang Ghostfolio Premium</target>
+        <target state="translated">Dễ dàng chuyển sang BL Advisor Premium</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/i18n.ts</context>
           <context context-type="linenumber">19</context>
@@ -6142,7 +6142,7 @@
       </trans-unit>
       <trans-unit id="6300009182465422833" datatype="html">
         <source>Ghostfolio in Numbers: Pulls on Docker Hub</source>
-        <target state="translated">Ghostfolio qua các con số: Lượt tải trên Docker Hub</target>
+        <target state="translated">BL Advisor qua các con số: Lượt tải trên Docker Hub</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">101</context>
@@ -6390,7 +6390,7 @@
       </trans-unit>
       <trans-unit id="3358797625330883274" datatype="html">
         <source>Find quick answers to commonly asked questions about self-hosting Ghostfolio in our Frequently Asked Questions (FAQ) section.</source>
-        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về việc tự lưu trữ Ghostfolio trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
+        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về việc tự lưu trữ BL Advisor trong mục Câu hỏi thường gặp (FAQ) của chúng tôi.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/faq/self-hosting/self-hosting-page.html</context>
           <context context-type="linenumber">8</context>
@@ -6999,7 +6999,7 @@
       </trans-unit>
       <trans-unit id="4941836956820527118" datatype="html">
         <source>Do you really want to close your Ghostfolio account?</source>
-        <target state="translated">Bạn có chắc chắn muốn đóng tài khoản Ghostfolio của mình không?</target>
+        <target state="translated">Bạn có chắc chắn muốn đóng tài khoản BL Advisor của mình không?</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/user-account-settings/user-account-settings.component.ts</context>
           <context context-type="linenumber">294</context>
@@ -7187,7 +7187,7 @@
       </trans-unit>
       <trans-unit id="1274567513688786374" datatype="html">
         <source>Ghostfolio X-ray uses static analysis to uncover potential issues and risks in the portfolio.</source>
-        <target state="translated">Ghostfolio X-ray dùng phương pháp phân tích tĩnh để phát hiện các vấn đề và rủi ro tiềm ẩn trong danh mục.</target>
+        <target state="translated">BL Advisor X-ray dùng phương pháp phân tích tĩnh để phát hiện các vấn đề và rủi ro tiềm ẩn trong danh mục.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/portfolio/x-ray/x-ray-page.component.html</context>
           <context context-type="linenumber">7</context>
@@ -7203,7 +7203,7 @@
       </trans-unit>
       <trans-unit id="2655368253225791055" datatype="html">
         <source>Find quick answers to commonly asked questions about Ghostfolio in our Frequently Asked Questions (FAQ) section. Discover what Ghostfolio is, explore its features, and learn about our privacy practices. Get all the information you need in one place.</source>
-        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về Ghostfolio trong mục Câu hỏi thường gặp (FAQ) của chúng tôi. Khám phá Ghostfolio là gì, tìm hiểu các tính năng và chính sách bảo mật của chúng tôi. Có tất cả thông tin cần thiết tại một nơi.</target>
+        <target state="translated">Tìm câu trả lời nhanh cho các câu hỏi thường gặp về BL Advisor trong mục Câu hỏi thường gặp (FAQ) của chúng tôi. Khám phá BL Advisor là gì, tìm hiểu các tính năng và chính sách bảo mật của chúng tôi. Có tất cả thông tin cần thiết tại một nơi.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/faq/overview/faq-overview-page.html</context>
           <context context-type="linenumber">8</context>
@@ -7599,7 +7599,7 @@
       </trans-unit>
       <trans-unit id="6389025757025171607" datatype="html">
         <source>Compare Ghostfolio to <x id="INTERPOLATION" equiv-text="{{ personalFinanceTool.name }}"/> - <x id="INTERPOLATION_1" equiv-text="{{ personalFinanceTool.slogan }}"/></source>
-        <target state="translated">So sánh Ghostfolio với <x id="INTERPOLATION" equiv-text="{{ personalFinanceTool.name }}"/> - <x id="INTERPOLATION_1" equiv-text="{{ personalFinanceTool.slogan }}"/></target>
+        <target state="translated">So sánh BL Advisor với <x id="INTERPOLATION" equiv-text="{{ personalFinanceTool.name }}"/> - <x id="INTERPOLATION_1" equiv-text="{{ personalFinanceTool.slogan }}"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/resources/personal-finance-tools/personal-finance-tools-page.html</context>
           <context context-type="linenumber">32</context>
@@ -7659,7 +7659,7 @@
       </trans-unit>
       <trans-unit id="3528767106831563012" datatype="html">
         <source>Ghostfolio is a lightweight wealth management application for individuals to keep track of stocks, ETFs or cryptocurrencies and make solid, data-driven investment decisions.</source>
-        <target state="translated">Ghostfolio là ứng dụng quản lý tài sản gọn nhẹ dành cho cá nhân để theo dõi cổ phiếu, ETF hoặc tiền mã hóa và đưa ra quyết định đầu tư vững chắc, dựa trên dữ liệu.</target>
+        <target state="translated">BL Advisor là ứng dụng quản lý tài sản gọn nhẹ dành cho cá nhân để theo dõi cổ phiếu, ETF hoặc tiền mã hóa và đưa ra quyết định đầu tư vững chắc, dựa trên dữ liệu.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">10</context>
@@ -7675,7 +7675,7 @@
       </trans-unit>
       <trans-unit id="7522916136412124285" datatype="html">
         <source>to use our referral link and get a Ghostfolio Premium membership for one year</source>
-        <target state="translated">để sử dụng liên kết giới thiệu của chúng tôi và nhận gói thành viên Ghostfolio Premium miễn phí một năm</target>
+        <target state="translated">để sử dụng liên kết giới thiệu của chúng tôi và nhận gói thành viên BL Advisor Premium miễn phí một năm</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/pricing/pricing-page.html</context>
           <context context-type="linenumber">340</context>
@@ -7913,7 +7913,7 @@
       </trans-unit>
       <trans-unit id="1486033335993102285" datatype="html">
         <source>Please enter your Ghostfolio API key:</source>
-        <target state="translated">Vui lòng nhập khóa API Ghostfolio của bạn:</target>
+        <target state="translated">Vui lòng nhập khóa API BL Advisor của bạn:</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/api/api-page.component.ts</context>
           <context context-type="linenumber">80</context>
@@ -7953,7 +7953,7 @@
       </trans-unit>
       <trans-unit id="2224199164108745234" datatype="html">
         <source>Generate Ghostfolio Premium Data Provider API key for self-hosted environments...</source>
-        <target state="translated">Tạo khóa API Ghostfolio Premium Data Provider cho môi trường tự lưu trữ...</target>
+        <target state="translated">Tạo khóa API BL Advisor Premium Data Provider cho môi trường tự lưu trữ...</target>
         <context-group purpose="location">
           <context context-type="sourcefile">libs/ui/src/lib/membership-card/membership-card.component.html</context>
           <context context-type="linenumber">29</context>
@@ -7997,7 +7997,7 @@
       </trans-unit>
       <trans-unit id="7954609080122968528" datatype="html">
         <source>Ghostfolio Premium Data Provider API Key</source>
-        <target state="translated">Khóa API Ghostfolio Premium Data Provider</target>
+        <target state="translated">Khóa API BL Advisor Premium Data Provider</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/user-account-membership/user-account-membership.component.ts</context>
           <context context-type="linenumber">158</context>
@@ -8121,7 +8121,7 @@
       </trans-unit>
       <trans-unit id="4068738931505527681" datatype="html">
         <source>Please enter your Ghostfolio API key.</source>
-        <target state="translated">Vui lòng nhập khóa API Ghostfolio của bạn.</target>
+        <target state="translated">Vui lòng nhập khóa API BL Advisor của bạn.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/admin-settings/admin-settings.component.ts</context>
           <context context-type="linenumber">170</context>
@@ -8261,7 +8261,7 @@
       </trans-unit>
       <trans-unit id="1237494164624005096" datatype="html">
         <source>Ghostfolio in Numbers: Stars on GitHub</source>
-        <target state="translated">Ghostfolio qua các con số: Lượt gắn sao trên GitHub</target>
+        <target state="translated">BL Advisor qua các con số: Lượt gắn sao trên GitHub</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/landing/landing-page.html</context>
           <context context-type="linenumber">82</context>
@@ -8797,7 +8797,7 @@
       </trans-unit>
       <trans-unit id="2813275520458225294" datatype="html">
         <source>Fuel your <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>self-hosted Ghostfolio<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> with a <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>powerful data provider<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> to access <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>80,000+ tickers<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> from over <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>50 exchanges<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> worldwide.</source>
-        <target state="translated">Tiếp sức cho <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>Ghostfolio tự lưu trữ<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> của bạn với <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>nhà cung cấp dữ liệu mạnh mẽ<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> để truy cập <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>hơn 80.000 mã chứng khoán<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> từ hơn <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>50 sàn giao dịch<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> trên toàn thế giới.</target>
+        <target state="translated">Tiếp sức cho <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>BL Advisor tự lưu trữ<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> của bạn với <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>nhà cung cấp dữ liệu mạnh mẽ<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> để truy cập <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>hơn 80.000 mã chứng khoán<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> từ hơn <x id="START_TAG_STRONG" ctype="x-strong" equiv-text="&lt;strong&gt;"/>50 sàn giao dịch<x id="CLOSE_TAG_STRONG" ctype="x-strong" equiv-text="&lt;/strong&gt;"/> trên toàn thế giới.</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/components/admin-settings/admin-settings.component.html</context>
           <context context-type="linenumber">16</context>
@@ -8805,7 +8805,7 @@
       </trans-unit>
       <trans-unit id="2813837590488774096" datatype="html">
         <source>Post to Ghostfolio on X (formerly Twitter)</source>
-        <target state="translated">Đăng lên Ghostfolio trên X (trước đây là Twitter)</target>
+        <target state="translated">Đăng lên BL Advisor trên X (trước đây là Twitter)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">85</context>
@@ -9026,7 +9026,7 @@
       </trans-unit>
       <trans-unit id="5199695670214400859" datatype="html">
         <source>If you encounter a bug, would like to suggest an improvement or a new <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot;&gt;"/>feature<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/>, please join the Ghostfolio <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://join.slack.com/t/ghostfolio/shared_invite/zt-vsaan64h-F_I0fEo5M0P88lP9ibCxFg&quot; i18n-title title=&quot;Join the Ghostfolio Slack community&quot; &gt;"/>Slack<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> community, post to <x id="START_LINK_2" equiv-text="&lt;a href=&quot;https://x.com/ghostfolio_&quot; i18n-title title=&quot;Post to Ghostfolio on X (formerly Twitter)&quot; &gt;"/>@ghostfolio_<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/></source>
-        <target state="translated">Nếu bạn gặp lỗi, muốn đề xuất cải tiến hoặc <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot;&gt;"/>tính năng<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> mới, vui lòng tham gia cộng đồng <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://join.slack.com/t/ghostfolio/shared_invite/zt-vsaan64h-F_I0fEo5M0P88lP9ibCxFg&quot; i18n-title title=&quot;Join the Ghostfolio Slack community&quot; &gt;"/>Slack<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> của Ghostfolio, đăng bài lên <x id="START_LINK_2" equiv-text="&lt;a href=&quot;https://x.com/ghostfolio_&quot; i18n-title title=&quot;Post to Ghostfolio on X (formerly Twitter)&quot; &gt;"/>@ghostfolio_<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/></target>
+        <target state="translated">Nếu bạn gặp lỗi, muốn đề xuất cải tiến hoặc <x id="START_LINK" ctype="x-a" equiv-text="&lt;a [routerLink]=&quot;routerLinkFeatures&quot;&gt;"/>tính năng<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> mới, vui lòng tham gia cộng đồng <x id="START_LINK_1" equiv-text="&lt;a href=&quot;https://join.slack.com/t/ghostfolio/shared_invite/zt-vsaan64h-F_I0fEo5M0P88lP9ibCxFg&quot; i18n-title title=&quot;Join the Ghostfolio Slack community&quot; &gt;"/>Slack<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/> của BL Advisor, đăng bài lên <x id="START_LINK_2" equiv-text="&lt;a href=&quot;https://x.com/ghostfolio_&quot; i18n-title title=&quot;Post to Ghostfolio on X (formerly Twitter)&quot; &gt;"/>@ghostfolio_<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a &gt;"/></target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">71</context>
@@ -9430,7 +9430,7 @@
       </trans-unit>
       <trans-unit id="1184917049575486230" datatype="html">
         <source>Support Ghostfolio</source>
-        <target state="translated">Ủng hộ Ghostfolio</target>
+        <target state="translated">Ủng hộ BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">170</context>
@@ -9438,7 +9438,7 @@
       </trans-unit>
       <trans-unit id="2305116864852661861" datatype="html">
         <source>Find Ghostfolio on GitHub</source>
-        <target state="translated">Tìm Ghostfolio trên GitHub</target>
+        <target state="translated">Tìm BL Advisor trên GitHub</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">20</context>
@@ -9458,7 +9458,7 @@
       </trans-unit>
       <trans-unit id="4170353658096790081" datatype="html">
         <source>Ghostfolio is an independent &amp; bootstrapped business</source>
-        <target state="translated">Ghostfolio là một doanh nghiệp độc lập và tự thân vận động (bootstrapped)</target>
+        <target state="translated">BL Advisor là một doanh nghiệp độc lập và tự thân vận động (bootstrapped)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">161</context>
@@ -9494,7 +9494,7 @@
       </trans-unit>
       <trans-unit id="5606994816647505945" datatype="html">
         <source>Join the Ghostfolio Slack community</source>
-        <target state="translated">Tham gia cộng đồng Slack của Ghostfolio</target>
+        <target state="translated">Tham gia cộng đồng Slack của BL Advisor</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">78</context>
@@ -9506,7 +9506,7 @@
       </trans-unit>
       <trans-unit id="5162138648470294706" datatype="html">
         <source>Follow Ghostfolio on LinkedIn</source>
-        <target state="translated">Theo dõi Ghostfolio trên LinkedIn</target>
+        <target state="translated">Theo dõi BL Advisor trên LinkedIn</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">151</context>
@@ -9514,7 +9514,7 @@
       </trans-unit>
       <trans-unit id="2555424753565986929" datatype="html">
         <source>Follow Ghostfolio on X (formerly Twitter)</source>
-        <target state="translated">Theo dõi Ghostfolio trên X (trước đây là Twitter)</target>
+        <target state="translated">Theo dõi BL Advisor trên X (trước đây là Twitter)</target>
         <context-group purpose="location">
           <context context-type="sourcefile">apps/client/src/app/pages/about/overview/about-overview-page.html</context>
           <context context-type="linenumber">122</context>

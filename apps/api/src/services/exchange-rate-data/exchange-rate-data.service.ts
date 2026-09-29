@@ -5,6 +5,7 @@ import { MarketDataService } from '@ghostfolio/api/services/market-data/market-d
 import { PrismaService } from '@ghostfolio/api/services/prisma/prisma.service';
 import { PropertyService } from '@ghostfolio/api/services/property/property.service';
 import {
+  ALWAYS_AVAILABLE_CURRENCIES,
   DEFAULT_CURRENCY,
   DERIVED_CURRENCIES,
   PROPERTY_CURRENCIES
@@ -550,6 +551,8 @@ export class ExchangeRateDataService {
     if (customCurrencies?.length > 0) {
       currencies = currencies.concat(customCurrencies);
     }
+
+    currencies.push(...ALWAYS_AVAILABLE_CURRENCIES);
 
     // Add derived currencies
     currencies.push('USX');

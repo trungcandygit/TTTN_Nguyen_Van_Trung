@@ -1,18 +1,76 @@
 <div class="container">
   <div class="row">
-    <div class="col">
-      <h1 class="h3 mb-4 text-center" i18n>Resources</h1>
-      <div class="overview-list">
-        @for (item of overviewItems; track item) {
-          <div [class.mb-4]="!$last">
-            <h2 class="h5 mb-1 mt-0">{{ item.title }}</h2>
-            <p class="mb-1">{{ item.description }}</p>
-            <a [routerLink]="item.routerLink"
-              ><ng-container i18n>Explore {{ item.title }}</ng-container> →</a
-            >
-          </div>
-        }
-      </div>
+    <div class="col-lg-8 offset-lg-2">
+      <h1 class="h3 mb-4 text-center">Hướng dẫn sử dụng BL Advisor</h1>
+
+      <mat-card appearance="outlined" class="mb-3">
+        <mat-card-content>
+          <h2 class="h5">1. Tạo tài khoản và đăng nhập</h2>
+          <p class="mb-0">
+            Bấm <strong>Bắt đầu</strong> để tạo tài khoản. Hệ thống cấp một
+            <strong>mã bảo mật</strong> duy nhất và chỉ hiển thị một lần, hãy
+            lưu lại cẩn thận. Những lần sau, bấm <strong>Đăng nhập</strong> rồi
+            dán mã này vào. Không có tên đăng nhập hay mật khẩu khác.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="mb-3">
+        <mat-card-content>
+          <h2 class="h5">2. Nhập giao dịch</h2>
+          <p class="mb-0">
+            Vào <strong>Danh mục đầu tư → Giao dịch → Thêm giao dịch</strong>.
+            Chọn loại giao dịch (Mua, Bán, Cổ tức…), gõ tên hoặc mã cổ phiếu rồi
+            chọn từ danh sách gợi ý. Đơn giá được tự điền theo giá thị trường
+            hiện tại và bạn có thể sửa lại cho đúng giá thực tế đã khớp lệnh.
+            Chọn loại tiền tệ là <strong>VND</strong> nếu giao dịch bằng đồng
+            Việt Nam.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="mb-3">
+        <mat-card-content>
+          <h2 class="h5">3. Xem danh mục và phân bổ</h2>
+          <p class="mb-0">
+            Trang <strong>Tổng quan</strong> cho biết giá trị tài sản ròng và
+            hiệu suất. Trang <strong>Phân bổ</strong> cho biết tỷ trọng theo
+            khoản nắm giữ, nhóm tài sản, ngành, quốc gia và tài khoản.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <mat-card appearance="outlined" class="mb-3">
+        <mat-card-content>
+          <h2 class="h5">4. Phân bổ theo mô hình Black-Litterman</h2>
+          <p>
+            Ở cuối trang <strong>Phân bổ</strong> có khối
+            <strong>Phân bổ theo mô hình Black-Litterman</strong>. Mô hình kết
+            hợp lợi suất cân bằng thị trường với quan điểm của nhà đầu tư để đưa
+            ra tỷ trọng tối ưu cho từng khoản nắm giữ:
+          </p>
+          <ul>
+            <li>Lợi suất cân bằng: <code>π = δ · Σ · w_mkt</code></li>
+            <li>
+              Lợi suất hậu nghiệm:
+              <code>E[R] = [(τΣ)⁻¹ + P′Ω⁻¹P]⁻¹ [(τΣ)⁻¹π + P′Ω⁻¹Q]</code>
+            </li>
+            <li>Trọng số tối ưu: <code>w* = (δ(Σ + M⁻¹))⁻¹ · E[R]</code></li>
+          </ul>
+          <p class="mb-0">
+            <strong>Điều kiện:</strong> cần ít nhất hai khoản nắm giữ có giá trị
+            dương. <strong>Hạn chế hiện tại:</strong> chưa có giao diện nhập
+            quan điểm nhà đầu tư nên kết quả đang bằng lợi suất cân bằng; nếu
+            lịch sử giá chung của các mã dưới 10 ngày, hệ thống dùng ma trận
+            hiệp phương sai giả định thay cho dữ liệu thật.
+          </p>
+        </mat-card-content>
+      </mat-card>
+
+      <p class="small text-center text-muted">
+        Nội dung chỉ nhằm mục đích học tập và nghiên cứu, không phải lời khuyên
+        đầu tư.
+      </p>
     </div>
   </div>
 </div>

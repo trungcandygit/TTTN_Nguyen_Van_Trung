@@ -2,7 +2,7 @@ import { AccessService } from '@ghostfolio/api/app/access/access.service';
 import { SubscriptionService } from '@ghostfolio/api/app/subscription/subscription.service';
 import { ConfigurationService } from '@ghostfolio/api/services/configuration/configuration.service';
 import { PrismaService } from '@ghostfolio/api/services/prisma/prisma.service';
-import { DEFAULT_CURRENCY } from '@ghostfolio/common/config';
+import { DEFAULT_USER_CURRENCY } from '@ghostfolio/common/config';
 import { SubscriptionType } from '@ghostfolio/common/enums';
 import { permissions } from '@ghostfolio/common/permissions';
 import {
@@ -202,7 +202,7 @@ describe('Impersonation service', () => {
         user: authenticatedUser
       });
 
-      expect(userSettings).toEqual({ baseCurrency: DEFAULT_CURRENCY });
+      expect(userSettings).toEqual({ baseCurrency: DEFAULT_USER_CURRENCY });
     });
 
     it('Omits the subscription while the feature is disabled', async () => {
