@@ -99,12 +99,10 @@ export class UserService {
 
   public async getUser({
     impersonationUserId,
-    locale = DEFAULT_LOCALE,
     scopes,
     user
   }: {
     impersonationUserId: string;
-    locale?: string;
     scopes: string[];
     user: UserWithSettings;
   }): Promise<IUser> {
@@ -227,7 +225,7 @@ export class UserService {
         ...resolvedUserSettings,
         baseCurrency:
           resolvedUserSettings.baseCurrency ?? DEFAULT_USER_CURRENCY,
-        locale: resolvedUserSettings.locale ?? locale
+        locale: resolvedUserSettings.locale ?? DEFAULT_LOCALE
       }
     };
   }

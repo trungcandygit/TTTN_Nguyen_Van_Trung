@@ -1,3 +1,5 @@
+import { DEFAULT_LOCALE } from '@ghostfolio/common/config';
+
 import { getRuleSettings, getXRayRulesSettings } from './rule-settings';
 
 describe('Rule settings', () => {
@@ -10,7 +12,7 @@ describe('Rule settings', () => {
     ).toEqual({
       baseCurrency: 'USD',
       isActive: true,
-      locale: 'en-US',
+      locale: DEFAULT_LOCALE,
       thresholdMax: 0.82,
       thresholdMin: 0.78
     });
@@ -25,7 +27,7 @@ describe('Rule settings', () => {
     ).toEqual({
       baseCurrency: 'USD',
       isActive: true,
-      locale: 'en-US',
+      locale: DEFAULT_LOCALE,
       thresholdMin: 0
     });
   });
@@ -68,7 +70,7 @@ describe('Rule settings', () => {
     ).toEqual({
       baseCurrency: 'USD',
       isActive: true,
-      locale: 'en-US',
+      locale: DEFAULT_LOCALE,
       thresholdMax: 0.9,
       thresholdMin: 0.78
     });
@@ -87,7 +89,7 @@ describe('Rule settings', () => {
     ).toEqual({
       baseCurrency: 'USD',
       isActive: true,
-      locale: 'en-US',
+      locale: DEFAULT_LOCALE,
       thresholdMax: 0.82,
       thresholdMin: 0
     });
@@ -101,7 +103,7 @@ describe('Rule settings', () => {
       })
     ).toEqual({
       isActive: true,
-      locale: 'en-US'
+      locale: DEFAULT_LOCALE
     });
   });
 

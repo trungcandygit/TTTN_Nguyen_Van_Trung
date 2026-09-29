@@ -1,4 +1,5 @@
 import {
+  DEFAULT_LOCALE,
   TAG_ID_EMERGENCY_FUND,
   TAG_ID_EXCLUDE_FROM_ANALYSIS
 } from '@ghostfolio/common/config';
@@ -659,5 +660,13 @@ describe('Helper', () => {
         viewMode: 'DEFAULT'
       });
     });
+  });
+});
+
+describe('DEFAULT_LOCALE', () => {
+  it('formats numbers with dots as thousands separators and a decimal comma', () => {
+    expect(DEFAULT_LOCALE).toBe('vi-VN');
+    expect((1000000).toLocaleString(DEFAULT_LOCALE)).toBe('1.000.000');
+    expect((1234.5).toLocaleString(DEFAULT_LOCALE)).toBe('1.234,5');
   });
 });
