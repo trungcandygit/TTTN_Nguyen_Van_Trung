@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpBackend, HttpClient } from '@angular/common/http';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -36,7 +36,9 @@ export class GfAboutOverviewPageComponent implements OnInit {
 
   private readonly changeDetectorRef = inject(ChangeDetectorRef);
   private readonly destroyRef = inject(DestroyRef);
-  private readonly httpClient = inject(HttpClient);
+  // Talks to a third-party API (ORCID): a client built on HttpBackend bypasses
+  // the interceptors, so the login token of the user is never sent to ORCID
+  private readonly httpClient = new HttpClient(inject(HttpBackend));
 
   public ngOnInit() {
     this.httpClient
