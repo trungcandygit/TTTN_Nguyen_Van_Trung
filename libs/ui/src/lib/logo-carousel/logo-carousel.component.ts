@@ -92,13 +92,13 @@ export class GfLogoCarouselComponent {
       className: 'logo-selfh-st',
       isMask: true,
       name: 'selfh.st',
-      title: 'selfh.st — Self-hosted content and software',
+      title: 'selfh.st, Self-hosted content and software',
       url: 'https://selfh.st'
     },
     {
       className: 'logo-selfhostedhub',
       name: 'SelfhostedHub',
-      title: 'SelfhostedHub — Discover best self-hosted software',
+      title: 'SelfhostedHub, Discover best self-hosted software',
       url: 'https://selfhostedhub.com'
     },
     {
@@ -113,7 +113,7 @@ export class GfLogoCarouselComponent {
       className: 'logo-umbrel',
       isMask: true,
       name: 'Umbrel',
-      title: 'Umbrel — A personal server OS for self-hosting',
+      title: 'Umbrel, A personal server OS for self-hosting',
       url: 'https://umbrel.com'
     },
     {

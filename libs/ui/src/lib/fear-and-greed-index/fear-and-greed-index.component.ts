@@ -21,7 +21,7 @@ export class GfFearAndGreedIndexComponent {
   public readonly fearAndGreedIndex = input<number>();
   public readonly isLoading = input<boolean>(false);
 
-  protected readonly placeholder = '—';
+  protected readonly placeholder = '-';
 
   protected readonly fearAndGreedIndexEmoji = computed(() => {
     return resolveFearAndGreedIndex(this.fearAndGreedIndex()).emoji;

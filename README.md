@@ -1,7 +1,7 @@
-# BL Advisor — Ghostfolio + Black-Litterman Allocation
+# BL Advisor: Ghostfolio + Black-Litterman Allocation
 
-Đồ án thực tập tốt nghiệp CNTT — Học viện Công nghệ Bưu chính Viễn thông (PTIT).
-Sinh viên: **Nguyễn Văn Trung** — kontrungcany@gmail.com
+Đồ án thực tập tốt nghiệp CNTT, Học viện Công nghệ Bưu chính Viễn thông (PTIT).
+Sinh viên: **Nguyễn Văn Trung**, kontrungcany@gmail.com
 
 ## Đây là fork của Ghostfolio
 
@@ -50,12 +50,12 @@ cốt lõi: bổ sung mô hình Black-Litterman vào trang Allocations, thay vì
 
 ```
 apps/
-  api/      NestJS — backend gốc của Ghostfolio + module Black-Litterman mới
-  client/   Angular — frontend gốc của Ghostfolio + UI Black-Litterman mới
+  api/      NestJS, backend gốc của Ghostfolio + module Black-Litterman mới
+  client/   Angular, frontend gốc của Ghostfolio + UI Black-Litterman mới
 libs/       Thư viện dùng chung (Nx workspace) của Ghostfolio
 prisma/     Schema Prisma / migration của Ghostfolio
 docker/     Cấu hình Docker Compose gốc của Ghostfolio (không dùng trong môi trường
-            thực tập này vì Docker daemon không chạy được trong sandbox — chạy
+            thực tập này vì Docker daemon không chạy được trong sandbox, chạy
             PostgreSQL 16 + Redis cài qua apt trực tiếp, xem docs/BAO_CAO_THUC_TAP.md)
 docs/
   BAO_CAO_THUC_TAP.md   nội dung báo cáo thực tập (Phần 1-5 theo mẫu PTIT)
@@ -115,5 +115,5 @@ Công thức giữ nguyên so với bản Python gốc của prototype ban đầ
 Repo này là fork của Ghostfolio và được phân phối theo **AGPL-3.0**, giữ nguyên toàn
 bộ copyright notice gốc trong mã nguồn Ghostfolio. Xem `LICENSE`.
 
-Ghostfolio gốc: https://github.com/ghostfolio/ghostfolio — © Thomas Kaul và
+Ghostfolio gốc: https://github.com/ghostfolio/ghostfolio, © Thomas Kaul và
 Ghostfolio contributors.
