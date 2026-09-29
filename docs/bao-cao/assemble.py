@@ -156,9 +156,16 @@ def cite_sub(mt):
     return f'[{mapping[label]}]'
 
 
+def sort_groups(text):
+    def fix(mt):
+        nums = sorted(int(x) for x in re.findall(r'\d+', mt.group(0)))
+        return ', '.join(f'[{n}]' for n in nums)
+    return re.sub(r'\[\d+\](?:, \[\d+\])+', fix, text)
+
+
 def walk(obj):
     if isinstance(obj, str):
-        return m.CITE.sub(cite_sub, obj)
+        return sort_groups(m.CITE.sub(cite_sub, obj))
     if isinstance(obj, list):
         return [walk(x) for x in obj]
     if isinstance(obj, tuple):
@@ -167,7 +174,7 @@ def walk(obj):
 
 
 refs = {}
-SHOT = 'Nguồn: Ảnh chụp màn hình BL Advisor do sinh viên thực hiện, bản dựng ngày 29/09/2026, dữ liệu demo.'
+SHOT = 'Nguồn: Ảnh chụp màn hình BL Advisor do sinh viên thực hiện, bản dựng cuối của đợt thực tập, dữ liệu demo.'
 
 
 def fig_source(path):
@@ -222,7 +229,10 @@ def gen(blocks, width, front=False, page_break_h1n=False):
     pieces = []
     h2_count = 0
     under_h1n = False
-    for kind, payload in strip_blocks(blocks):
+    blocks = strip_blocks(blocks)
+    for idx, (kind, payload) in enumerate(blocks):
+        nxt = blocks[idx + 1] if idx + 1 < len(blocks) else None
+        ctx.keep_tail = 2 if (kind == 'TABLE' and nxt and nxt[0] == 'P' and nxt[1].startswith('Ngày ')) else 0
         if kind == 'H1':
             h1_count += 1
             h2_count = 0
@@ -293,7 +303,9 @@ abst_xml = gen(abst, PORTRAIT, page_break_h1n=True)
 p123 = split_h1(blocks_by_file['01_phan1_phan2_phan3'])
 assert len(p123) == 3
 phan1 = gen(p123[0], PORTRAIT)
+ctx.table_font = 18
 phan2 = gen(p123[1], LANDSCAPE)
+ctx.table_font = 20
 phan3 = gen(p123[2], PORTRAIT)
 phan4 = gen(blocks_by_file['02_phan4_nhat_ky'], LANDSCAPE)
 phan5 = gen(blocks_by_file['03_phan5_a'] + blocks_by_file['04_phan5_b'] + blocks_by_file['05_phan5_c'], PORTRAIT)
@@ -410,6 +422,8 @@ new += [phan1, sect_only(E[151])]
 new += [phan2, sect_only(E[168])]
 new += [phan3, sect_only(E[182])]
 new += [phan4, sect_only(E[200])]
+apx = re.sub(r'(<w:p><w:pPr><w:spacing w:after="60"/></w:pPr></w:p>)+$', '', apx)
+apx += '<w:p><w:pPr><w:spacing w:before="0" w:after="0" w:line="20" w:lineRule="exact"/></w:pPr></w:p>'
 new += [phan5, cong_trinh, ref_xml, apx]
 new += [E[210]]
 

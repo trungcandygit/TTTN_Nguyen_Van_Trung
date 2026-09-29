@@ -23,7 +23,7 @@ Yêu cầu phi chức năng dựa trên các đặc tính chất lượng của 
 
 @TABLE Bảng 5.3. Yêu cầu phi chức năng
 | Mã | Yêu cầu | Cách kiểm chứng |
-| NFR1 | Hiệu năng: một lần tối ưu hóa kèm backtest dưới 5 giây với tối đa 20 tài sản | Đo thời gian trên dữ liệu demo (Mục 5.5.3) |
+| NFR1 | Hiệu năng: một lần tối ưu hóa kèm backtest dưới 5 giây với tối đa 20 tài sản | Đo thời gian trên dữ liệu demo (Mục 5.5.3), mới đo ở sáu tài sản |
 | NFR2 | Đúng đắn: tỷ trọng không âm, tổng bằng 1, không vượt trần | Kiểm thử đơn vị theo tính chất |
 | NFR3 | Khả năng bảo trì: mô-đun tối ưu tách khỏi lớp truy cập dữ liệu | Hàm thuần trong `optimizer.math.ts` và `optimizer.engine.ts` |
 | NFR4 | Tính tái lập: cùng dữ liệu và tham số cho cùng kết quả | Hạt giống cố định, không dùng số ngẫu nhiên khi tối ưu |
@@ -33,7 +33,7 @@ Yêu cầu phi chức năng dựa trên các đặc tính chất lượng của 
 
 @H3 5.3.2. Kiến trúc tổng quan
 
-Hệ thống gồm bốn thành phần chạy độc lập (Hình 5.1). Trình duyệt tải giao diện Angular và gọi máy chủ qua giao thức truyền siêu văn bản (HTTP) theo kiểu REST (Representational State Transfer) ở đường dẫn `/api/v1`. Máy chủ NestJS xử lý nghiệp vụ, đọc và ghi PostgreSQL qua Prisma, và dùng Redis làm bộ nhớ đệm và hàng đợi tác vụ nền. Trong máy chủ, hai dịch vụ của sinh viên nằm cạnh các dịch vụ gốc: `BlackLittermanService` cho khối trên trang Phân bổ và `OptimizerService` cho trang Tối ưu hóa. Cả hai đọc khoản nắm giữ từ `PortfolioService`, giá từ `MarketDataService` và tỷ giá từ `ExchangeRateDataService`.
+Hệ thống gồm bốn thành phần chạy độc lập, cùng một nguồn giá ngoài để nạp giá thị trường (Hình 5.1). Trình duyệt tải giao diện Angular và gọi máy chủ qua giao thức truyền siêu văn bản (HTTP) theo kiểu REST (Representational State Transfer) ở đường dẫn `/api/v1`. Máy chủ NestJS xử lý nghiệp vụ, đọc và ghi PostgreSQL qua Prisma, và dùng Redis làm bộ nhớ đệm và hàng đợi tác vụ nền. Trong máy chủ, hai dịch vụ của sinh viên nằm cạnh các dịch vụ gốc: `BlackLittermanService` cho khối trên trang Phân bổ và `OptimizerService` cho trang Tối ưu hóa. Cả hai đọc khoản nắm giữ từ `PortfolioService`, giá từ `MarketDataService` và tỷ giá từ `ExchangeRateDataService`.
 
 @FIG hinh/kien-truc.png | Hình 5.1. Kiến trúc hệ thống BL Advisor. Mũi tên liền là yêu cầu hoặc lời gọi, mũi tên đứt là phản hồi. HTTP: giao thức truyền siêu văn bản; JWT: mã thông báo JSON Web Token; Prisma: lớp truy cập cơ sở dữ liệu.
 
@@ -75,13 +75,13 @@ Hình 5.3 mô tả luồng xử lý một yêu cầu. Máy chủ kiểm tra yêu
 
 @H3 5.3.6. Bảo mật và quyền riêng tư
 
-Hệ thống không dùng mật khẩu. Khi tạo tài khoản, máy chủ sinh một mã bảo mật, băm bằng HMAC-SHA512 với một chuỗi muối bí mật và chỉ lưu giá trị băm. Khi đăng nhập, máy chủ băm mã người dùng nhập, đối chiếu với cơ sở dữ liệu rồi phát một JSON Web Token (JWT) có thời hạn. Mọi endpoint mới kiểm tra token và phạm vi quyền. Trang Giới thiệu trước đây gọi một dịch vụ ngoài để lấy danh sách công bố. Sinh viên thay bằng danh sách cố định trong mã nguồn, vì gọi dịch vụ bên thứ ba làm tăng bề mặt rủi ro mà không cần thiết. Dữ liệu demo hoàn toàn mô phỏng và không chứa thông tin cá nhân, phù hợp yêu cầu của Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân [19]. Các mã đăng nhập demo chỉ dùng trong môi trường phát triển.
+Hệ thống không dùng mật khẩu. Khi tạo tài khoản, máy chủ sinh một mã bảo mật, băm bằng HMAC-SHA512 với một chuỗi muối bí mật và chỉ lưu giá trị băm. Khi đăng nhập, máy chủ băm mã người dùng nhập, đối chiếu với cơ sở dữ liệu rồi phát một JSON Web Token (JWT) có thời hạn. Mọi endpoint mới kiểm tra token và phạm vi quyền. Phía giao diện chưa chặn đường dẫn quản trị đối với người dùng thường, và lỗi này còn mở (Mục 5.7.2). Trang Giới thiệu trước đây gọi một dịch vụ ngoài để lấy danh sách công bố. Sinh viên thay bằng danh sách cố định trong mã nguồn, vì gọi dịch vụ bên thứ ba làm tăng bề mặt rủi ro mà không cần thiết. Dữ liệu demo hoàn toàn mô phỏng và không chứa thông tin cá nhân, phù hợp yêu cầu của Nghị định 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân [19]. Các mã đăng nhập demo chỉ dùng trong môi trường phát triển.
 
 @H2 5.4. Cài đặt
 
 @H3 5.4.1. Cấu trúc mã nguồn
 
-Kho mã có khoảng 900 tệp TypeScript ngoài thư mục công cụ. Phần của sinh viên gồm các tệp sau, Bảng 5.6 liệt kê vai trò từng tệp.
+Kho mã có khoảng 900 tệp TypeScript ngoài thư mục công cụ. Phần của sinh viên gồm các tệp trong Bảng 5.6, kèm vai trò của từng tệp.
 
 @TABLE Bảng 5.6. Các tệp chính của phần bổ sung
 | Tệp | Vai trò |
@@ -105,9 +105,9 @@ Bài toán bậc hai. Phương sai tối thiểu, trung bình-phương sai và m
 
 Sharpe tối đa. Tỷ số Sharpe dọc theo đường biên có một đỉnh theo hệ số ngại rủi ro $\delta$. Hàm `maximizeSharpe` tìm kiếm tỷ lệ vàng trên $\log_{10}\delta$ trong khoảng $[-3, 6]$ với 40 vòng, mỗi vòng giải bài toán trung bình-phương sai. Nếu không tài sản nào có lợi suất vượt $r_f$, hàm trả danh mục phương sai tối thiểu.
 
-CVaR tối thiểu. Hàm `minimizeCVaR` dùng phương pháp dưới gradient chiếu trên các kịch bản lịch sử. Mỗi vòng, hàm chọn $k$ kịch bản tệ nhất, tính dưới gradient là trung bình của các dòng lợi suất tương ứng, đi một bước chuẩn hóa $0{,}05/\sqrt{\text{vòng} + 1}$, rồi chiếu. Hàm chạy 2.000 vòng, khởi tạo từ tốt hơn trong hai danh mục (chia đều và phương sai tối thiểu) và giữ nghiệm có CVaR thấp nhất, nên kết quả không bao giờ kém điểm xuất phát.
+CVaR tối thiểu. Hàm `minimizeCVaR` dùng phương pháp dưới gradient chiếu trên các kịch bản lịch sử. Mỗi vòng, hàm chọn $k$ kịch bản tệ nhất, tính dưới gradient là trung bình của các dòng lợi suất tương ứng, đi một bước chuẩn hóa $0{,}05/\sqrt{k+1}$, với $k$ là số thứ tự vòng lặp bắt đầu từ 0, rồi chiếu. Hàm chạy 2.000 vòng, khởi tạo từ tốt hơn trong hai danh mục (chia đều và phương sai tối thiểu) và giữ nghiệm có CVaR thấp nhất, nên kết quả không bao giờ kém điểm xuất phát.
 
-Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần hoàn (cyclical coordinate descent) do Griveau-Billion và cộng sự đề xuất. Với mỗi tài sản i, hàm cập nhật tỷ trọng theo công thức (8), trong đó q = 1/n là ngân sách rủi ro của mỗi tài sản.
+Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần hoàn (cyclical coordinate descent) cho danh mục cân bằng rủi ro. Với mỗi tài sản i, hàm cập nhật tỷ trọng theo công thức (8), trong đó q = 1/n là ngân sách rủi ro của mỗi tài sản.
 
 @EQ w_i \leftarrow \frac{-b_i + \sqrt{b_i^{2} + 4\,a_i\,q}}{2\,a_i},\qquad a_i = \Sigma_{ii},\quad b_i = \sum_{j\neq i}\Sigma_{ij}\,w_j | (8)
 
@@ -117,7 +117,7 @@ Black-Litterman có độ tin cậy. Với quan điểm $k$ có dòng $p_k$ củ
 
 @EQ \Omega_{kk} = \tau\, p_k^{\top}\Sigma\, p_k\;\frac{1-c_k}{c_k} | (9)
 
-Cách gắn độ tin cậy này theo Idzorek [10]. Khi $c_k = 0{,}5$, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro δ lấy từ $(E[R_m] - r_f)/\mathrm{Var}(R_m)$ của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có $E[R]$ và $M^{-1}$ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai $\Sigma + M^{-1}$ và lợi suất $E[R]$. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
+Cách gắn độ tin cậy này theo Idzorek [10]. Khi $c_k = 0{,}5$, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro δ lấy từ $(E[R_m] - r_f)/\text{Var}(R_m)$ của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có $E[R]$ và $M^{-1}$ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai $\Sigma + M^{-1}$ và lợi suất $E[R]$. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
 
 @H3 5.4.3. Chuẩn bị dữ liệu và kiểm tra ngược
 
@@ -139,7 +139,7 @@ Tập lệnh `seed-demo.mts` sinh giá bằng mô hình chuyển động Brown h
 
 @EQ \ln\frac{S_{t+\Delta t}}{S_t} = \left(\mu_i - \frac{\sigma_i^{2}}{2}\right)\Delta t + \sigma_i\sqrt{\Delta t}\,\Bigl(\beta\, f_g + \beta_0\, f_0 + \sqrt{1-\beta^{2}-\beta_0^{2}}\;\varepsilon_i\Bigr) | (10)
 
-Trong công thức (10), $S$ là giá, $\mu_i$ và $\sigma_i$ là lợi suất và độ biến động hằng năm đặt cho tài sản, $f_g$ là nhân tố của nhóm, $f_0$ là nhân tố toàn cầu, $\varepsilon_i$ là nhiễu riêng, $\beta$ bằng 0,6 (0,7 với tiền mã hóa) và $\beta_0$ bằng 0,2. Các nhân tố và nhiễu là số chuẩn tắc độc lập. Hạt giống cố định làm cho mọi lần nạp cho cùng dữ liệu. Có sáu nhóm tài sản: cổ phiếu Việt Nam, cổ phiếu Mỹ, tiền mã hóa, vàng, trái phiếu và chỉ số. Tiền mã hóa có giá cả cuối tuần, các nhóm khác chỉ có ngày làm việc.
+Trong công thức (10), $S$ là giá, $\mu_i$ và $\sigma_i$ là lợi suất và độ biến động hằng năm đặt cho tài sản, $f_g$ là nhân tố của nhóm, $f_0$ là nhân tố toàn cầu, $\varepsilon_i$ là nhiễu riêng, $\beta$ bằng 0,6 (0,7 với tiền mã hóa) và $\beta_0$ bằng 0,2. Các nhân tố và nhiễu là số chuẩn tắc độc lập. Hạt giống cố định làm cho mọi lần nạp cho ra cùng dữ liệu. Có sáu nhóm tài sản: cổ phiếu Việt Nam, cổ phiếu Mỹ, tiền mã hóa, vàng, trái phiếu và chỉ số. Tiền mã hóa có giá cả cuối tuần, các nhóm khác chỉ có ngày làm việc.
 
 Bảng 5.7 cho thấy quy mô dữ liệu. Bốn chỉ số tham chiếu (VN-Index, VN30, S&P 500, Bitcoin USD) được gán giá cho mọi ngày trong lịch, kể cả cuối tuần, vì phần mềm gốc tính xu hướng 200 ngày trên 400 điểm giá gần nhất và cần đủ điểm.
 

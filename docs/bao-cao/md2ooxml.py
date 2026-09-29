@@ -50,6 +50,7 @@ class Context:
         self.doc_pr = 1000
         self.headings = []  # (mức, chữ) để dựng mục lục
         self.cite_map = {}
+        self.keep_tail = 0  # số hàng cuối của bảng kế tiếp phải dính với đoạn sau
 
     def style(self, wanted, fallback=None):
         return wanted if wanted in self.styles else fallback
@@ -97,11 +98,13 @@ def omml_inline(latex):
 
 def inline(text, size=None, bold=False, italic=False):
     out = []
-    for part in re.split(r'(`[^`]+`|\$[^$]+\$|\*\*[^*]+\*\*)', text):
+    for part in re.split(r'(`[^`]+`|\$[^$]+\$|\*\*[^*]+\*\*|//[^/]+//)', text):
         if not part:
             continue
         if len(part) > 4 and part.startswith('**') and part.endswith('**'):
             out.append(inline(part[2:-2], size=size, bold=True, italic=italic))
+        elif len(part) > 4 and part.startswith('//') and part.endswith('//'):
+            out.append(inline(part[2:-2], size=size, bold=bold, italic=True))
         elif len(part) > 2 and part.startswith('$') and part.endswith('$'):
             out.append(omml_inline(part[1:-1]))
         elif len(part) > 2 and part.startswith('`') and part.endswith('`'):
@@ -144,7 +147,7 @@ def para(text='', style=None, jc=None, size=None, bold=False, italic=False,
 # ---------------------------------------------------------------- bảng
 
 def vi_number(value, digits=1):
-    return f'{value:.{digits}f}'.replace('.', ',')
+    return f'{value:.{digits}f}'.replace('.', ',').replace('-', '\u2212')
 
 
 def col_widths(rows, total, min_share=0.08):
@@ -188,9 +191,11 @@ def table_xml(rows, ctx, header=True, widths=None, borders=True, size=None,
             cell = row[c] if c < len(row) else ''
             shade = ''
             key_cell = (not header) and c == 0 and len(widths) == 2
+            cell = re.sub(r'(\S{22,})', lambda mt: mt.group(1).replace('/', '/\u200b'), cell)
             paragraphs = ''.join(
                 para(line, size=size, bold=is_head or key_cell, after=20, before=20,
-                     jc='center' if is_head else None)
+                     jc='center' if is_head else None,
+                     keep_next=ctx.keep_tail > 0 and r >= len(rows) - ctx.keep_tail)
                 for line in (cell.split('<br>') if cell else ['']))
             xml += (f'<w:tc><w:tcPr><w:tcW w:w="{widths[c]}" w:type="dxa"/>{shade}</w:tcPr>'
                     f'{paragraphs}</w:tc>')
@@ -279,7 +284,7 @@ def figure_xml(path, caption, ctx, max_w_cm=15.5, max_h_cm=18.5, source=None):
         '<a:prstGeom prst="rect"><a:avLst/></a:prstGeom></pic:spPr></pic:pic>'
         '</a:graphicData></a:graphic></wp:inline></w:drawing></w:r>')
     return (para('', jc='center', raw=drawing, keep_next=True, before=120, after=40)
-            + caption_xml(caption, ctx))
+            + caption_xml(caption, ctx, source=source))
 
 
 CAP_HEAD = re.compile(r'^((?:Bảng|Hình) [\w.]+\. [^.]*\.?)')
@@ -322,13 +327,20 @@ def data_table(key, ctx):
     pct = lambda x, d=1: vi_number(x * 100, d) + '%'
     if key == 'opt_compare':
         rows = [['Danh mục', 'Lợi suất năm', 'Biến động năm', 'Sharpe', 'CVaR 95% ngày', 'Sụt giảm tối đa']]
+        seen = set()
         for p in data['portfolios']:
             m = p['metrics']
+            sig = tuple(round(v, 8) for v in m.values() if isinstance(v, (int, float)))
+            if p['label'].startswith('Kết quả') or sig in seen:
+                continue
+            seen.add(sig)
             rows.append([p['label'], pct(m['annualReturn']), pct(m['annualVolatility']),
                          vi_number(m['sharpe'], 2), pct(m['cvar95'], 2), pct(m['maxDrawdown'])])
         caption = ('Bảng 5.9. So sánh các danh mục trên dữ liệu trong mẫu (tài khoản demo-user-12, '
                    'tám khoản nắm giữ lớn nhất, hai năm dữ liệu mô phỏng, tỷ trọng tối đa 40%)')
-        return caption_xml(caption, ctx, above=True) + table_xml(rows, ctx) + para('', after=60)
+        return (caption_xml(caption, ctx, above=True)
+                + table_xml(rows, ctx, widths=[int(ctx.text_width * s) for s in (0.30, 0.13, 0.14, 0.12, 0.15, 0.16)])
+                + para('', after=60))
     if key == 'backtest_compare':
         bt = data.get('backtest')
         if not bt:
@@ -476,7 +488,8 @@ def render(blocks, ctx, refs=None):
                             bold=not style))
         elif kind == 'P':
             out.append(para(payload, style=ctx.style('Content'), jc='both',
-                            first_line=567 if len(payload) > 90 else None, after=120))
+                            first_line=567 if len(payload) > 90 else None, after=120,
+                            keep_next=payload.startswith('Ngày ') and len(payload) < 40))
         elif kind == 'BULLETS':
             for item in payload:
                 out.append(para(item, style=ctx.style('ListParagraph'), num=ctx.bullet_num_id, jc='both', after=60))

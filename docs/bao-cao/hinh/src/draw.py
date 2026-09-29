@@ -53,7 +53,7 @@ def page(name, w, h, body):
 
 
 # Hình 5.1
-b = box(20, 150, 150, 90, ['Trình duyệt', 'Angular 21'], '#eef3fb', True)
+b = box(20, 150, 150, 90, ['Trình duyệt', 'Angular 22'], '#eef3fb', True)
 b += box(260, 60, 200, 80, ['Máy chủ NestJS', 'cổng 3333, /api/v1'], '#e9f5ea', True)
 b += box(260, 190, 200, 80, ['Dịch vụ tối ưu hóa', 'math.ts, engine.ts'], '#fff6e0', True)
 b += box(570, 20, 190, 80, ['PostgreSQL 16', 'truy cập qua Prisma 7'], '#f3ecf8', True, 15)

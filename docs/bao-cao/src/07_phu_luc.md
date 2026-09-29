@@ -43,11 +43,11 @@
 
 @H2 Phụ lục C. Các mục kiểm thử Minor còn mở
 
-Vòng kiểm thử độc lập thứ nhất còn các mục Minor chưa xử lý, đánh số D13, D16, D20 đến D26, D29, D30 và D33 đến D35, cùng một điểm về trường tiền tệ cơ sở trong phản hồi của `/api/v1/info`. Trong số đó có việc cấu hình địa chỉ gốc của ứng dụng (D20) và bảo vệ đường dẫn quản trị đối với người dùng không phải quản trị viên (D24). Mô tả chi tiết của từng mục nằm trong sổ lỗi của vòng 1. Vòng kiểm thử thứ hai sẽ xác nhận mục nào còn lại.
+Vòng kiểm thử độc lập thứ nhất còn các mục Minor chưa xử lý, đánh số D13, D16, D20 đến D26, D29, D30 và D33 đến D35, cùng một điểm về trường tiền tệ cơ sở trong phản hồi của `/api/v1/info`. Trong số đó có việc cấu hình địa chỉ gốc của ứng dụng (D20) và bảo vệ đường dẫn quản trị đối với người dùng không phải quản trị viên (D24). Sổ lỗi chi tiết là sản phẩm của tác tử kiểm thử và chưa đưa vào kho mã. Vòng kiểm thử thứ hai sẽ xác nhận mục nào còn lại.
 
 @H2 Phụ lục D. Danh mục ảnh chụp toàn trang
 
-Bộ ảnh gồm 41 tệp PNG trong thư mục `docs/screenshots/bao-cao` của kho mã, kèm tệp `INDEX.md` ghi đường dẫn trang, tài khoản và chú thích của từng ảnh. Ảnh chụp bằng Chromium ở chiều rộng 1400 px (ảnh điện thoại 375 px) trên bản dựng ngày 29/09/2026 với dữ liệu demo.
+Bộ ảnh gồm 41 tệp PNG trong thư mục `docs/screenshots/bao-cao` của kho mã, kèm tệp `INDEX.md` ghi đường dẫn trang, tài khoản và chú thích của từng ảnh. Ảnh chụp bằng Chromium ở chiều rộng 1400 px (ảnh điện thoại 375 px) trên bản dựng cuối của đợt thực tập với dữ liệu demo.
 
 @H2 Phụ lục E. Nhận xét của đơn vị thực tập
 

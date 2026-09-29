@@ -4,7 +4,7 @@
 
 Sinh viên áp dụng phát triển hướng kiểm thử (test driven development) [16] cho phần đóng góp riêng: viết kiểm thử trước, xác nhận kiểm thử thất bại vì đúng lý do, rồi viết mã tối thiểu để kiểm thử đạt. Các mức kiểm thử theo cách phân loại của ISO/IEC/IEEE 29119 [15] gồm kiểm thử đơn vị cho hàm toán học và hàm hỗ trợ, kiểm thử thành phần cho directive và trang Angular, và kiểm thử hệ thống bằng trình duyệt tự động do một tác tử độc lập thực hiện. Bốn kịch bản Cypress viết sẵn cho kiểm thử đầu cuối nhưng chưa chạy được trong môi trường phát triển của sinh viên vì không tải được Cypress, nên không tính vào kết quả.
 
-Bảng 5.8 tổng hợp kết quả lần chạy cuối ngày 29/09/2026. Cả bốn dự án đều đạt, một kiểm thử của máy chủ được bỏ qua có chủ đích và có sẵn trong phần mềm gốc.
+Bảng 5.8 tổng hợp kết quả lần chạy cuối của đợt thực tập. Cả bốn dự án đều đạt, một kiểm thử của máy chủ được bỏ qua có chủ đích và có sẵn trong phần mềm gốc.
 
 @TABLE Bảng 5.8. Kết quả kiểm thử tự động
 | Dự án | Số bài đạt | Ghi chú |
@@ -16,15 +16,15 @@ Bảng 5.8 tổng hợp kết quả lần chạy cuối ngày 29/09/2026. Cả b
 
 @H3 5.5.2. Kiểm thử tính đúng của thuật toán
 
-Vì không có bộ giải bên ngoài để đối chiếu, sinh viên kiểm thử theo tính chất toán học (property-based). Các tính chất đã kiểm thử gồm: tỷ trọng của cả sáu phương pháp không âm và cộng bằng 1; tỷ trọng không vượt trần khi đặt trần 40%; danh mục phương sai tối thiểu đặt tỷ trọng cao hơn vào tài sản biến động thấp nhất; khi không có quan điểm, lợi suất hậu nghiệm bằng lợi suất cân bằng; một quan điểm tăng giá với độ tin cậy 90% làm tăng cả lợi suất hậu nghiệm lẫn tỷ trọng của tài sản đó; các chuỗi giá được căn chỉnh không nhìn trước dữ liệu tương lai; ba đường của backtest cùng độ dài và cùng bắt đầu ở 100; backtest trả rỗng khi không đủ lịch sử. Dữ liệu kiểm thử sinh bằng bộ tạo số giả ngẫu nhiên có hạt giống cố định, nên kết quả lặp lại được (yêu cầu NFR4).
+Vì không có bộ giải bên ngoài để đối chiếu, sinh viên kiểm thử theo tính chất toán học (property-based). Các tính chất đã kiểm thử gồm: tỷ trọng của cả sáu phương pháp không âm và cộng bằng 1; tỷ trọng của năm phương pháp có trần không vượt trần khi đặt trần 40%; danh mục phương sai tối thiểu đặt tỷ trọng cao hơn vào tài sản biến động thấp nhất; khi không có quan điểm, lợi suất hậu nghiệm bằng lợi suất cân bằng; một quan điểm tăng giá với độ tin cậy 90% làm tăng cả lợi suất hậu nghiệm lẫn tỷ trọng của tài sản đó; các chuỗi giá được căn chỉnh không nhìn trước dữ liệu tương lai; ba đường của backtest cùng độ dài và cùng bắt đầu ở 100; backtest trả rỗng khi không đủ lịch sử. Dữ liệu kiểm thử sinh bằng bộ tạo số giả ngẫu nhiên có hạt giống cố định, nên kết quả lặp lại được (yêu cầu NFR4).
 
 @H3 5.5.3. Hiệu năng
 
-Sinh viên đo thời gian phản hồi của endpoint tối ưu hóa với sáu tài sản, hai năm dữ liệu (729 quan sát chung) và bật backtest theo quý (8 lần cân bằng lại), trong môi trường container của sinh viên. Sharpe tối đa mất 3,4 giây, CVaR tối thiểu 3,5 giây và Black-Litterman có một quan điểm 1,7 giây. Cả ba dưới ngưỡng 5 giây của yêu cầu NFR1, nên giả thuyết H1 được ủng hộ trong điều kiện này. Sinh viên chưa đo trên phần cứng chuẩn và chưa đo với 20 tài sản, vì vậy kết luận chỉ áp dụng cho quy mô đã đo. CVaR chậm hơn Black-Litterman vì mỗi kỳ backtest lặp 2.000 lần và mỗi lần sắp xếp các kịch bản.
+Sinh viên đo thời gian phản hồi của endpoint tối ưu hóa với sáu tài sản, hai năm dữ liệu mô phỏng và backtest theo quý, mỗi phương pháp một lần chạy, trong môi trường container của sinh viên. Chỉ ba phương pháp được đo. Sharpe tối đa mất 3,4 giây, CVaR tối thiểu 3,5 giây và Black-Litterman có một quan điểm 1,7 giây. Cả ba dưới ngưỡng 5 giây, nên giả thuyết H1 được ủng hộ ở quy mô sáu tài sản. Yêu cầu NFR1 với 20 tài sản chưa được kiểm chứng, và sinh viên cũng chưa đo trên phần cứng chuẩn, vì vậy kết luận chỉ áp dụng cho quy mô đã đo. CVaR chậm hơn Black-Litterman vì mỗi kỳ backtest lặp 2.000 lần và mỗi lần sắp xếp các kịch bản.
 
 @H3 5.5.4. Kiểm thử chất lượng độc lập
 
-Sau khi hoàn thành các chức năng chính, sinh viên chạy vòng kiểm thử thứ nhất bằng một tác tử độc lập điều khiển trình duyệt. Tác tử truy cập từng trang ở các vai trò khách, người dùng và quản trị viên, chụp 27 ảnh và lập danh sách lỗi đánh số từ D1 đến D35 theo mức Critical, Major và Minor. Sinh viên đã sửa các lỗi Major D1 đến D8, D14 và D15, gồm dữ liệu demo không liên kết được với hồ sơ tài sản, trang còn tiếng Anh và trang gỡ bỏ chưa xử lý. Một lỗi hồi quy phát sinh sau đó (đường dẫn gốc hiện trang 404) do chính sinh viên phát hiện khi chạy thử và đã sửa kèm kiểm thử. Vòng kiểm thử thứ hai chưa thực hiện tại thời điểm viết báo cáo, và một số lỗi Minor còn mở (Phụ lục C).
+Sau khi hoàn thành các chức năng chính, sinh viên chạy vòng kiểm thử thứ nhất bằng một tác tử độc lập điều khiển trình duyệt. Tác tử, một trợ lý AI Claude điều khiển trình duyệt, truy cập từng trang ở các vai trò khách, người dùng và quản trị viên, chụp 27 ảnh và lập danh sách lỗi đánh số từ D1 đến D35 theo mức Critical, Major và Minor. Sinh viên đã sửa các lỗi Major D1 đến D8, D14 và D15, gồm dữ liệu demo không liên kết được với hồ sơ tài sản, trang còn tiếng Anh và trang gỡ bỏ chưa xử lý. Một lỗi hồi quy phát sinh sau đó (đường dẫn gốc hiện trang 404) do chính sinh viên phát hiện khi chạy thử và đã sửa kèm kiểm thử. Vòng kiểm thử thứ hai chưa thực hiện tại thời điểm viết báo cáo, và một số lỗi Minor còn mở (Phụ lục C).
 
 @H3 5.5.5. Kết quả thực nghiệm minh họa
 
@@ -46,7 +46,7 @@ Có bốn yếu tố. Thứ nhất, dữ liệu là mô phỏng nên không ph�
 
 @H2 5.6. Hướng dẫn sử dụng và minh họa chức năng
 
-Mục này minh họa các chức năng bằng ảnh chụp từ dữ liệu demo. Ảnh nào cũng lấy từ bản dựng cuối cùng ngày 29/09/2026. Bộ ảnh đầy đủ (41 ảnh) và chú thích nằm ở thư mục `docs/screenshots/bao-cao` của kho mã.
+Mục này minh họa các chức năng bằng ảnh chụp từ dữ liệu demo. Ảnh lấy từ bản dựng cuối của đợt thực tập, với dữ liệu demo. Bộ ảnh đầy đủ (41 ảnh) và chú thích nằm ở thư mục `docs/screenshots/bao-cao` của kho mã.
 
 Người dùng bắt đầu bằng đăng nhập với mã bảo mật (Hình 5.4) và đến trang Tổng quan (Hình 5.5), nơi hiển thị tài sản ròng bằng VND cùng biểu đồ diễn biến.
 
@@ -76,11 +76,11 @@ Trang Tối ưu hóa mở đầu bằng khối chọn tài sản, phương pháp
 
 Kết quả của phương pháp Sharpe tối đa (Hình 5.12) và CVaR tối thiểu (Hình 5.13) gồm biểu đồ tỷ trọng, bảng so sánh, đường biên hiệu quả và backtest. Kết quả Black-Litterman (Hình 5.14) có thêm bảng lợi suất cân bằng và lợi suất hậu nghiệm cho thấy quan điểm đã dịch chuyển kỳ vọng bao nhiêu.
 
-@FIG screenshots/31-toi-uu-sharpe.png | Hình 5.12. Kết quả Markowitz Sharpe tối đa.
+@FIGEMPTY Hình 5.12. Kết quả Markowitz Sharpe tối đa. | Chèn ảnh chụp toàn trang kết quả Sharpe tối đa: tám khoản nắm giữ lớn nhất, tỷ trọng tối đa 40%, backtest theo quý
 
-@FIG screenshots/34-toi-uu-cvar.png | Hình 5.13. Kết quả CVaR tối thiểu.
+@FIGEMPTY Hình 5.13. Kết quả CVaR tối thiểu. | Chèn ảnh chụp toàn trang kết quả CVaR tối thiểu: cùng cấu hình như Hình 5.12
 
-@FIG screenshots/37-toi-uu-black-litterman-ket-qua.png | Hình 5.14. Kết quả Black-Litterman với hai quan điểm, kèm lợi suất hậu nghiệm và backtest.
+@FIGEMPTY Hình 5.14. Kết quả Black-Litterman với hai quan điểm, kèm lợi suất hậu nghiệm và backtest. | Chèn ảnh chụp toàn trang kết quả Black-Litterman với hai quan điểm
 
 Công cụ FIRE (Financial Independence, Retire Early: độc lập tài chính, nghỉ hưu sớm) của phần mềm gốc (Hình 5.15) ước tính tài sản khi nghỉ hưu và khoản rút bền vững theo tỷ lệ rút an toàn (SWR), mặc định 4%. Trang X-ray (Hình 5.16) kiểm tra danh mục theo 16 quy tắc rủi ro.
 
@@ -100,17 +100,19 @@ Người dùng có vai trò quản trị viên thấy thêm mục quản trị (
 
 @H3 5.7.1. Thảo luận
 
-Kết quả trả lời ba câu hỏi ở Mục 5.1.2. Về câu hỏi 1, việc mở rộng nền tảng có sẵn khả thi: sinh viên không viết lại hệ thống mà thêm bốn nhóm thay đổi (bản địa hóa, directive nhập số, dữ liệu demo, mô-đun tối ưu), và giữ nguyên phần ghi nhận bản quyền theo AGPL-3.0. Chi phí của cách làm này là kế thừa các quyết định thiết kế của phần mềm gốc, ví dụ ràng buộc ký hiệu UUID ở Mục 5.3.3.
+Kết quả trả lời ba câu hỏi ở Mục 5.1.2. Về câu hỏi 1, việc mở rộng nền tảng có sẵn khả thi: sinh viên không viết lại hệ thống mà thêm các nhóm thay đổi (bản địa hóa, directive nhập số, dữ liệu demo, mô-đun tối ưu), và giữ nguyên phần ghi nhận bản quyền theo AGPL-3.0. Chi phí của cách làm này là kế thừa các quyết định thiết kế của phần mềm gốc, ví dụ ràng buộc ký hiệu UUID ở Mục 5.3.3.
 
-Về câu hỏi 2, cả sáu phương pháp chạy trong một máy chủ TypeScript với thời gian phản hồi từ 1,7 đến 3,5 giây ở quy mô đã đo. Không cần chạy thêm dịch vụ Python. Ngược lại, độ chính xác của bộ giải không sánh được với bộ giải chuyên dụng: CVaR dùng dưới gradient nên cho nghiệm gần tối ưu, không phải nghiệm chính xác như quy hoạch tuyến tính.
+Về câu hỏi 2, sáu phương pháp cùng chạy trong một máy chủ TypeScript. Thời gian phản hồi đo cho ba phương pháp với sáu tài sản là từ 1,7 đến 3,5 giây. Không cần chạy thêm dịch vụ Python. Ngược lại, độ chính xác của bộ giải không sánh được với bộ giải chuyên dụng: CVaR dùng dưới gradient nên cho nghiệm gần tối ưu, không phải nghiệm chính xác như quy hoạch tuyến tính.
 
 Về câu hỏi 3, kiểm thử theo tính chất bắt được các lỗi về ràng buộc và về hướng của tác động, nhưng không chứng minh giá trị số học đúng đến từng chữ số. Nếu cần độ chính xác cao, nên đối chiếu với một thư viện tối ưu độc lập trên vài bộ dữ liệu chuẩn.
 
 @H3 5.7.2. Hạn chế
 
 - Cân bằng rủi ro chưa áp trần tỷ trọng, nên so sánh giữa phương pháp này với các phương pháp có trần chưa công bằng (Mục 5.5.5).
-- Lợi suất kỳ vọng ước lượng từ lịch sử nên nhiễu, nhất là khi có ít hơn hai năm dữ liệu. Hệ thống cảnh báo khi dưới 250 quan sát chung.
+- Lợi suất kỳ vọng ước lượng từ lịch sử nên nhiễu, nhất là khi có ít quan sát. Hệ thống cảnh báo khi dưới 250 quan sát chung, tương đương khoảng một năm giao dịch.
+- Quy đổi hằng năm luôn dùng hệ số 252 ngày giao dịch. Khi danh mục có tiền mã hóa, chuỗi căn chỉnh gồm cả cuối tuần và có nhiều hơn 252 quan sát mỗi năm, nên lợi suất và độ biến động hằng năm bị ước lượng thấp. Cần suy hệ số này từ tần suất quan sát thực tế.
 - Backtest chưa tính phí giao dịch, thuế và độ trượt giá, nên kết quả thực tế thấp hơn.
+- Chưa chặn phía giao diện đường dẫn quản trị đối với người dùng thường (mục D24) và chưa cấu hình địa chỉ gốc của ứng dụng (mục D20); cả hai còn mở ở Phụ lục C.
 - Các tài sản có lịch giao dịch khác nhau được điền giá gần nhất, làm giảm nhẹ độ biến động đo được của tài sản giao dịch ít ngày hơn.
 - Khối Black-Litterman trên trang Phân bổ chưa nhận quan điểm. Chỉ trang Tối ưu hóa nhận quan điểm.
 - Dữ liệu demo là mô phỏng, nên kết quả chỉ minh họa cách dùng.
@@ -123,7 +125,7 @@ Bốn hướng phát triển được ưu tiên. Một là thêm trần tỷ tr�
 
 @H2 5.8. Kết luận
 
-Dự án BL Advisor đạt mục tiêu đặt ra: một hệ thống web tiếng Việt cho phép người dùng theo dõi danh mục bằng VND và chạy tối ưu hóa trên chính khoản nắm giữ của mình. Trong 13 tuần thực tập, sinh viên đã Việt hóa nền tảng Ghostfolio, cài đặt sáu phương pháp phân bổ cùng đường biên hiệu quả và kiểm tra ngược, và kiểm chứng bằng 501 kiểm thử tự động. Ba giả thuyết được ủng hộ trong phạm vi đã đo: H1, thời gian chạy từ 1,7 đến 3,5 giây dưới ngưỡng 5 giây; H2, mọi phương pháp có trần đều trả tỷ trọng không âm, cộng bằng 1 và không vượt trần; H3, quan điểm tăng giá với độ tin cậy cao làm tăng tỷ trọng.
+Dự án BL Advisor đạt mục tiêu đặt ra: một hệ thống web tiếng Việt cho phép người dùng theo dõi danh mục bằng VND và chạy tối ưu hóa trên chính khoản nắm giữ của mình. Trong 13 tuần thực tập, sinh viên đã Việt hóa nền tảng Ghostfolio, cài đặt sáu phương pháp phân bổ cùng đường biên hiệu quả và kiểm tra ngược, và kiểm chứng bằng 501 kiểm thử tự động. Ba giả thuyết được ủng hộ trong phạm vi đã đo: H1, thời gian chạy của ba phương pháp được đo (sáu tài sản) từ 1,7 đến 3,5 giây, dưới ngưỡng 5 giây; H2, mọi phương pháp có trần đều trả tỷ trọng không âm, cộng bằng 1 và không vượt trần; H3, quan điểm tăng giá với độ tin cậy cao làm tăng tỷ trọng.
 
 Từ đợt thực tập, sinh viên rút ra hai bài học nghề nghiệp. Bài học thứ nhất là kiểm thử viết trước giúp giữ các thuật toán toán học đúng khi mã thay đổi nhiều lần. Bài học thứ hai là kiểm thử độc lập bằng người hoặc tác tử khác phát hiện các lỗi mà người viết mã không thấy, ví dụ lỗi trang gốc. Cả hai đều gần với yêu cầu kiểm soát chất lượng của môi trường sản xuất tại đơn vị thực tập.
 

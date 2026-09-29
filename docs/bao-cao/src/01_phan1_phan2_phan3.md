@@ -77,19 +77,20 @@ Công ty TNHH ITM Semiconductor Vietnam (viết tắt ITMV) là công ty trách 
 | Mã số thuế | 2300847785, cấp ngày 21/04/2014 |
 | Trụ sở và Nhà máy V1 | Số 06, đường 11, Khu công nghiệp VSIP Bắc Ninh |
 | Các nhà máy khác | V2 tại số 20, đường 11 và V3 tại số 19, đường 09, cùng khu công nghiệp |
+| Số nhà máy | Ba nhà máy V1, V2, V3 theo [W6]; báo chí ghi bốn nhà máy và một nhà máy thứ năm đang xây [W4] |
 | Tổng diện tích sử dụng | Khoảng 50.000 m² (theo tài liệu tổng hợp [W6]) |
 | Quy mô lao động | Khoảng 3.500 người tính đến năm 2024 (theo cơ sở dữ liệu EMIS, trích qua [W6]) |
 | Công ty mẹ | ITM Semiconductor Co., Ltd., thành lập năm 2000 |
 
-Sinh viên chưa đối chiếu các con số trong Bảng 3.1 với hồ sơ nội bộ của công ty. Chúng đến từ nguồn công khai và từ một tài liệu tổng hợp của sinh viên cùng đơn vị [W6].
+Sinh viên chưa đối chiếu các con số trong Bảng 3.1 và các mô tả trong Phần 3 với hồ sơ nội bộ của công ty. Chúng đến từ nguồn công khai và từ hai tài liệu chưa công bố do một sinh viên khác cung cấp [W6], [W7].
 
 @H2 Lịch sử hình thành và phát triển của doanh nghiệp
 
 Đầu thập niên 2010, dòng vốn đầu tư trực tiếp nước ngoài vào sản xuất điện tử tại Việt Nam tăng nhanh, nhất là từ các tập đoàn Hàn Quốc. Bắc Ninh có hạ tầng khu công nghiệp đồng bộ, vị trí gần Hà Nội và chính sách ưu đãi nên trở thành điểm đến của nhiều nhà sản xuất linh kiện. Khu công nghiệp Việt Nam - Singapore (VSIP) Bắc Ninh nằm trong nhóm đó [W6].
 
-Công ty mẹ phát triển và sản xuất các sản phẩm bảo vệ cho pin thứ cấp, chủ yếu là mô-đun bảo vệ (Protection Module Package, PMP) và vi mạch bảo vệ một chip (Protection One Chip, POC). Sau khi mở rộng sản xuất ở Hàn Quốc và Trung Quốc, tập đoàn đưa nhà máy tại Việt Nam vào hoạt động từ đầu năm 2014 [W2]. Nhà máy đầu tiên đặt trong Khu công nghiệp VSIP Bắc Ninh, sau đó công ty mở thêm nhà máy trong cùng khu để tăng công suất. Báo chí ngành điện tử Hàn Quốc cho biết tập đoàn đã vận hành bốn nhà máy tại khu công nghiệp này và xây thêm nhà máy thứ năm trên diện tích 22.453 mét vuông [W4]. Tài liệu tổng hợp của sinh viên cùng đơn vị mô tả ba nhà máy V1, V2, V3 [W6]. Hai cách đếm khác nhau về thời điểm và về phạm vi, và báo cáo này không cố hòa giải chúng.
+Công ty mẹ phát triển và sản xuất các sản phẩm bảo vệ cho pin thứ cấp, chủ yếu là mô-đun bảo vệ (Protection Module Package, PMP) và vi mạch bảo vệ một chip (Protection One Chip, POC). Sau khi mở rộng sản xuất ở Hàn Quốc và Trung Quốc, tập đoàn đưa nhà máy tại Việt Nam vào hoạt động sau khi được cấp giấy chứng nhận đầu tư tháng 4 năm 2014 [W2]. Nhà máy đầu tiên đặt trong Khu công nghiệp VSIP Bắc Ninh, sau đó công ty mở thêm nhà máy trong cùng khu để tăng công suất. Báo chí ngành điện tử Hàn Quốc cho biết tập đoàn đã vận hành bốn nhà máy tại khu công nghiệp này và xây thêm nhà máy thứ năm trên diện tích 22.453 mét vuông [W4]. Tài liệu tổng hợp của sinh viên cùng đơn vị mô tả ba nhà máy V1, V2, V3 [W6]. Hai cách đếm khác nhau về thời điểm và về phạm vi, và báo cáo này không hòa giải chúng. Bảng 3.1 dùng cách đếm ba nhà máy.
 
-Theo nguồn đó, công ty vận hành theo mô hình nhà máy vệ tinh: sản phẩm làm theo tiêu chuẩn kỹ thuật của công ty mẹ và phần lớn cung cấp cho các nhà máy lắp ráp điện thoại của Samsung tại Việt Nam [W6]. Cơ cấu tổ chức theo trục dọc, đi từ chủ sở hữu đến Tổng Giám đốc rồi tới các phòng ban chức năng. Đây là kiểu quản trị tập trung phổ biến ở doanh nghiệp Hàn Quốc [W6].
+Theo nguồn đó, công ty vận hành theo mô hình nhà máy vệ tinh: sản phẩm làm theo tiêu chuẩn kỹ thuật của công ty mẹ và phần lớn cung cấp cho các nhà máy lắp ráp điện thoại của Samsung tại Việt Nam [W6].
 
 @H2 Các lĩnh vực hoạt động, dịch vụ, hoặc sản phẩm của doanh nghiệp
 
@@ -103,20 +104,18 @@ Bảng 3.2 nêu phân công sản phẩm theo từng nhà máy và điều kiệ
 | V2 | PMP và POC | Đòi hỏi kỹ năng kỹ thuật cao hơn về linh kiện bảo vệ điện tử |
 | V3 | Cảm biến, ăng-ten chip NFC, màn hình cảm ứng | Phòng sạch, kiểm soát chặt nhất và yêu cầu bảo mật cao nhất |
 
-Cả ba nhà máy chạy liên tục theo ba ca, hai mươi bốn giờ mỗi ngày [W6]. Nhịp sản xuất này kéo theo nhu cầu dữ liệu vận hành: số lượng theo ca, tỷ lệ lỗi, thời gian dừng máy. Nhu cầu đó là bối cảnh để sinh viên chọn đề tài về phân tích dữ liệu và hỗ trợ ra quyết định, chứ không phải về sản xuất. Đề tài BL Advisor không nằm trong dây chuyền của công ty. Sinh viên làm nó như một dự án học tập theo quy trình kỹ thuật mà đơn vị áp dụng.
+Cả ba nhà máy chạy liên tục theo ba ca, hai mươi bốn giờ mỗi ngày [W6]. Đề tài BL Advisor không nằm trong dây chuyền, hệ thống hay dữ liệu của công ty. Sinh viên tự đề xuất đề tài và thực hiện như một dự án học tập trong thời gian thực tập.
 
 @H2 Những đóng góp của doanh nghiệp trong lĩnh vực chuyên môn
 
 Sản xuất linh kiện an toàn cho pin lithium là công đoạn ảnh hưởng trực tiếp đến độ an toàn của điện thoại và thiết bị đeo. Nhà máy tại Bắc Ninh góp phần đưa Việt Nam vào chuỗi cung ứng điện tử toàn cầu, đồng thời tạo việc làm cho lao động kỹ thuật tại địa phương. Theo dữ liệu tổng hợp, công ty có khoảng 3.500 lao động, phần lớn là công nhân vận hành dây chuyền, và có công đoàn cơ sở hoạt động [W6]. Việc cung ứng cho chuỗi của Samsung cũng buộc công ty tuân theo bộ tiêu chuẩn trách nhiệm xã hội của khách hàng, chẳng hạn không sử dụng lao động dưới mười tám tuổi [W6].
 
-Ở góc nhìn công nghệ thông tin, môi trường sản xuất đặt ra các yêu cầu mà sinh viên đem vào dự án: dữ liệu phải truy vết được, thay đổi phải có kiểm thử trước khi đưa vào vận hành, và mọi kết quả phải tái lập được trên cùng dữ liệu đầu vào. Sinh viên áp dụng các yêu cầu này khi xây dựng BL Advisor và mô tả ở Phần 5.
+Trong dự án, sinh viên tự đặt ba nguyên tắc kỹ thuật: dữ liệu phải truy vết được, thay đổi phải có kiểm thử trước khi hoàn thành, và kết quả phải tái lập được trên cùng dữ liệu đầu vào. Phần 5 mô tả cách thực hiện. Các nguyên tắc này do sinh viên chọn, không phải yêu cầu do công ty giao.
 
 @H2 Cơ cấu tổ chức và vị trí của sinh viên
 
-Theo báo cáo tổng hợp của sinh viên cùng đơn vị, công ty tổ chức theo mô hình trực tuyến chức năng [W7]. Tổng Giám đốc do tập đoàn mẹ bổ nhiệm đứng đầu. Bên dưới là năm Phó Tổng Giám đốc phụ trách sản xuất, kỹ thuật và chất lượng, hành chính và nhân sự, tài chính và kế toán, an toàn và môi trường. Mỗi Phó Tổng Giám đốc quản lý các phòng ban chuyên môn, và ba nhà máy V1, V2, V3 thuộc khối sản xuất (Hình 3.1) [W7].
+Theo báo cáo tổng hợp [W7], công ty tổ chức theo mô hình trực tuyến chức năng. Tổng Giám đốc do tập đoàn mẹ bổ nhiệm đứng đầu. Bên dưới là năm Phó Tổng Giám đốc phụ trách sản xuất, kỹ thuật và chất lượng, hành chính và nhân sự, tài chính và kế toán, an toàn và môi trường. Mỗi Phó Tổng Giám đốc quản lý các phòng ban chuyên môn, và ba nhà máy V1, V2, V3 thuộc khối sản xuất (Hình 3.1) [W7].
 
 @FIG hinh/so-do-to-chuc.png | Hình 3.1. Sơ đồ tổ chức của ITMV, vẽ lại theo mô tả trong tài liệu [W7]. Ô vàng là ba nhà máy sản xuất; PCM: mô-đun mạch bảo vệ; PMP: mô-đun bảo vệ; POC: vi mạch bảo vệ một chip; NFC: giao tiếp trường gần; TSP: màn hình cảm ứng; EPM: quản lý chương trình kỹ thuật.
 
-Phòng Công nghệ thông tin của công ty quản lý hạ tầng, bảo mật dữ liệu và hỗ trợ các hệ thống quản lý sản xuất như ERP và MES [W7]. Sinh viên thực tập gắn với mảng công nghệ thông tin này. Sinh viên làm việc dưới sự hướng dẫn của cán bộ hướng dẫn tại công ty và báo cáo tiến độ hằng tuần theo mẫu của khoa. Sơ đồ ở Hình 3.1 chưa phải văn bản chính thức của công ty, và sinh viên chưa đối chiếu nó với hồ sơ nội bộ.
-
-Nguồn của phần giới thiệu này được liệt kê ở mục Tài liệu tham khảo [W1] đến [W7]. Sinh viên chưa đối chiếu số liệu với hồ sơ nội bộ của công ty.
+Phòng Công nghệ thông tin của công ty quản lý hạ tầng, bảo mật dữ liệu và hỗ trợ các hệ thống quản lý sản xuất như ERP và MES [W7]. Sinh viên thực hiện dự án học tập độc lập, không thuộc phòng ban nào trong sơ đồ, làm việc dưới sự hướng dẫn của cán bộ hướng dẫn tại công ty và báo cáo tiến độ hằng tuần theo mẫu của khoa. Hình 3.1 chưa phải văn bản chính thức của công ty. Nguồn của phần giới thiệu này nằm ở mục Tài liệu tham khảo, từ [W1] đến [W7].

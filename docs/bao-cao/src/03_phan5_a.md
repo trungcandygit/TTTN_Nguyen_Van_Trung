@@ -39,7 +39,7 @@ Dự án xây dựng trên Ghostfolio, một phần mềm mã nguồn mở theo 
 
 @H3 5.1.5. Bố cục
 
-Mục 5.2 khảo sát nghiên cứu liên quan và trình bày cơ sở lý thuyết. Mục 5.3 phân tích yêu cầu và thiết kế. Mục 5.4 mô tả cài đặt. Mục 5.5 báo cáo kiểm thử và đánh giá. Mục 5.6 minh họa cách dùng bằng ảnh chụp. Mục 5.7 bàn về hạn chế và hướng phát triển, Mục 5.8 kết luận.
+Mục 5.2 khảo sát nghiên cứu liên quan và trình bày cơ sở lý thuyết. Mục 5.3 phân tích yêu cầu và thiết kế. Mục 5.4 mô tả cài đặt. Mục 5.5 báo cáo kiểm thử và đánh giá. Mục 5.6 minh họa cách dùng bằng ảnh chụp. Mục 5.7 bàn về hạn chế và hướng phát triển, Mục 5.8 kết luận và Mục 5.9 nêu các tuyên bố. Danh mục công trình khoa học của sinh viên nằm sau phần nội dung.
 
 @H2 5.2. Khảo sát nghiên cứu liên quan và cơ sở lý thuyết
 
@@ -47,7 +47,7 @@ Mục 5.2 khảo sát nghiên cứu liên quan và trình bày cơ sở lý thuy
 
 Markowitz [1] mô tả danh mục bằng hai đại lượng: lợi suất kỳ vọng và phương sai. Gọi $w$ là vectơ tỷ trọng của $n$ tài sản, $\mu$ là vectơ lợi suất kỳ vọng hằng năm và $\Sigma$ là ma trận hiệp phương sai hằng năm. Lợi suất và phương sai của danh mục là:
 
-@EQ E[R_p] = w^{\top}\mu ,\qquad \mathrm{Var}(R_p) = w^{\top}\Sigma w | (1)
+@EQ E[R_p] = w^{\top}\mu ,\qquad \text{Var}(R_p) = w^{\top}\Sigma w | (1)
 
 Tập các danh mục cho lợi suất cao nhất ở từng mức phương sai tạo thành đường biên hiệu quả. Có ba bài toán thường gặp trên đường biên. Bài toán phương sai tối thiểu tìm $w$ làm nhỏ nhất phương sai trong công thức (1). Bài toán trung bình-phương sai, với $\delta$ là hệ số ngại rủi ro, tìm $w$ làm lớn nhất:
 
@@ -67,7 +67,7 @@ Michaud [11] chỉ ra rằng tối ưu hóa trung bình-phương sai khuếch đ
 
 Giá trị chịu rủi ro có điều kiện (CVaR) ở mức tin cậy $\alpha$ là mức lỗ trung bình trong phần $(1-\alpha)$ tệ nhất của phân phối lỗ [4], [5]. Trên $T$ kịch bản lịch sử, mức lỗ của danh mục ở kịch bản $t$ là $\ell_t(w) = -R_t^{\top} w$, với $R_t$ là vectơ lợi suất của các tài sản ở kịch bản đó. Gọi $\ell_{(1)} \ge \ell_{(2)} \ge \dots$ là các mức lỗ sắp theo thứ tự giảm dần. CVaR được ước lượng bằng trung bình $k$ mức lỗ lớn nhất, với $k$ bằng phần nguyên trên của $(1-\alpha)T$:
 
-@EQ \mathrm{CVaR}_{\alpha}(w) = \frac{1}{k}\sum_{j=1}^{k} \ell_{(j)}(w) | (4)
+@EQ \text{CVaR}_{\alpha}(w) = \frac{1}{k}\sum_{j=1}^{k} \ell_{(j)}(w) | (4)
 
 CVaR nhạy với đuôi phân phối nên phù hợp khi lợi suất lệch hoặc có đuôi dày. Rockafellar và Uryasev chứng minh CVaR là hàm lồi của tỷ trọng, nên bài toán tối thiểu hóa CVaR có nghiệm toàn cục.
 
@@ -79,21 +79,21 @@ Danh mục cân bằng rủi ro (equal risk contribution) yêu cầu mỗi tài 
 
 Black và Litterman [2] đề xuất bắt đầu từ lợi suất mà thị trường đang ngầm định, rồi điều chỉnh theo quan điểm của nhà đầu tư. He và Litterman [3] giải thích trực giác của mô hình: danh mục tối ưu không ràng buộc là danh mục cân bằng thị trường cộng tổng có trọng số của các danh mục biểu diễn quan điểm. Idzorek [10] bổ sung cách gắn độ tin cậy cho từng quan điểm.
 
-Các ký hiệu: $\Sigma$ là ma trận hiệp phương sai của lợi suất; $w_{\mathrm{mkt}}$ là vectơ tỷ trọng cân bằng thị trường (trong dự án là tỷ trọng giá trị hiện tại của danh mục); $\delta$ là hệ số ngại rủi ro; $\tau$ là độ bất định của lợi suất cân bằng; $P$ là ma trận chọn với mỗi hàng mô tả một quan điểm; $Q$ là vectơ lợi suất mà các quan điểm dự báo; $\Omega$ là ma trận độ bất định của các quan điểm. Mô hình gồm ba bước.
+Các ký hiệu: $\Sigma$ là ma trận hiệp phương sai của lợi suất; $w_{\text{mkt}}$ là vectơ tỷ trọng cân bằng thị trường (trong dự án là tỷ trọng giá trị hiện tại của danh mục); $\delta$ là hệ số ngại rủi ro; $\tau$ là độ bất định của lợi suất cân bằng; $P$ là ma trận chọn với mỗi hàng mô tả một quan điểm; $Q$ là vectơ lợi suất mà các quan điểm dự báo; $\Omega$ là ma trận độ bất định của các quan điểm. Mô hình gồm ba bước.
 
 Bước một suy ra lợi suất cân bằng ngầm định $\pi$ từ tỷ trọng thị trường:
 
-@EQ \pi = \delta\,\Sigma\, w_{\mathrm{mkt}} | (5)
+@EQ \pi = \delta\,\Sigma\, w_{\text{mkt}} | (5)
 
-Bước hai kết hợp $\pi$ với các quan điểm để có lợi suất hậu nghiệm $E[R]$ và ma trận hiệp phương sai $M^{-1}$ của ước lượng này:
+Bước hai kết hợp $\pi$ với các quan điểm để có lợi suất hậu nghiệm $E[R]$. Ma trận $M$ định nghĩa dưới đây có nghịch đảo $M^{-1}$ là ma trận hiệp phương sai của ước lượng này:
 
-@EQ E[R] = \left[(\tau\Sigma)^{-1} + P^{\top}\Omega^{-1}P\right]^{-1}\left[(\tau\Sigma)^{-1}\pi + P^{\top}\Omega^{-1}Q\right],\qquad M^{-1} = \left[(\tau\Sigma)^{-1} + P^{\top}\Omega^{-1}P\right]^{-1} | (6)
+@EQ M = (\tau\Sigma)^{-1} + P^{\top}\Omega^{-1}P,\qquad E[R] = M^{-1}\left[(\tau\Sigma)^{-1}\pi + P^{\top}\Omega^{-1}Q\right] | (6)
 
 Bước ba tìm tỷ trọng tối ưu. Công thức không ràng buộc của Black và Litterman là:
 
-@EQ w^{*} = \left[\delta\left(\Sigma + M^{-1}\right)\right]^{-1} E[R] | (7)
+@EQ w^{\text{*}} = \left[\delta\left(\Sigma + M^{-1}\right)\right]^{-1} E[R] | (7)
 
-Khi không có quan điểm nào, $E[R]$ bằng $\pi$ và $w^{*}$ trùng $w_{\mathrm{mkt}}$. Đây là tính chất hữu ích để kiểm thử: nó khẳng định cài đặt nhất quán với lý thuyết.
+Khi không có quan điểm nào, $E[R]$ bằng $\pi$ và $w^{\text{*}}$ trùng $w_{\text{mkt}}$. Đây là tính chất hữu ích để kiểm thử: nó khẳng định cài đặt nhất quán với lý thuyết.
 
 @H3 5.2.6. Đánh giá ngoài mẫu và kiểm tra ngược
 
