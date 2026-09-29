@@ -8,6 +8,5 @@
 /apps/client/src/polyfills.ts
 /dist
 /docs
-/legacy-fastapi-prototype
 /test/import
 /vendor

@@ -2,8 +2,8 @@
  * Unit tests for the Black-Litterman model helper functions
  * (student's own contribution, PTIT graduation internship project).
  *
- * Direct TypeScript port of the 4 pytest cases in
- * `legacy-fastapi-prototype/apps/api/app/core/tests/test_black_litterman.py`:
+ * Direct TypeScript port of the 4 pytest cases of the project's initial
+ * FastAPI prototype (removed from the repository, see git history):
  *   1. No views reduces the posterior returns to the implied equilibrium
  *      returns.
  *   2. A single absolute view pulls the posterior return of that asset
@@ -11,8 +11,11 @@
  *   3. The optimal weights sum to 1 after normalization.
  *   4. The optimal weights match the manual closed-form formula.
  */
+import { BadRequestException } from '@nestjs/common';
+
 import {
   BlackLittermanInputs,
+  BlackLittermanService,
   Matrix,
   addMatrices,
   identity,
@@ -114,5 +117,39 @@ describe('BlackLitterman (portfolio model)', () => {
         expect(value).toBeCloseTo(i === j ? 1 : 0, 9);
       });
     });
+  });
+});
+
+describe('BlackLittermanService.getAllocation', () => {
+  function createService(holdings: unknown[]) {
+    const marketDataService = { getRange: jest.fn().mockResolvedValue([]) };
+    const portfolioService = {
+      getDetails: jest.fn().mockResolvedValue({ holdings })
+    };
+
+    return new BlackLittermanService(
+      marketDataService as never,
+      portfolioService as never
+    );
+  }
+
+  it('rejects an empty portfolio with a 400 instead of an internal server error', async () => {
+    await expect(
+      createService([]).getAllocation({ userId: 'user' })
+    ).rejects.toBeInstanceOf(BadRequestException);
+  });
+
+  it('rejects a portfolio with a single holding with a 400', async () => {
+    const holdings = [
+      {
+        valueInBaseCurrency: 100,
+        allocationInPercentage: 1,
+        assetProfile: { dataSource: 'YAHOO', symbol: 'AAPL', name: 'Apple' }
+      }
+    ];
+
+    await expect(
+      createService(holdings).getAllocation({ userId: 'user' })
+    ).rejects.toBeInstanceOf(BadRequestException);
   });
 });

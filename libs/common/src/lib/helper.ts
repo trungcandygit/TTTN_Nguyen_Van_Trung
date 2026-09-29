@@ -37,6 +37,7 @@ import {
   pt,
   tr,
   uk,
+  vi,
   zhCN
 } from 'date-fns/locale';
 import { get, isNil, isString } from 'lodash';
@@ -409,6 +410,8 @@ export function getDateFnsLocale(aLanguageCode?: string) {
     return tr;
   } else if (aLanguageCode === 'uk') {
     return uk;
+  } else if (aLanguageCode === 'vi') {
+    return vi;
   } else if (aLanguageCode === 'zh') {
     return zhCN;
   }

@@ -59,6 +59,7 @@ import { catchError, delay } from 'rxjs/operators';
 
 import { CreateOrUpdateActivityDialogParams } from './interfaces/interfaces';
 import { ActivityType } from './types/activity-type.type';
+import { getUnitPriceToPrefill } from './unit-price.helper';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -607,6 +608,16 @@ export class GfCreateOrUpdateActivityDialogComponent {
 
         this.currencyOfAssetProfile = currency;
         this.currentMarketPrice = marketPrice;
+
+        const unitPriceToPrefill = getUnitPriceToPrefill({
+          marketPrice,
+          currentUnitPrice: this.activityForm.get('unitPrice')?.value,
+          mode: this.mode
+        });
+
+        if (unitPriceToPrefill !== undefined) {
+          this.activityForm.get('unitPrice')?.setValue(unitPriceToPrefill);
+        }
 
         this.isLoading = false;
 

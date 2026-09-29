@@ -99,7 +99,7 @@ export const DEFAULT_CURRENCY = 'USD';
 export const DEFAULT_DATE_FORMAT_MONTH_YEAR = 'MMM yyyy';
 export const DEFAULT_DATE_RANGE: DateRange = 'max';
 export const DEFAULT_HOST = '0.0.0.0';
-export const DEFAULT_LANGUAGE_CODE = 'en';
+export const DEFAULT_LANGUAGE_CODE = 'vi';
 export const DEFAULT_LOCALE = 'en-US';
 export const DEFAULT_OPENROUTER_ENGINE_WEB_FETCH = 'openrouter';
 export const DEFAULT_PAGE_SIZE = 50;
@@ -361,6 +361,9 @@ export const SECTORS = [
   'Technology',
   'Utilities'
 ] as const;
+
+// Language of the <source> texts in the Angular i18n files (messages.xlf)
+export const SOURCE_LANGUAGE_CODE = 'en';
 
 export const STORYBOOK_PATH = '/development/storybook';
 

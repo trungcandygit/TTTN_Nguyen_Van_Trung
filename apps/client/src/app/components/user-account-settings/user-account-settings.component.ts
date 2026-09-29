@@ -240,7 +240,7 @@ export class GfUserAccountSettingsComponent implements OnInit {
   }
 
   protected isCommunityLanguage() {
-    return !['de', 'en'].includes(this.language);
+    return !['de', 'en', 'vi'].includes(this.language);
   }
 
   protected onChangeUserSetting(aKey: string, aValue: string) {

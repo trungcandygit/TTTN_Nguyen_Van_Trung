@@ -1,4 +1,7 @@
-import { DEFAULT_LANGUAGE_CODE } from '@ghostfolio/common/config';
+import {
+  DEFAULT_LANGUAGE_CODE,
+  SOURCE_LANGUAGE_CODE
+} from '@ghostfolio/common/config';
 
 import { Injectable, Logger, OnModuleInit } from '@nestjs/common';
 import * as cheerio from 'cheerio';
@@ -39,7 +42,7 @@ export class I18nService implements OnModuleInit {
 
     let translatedText = $(
       `trans-unit[id="${id}"] > ${
-        languageCodeToUse === DEFAULT_LANGUAGE_CODE ? 'source' : 'target'
+        languageCodeToUse === SOURCE_LANGUAGE_CODE ? 'source' : 'target'
       }`
     ).text();
 
@@ -78,7 +81,7 @@ export class I18nService implements OnModuleInit {
   private parseLanguageCode(aFileName: string) {
     const match = /\.([a-zA-Z]+)\.xlf$/.exec(aFileName);
 
-    return match ? match[1] : DEFAULT_LANGUAGE_CODE;
+    return match ? match[1] : SOURCE_LANGUAGE_CODE;
   }
 
   private parseXml(xmlData: string): cheerio.CheerioAPI {

@@ -23,14 +23,18 @@ Allocation** được thêm mới vào trang Allocations có sẵn của Ghostfo
   `apps/client/src/app/pages/portfolio/allocations/allocations-page.component.*`
   hiển thị kết quả phân bổ Black-Litterman bên cạnh phân bổ hiện có của Ghostfolio.
 
-Bản prototype ban đầu (trước khi quyết định fork nguyên trạng Ghostfolio) là một
-ứng dụng nhỏ tự viết bằng FastAPI (Python) + React, hiện được lưu lại nguyên vẹn
-tại `legacy-fastapi-prototype/` để giữ lịch sử phát triển của đồ án — **không còn
-được sử dụng hay chạy trong bản nộp cuối cùng**. Logic toán Black-Litterman đã kiểm
-thử trong prototype đó (`legacy-fastapi-prototype/apps/api/app/core/black_litterman.py`,
-`portfolio_stats.py`, 4 unit test tại
-`legacy-fastapi-prototype/apps/api/app/core/tests/test_black_litterman.py`) là cơ sở
-để port sang TypeScript ở bản hiện tại.
+Bản prototype ban đầu (FastAPI + React, trước khi quyết định fork Ghostfolio) **đã
+được xoá khỏi repo**; chỉ còn trong lịch sử git. Logic toán Black-Litterman đã kiểm
+thử trong prototype đó là cơ sở để port sang TypeScript ở bản hiện tại (4 unit test
+Python đã được port sang Jest trong `black-litterman.service.spec.ts`).
+
+## Giao diện tiếng Việt
+
+Giao diện web mặc định là **tiếng Việt** (`/vi/`): truy cập `/` luôn được chuyển
+hướng sang `/vi/`, người dùng mới/chưa chọn ngôn ngữ dùng tiếng Việt, và mục
+"Tiếng Việt" có trong phần Cài đặt tài khoản. Bản dịch nằm tại
+`apps/client/src/locales/messages.vi.xlf`. Các ngôn ngữ khác vẫn truy cập được qua
+đường dẫn tương ứng (ví dụ `/en/`).
 
 ## Vì sao chọn fork Ghostfolio thay vì viết lại từ đầu
 
@@ -53,9 +57,6 @@ prisma/     Schema Prisma / migration của Ghostfolio
 docker/     Cấu hình Docker Compose gốc của Ghostfolio (không dùng trong môi trường
             thực tập này vì Docker daemon không chạy được trong sandbox — chạy
             PostgreSQL 16 + Redis cài qua apt trực tiếp, xem docs/BAO_CAO_THUC_TAP.md)
-legacy-fastapi-prototype/
-            Bản prototype FastAPI + React ban đầu (không còn dùng, giữ để tham khảo
-            lịch sử phát triển đồ án)
 docs/
   BAO_CAO_THUC_TAP.md   nội dung báo cáo thực tập (Phần 1-5 theo mẫu PTIT)
 ```
@@ -106,7 +107,7 @@ Trọng số danh mục tối ưu:
 w* = (delta * (Sigma + M^-1))^-1 * E[R]
 ```
 
-Công thức giữ nguyên so với bản Python gốc trong `legacy-fastapi-prototype/`; chỉ
+Công thức giữ nguyên so với bản Python gốc của prototype ban đầu; chỉ
 đổi ngôn ngữ cài đặt sang TypeScript trong `apps/api/src/app/portfolio/black-litterman.service.ts`.
 
 ## Giấy phép

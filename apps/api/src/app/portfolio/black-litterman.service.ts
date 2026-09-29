@@ -2,7 +2,7 @@ import { PortfolioService } from '@ghostfolio/api/app/portfolio/portfolio.servic
 import { MarketDataService } from '@ghostfolio/api/services/market-data/market-data.service';
 import { AssetProfileIdentifier } from '@ghostfolio/common/interfaces';
 
-import { Injectable } from '@nestjs/common';
+import { BadRequestException, Injectable } from '@nestjs/common';
 import { subDays } from 'date-fns';
 
 /**
@@ -11,9 +11,8 @@ import { subDays } from 'date-fns';
  * This service is the student's own contribution to the forked Ghostfolio
  * codebase (graduation internship project, PTIT). It is a direct
  * TypeScript port of the Python reference implementation that was
- * developed and unit-tested first in
- * `legacy-fastapi-prototype/apps/api/app/core/black_litterman.py` and
- * `legacy-fastapi-prototype/apps/api/app/core/portfolio_stats.py`. The
+ * developed and unit-tested first in the project's initial FastAPI
+ * prototype (removed from the repository, see git history). The
  * mathematics are unchanged from that reference implementation; only the
  * implementation language changed, so that the model can run inside
  * Ghostfolio's NestJS backend and read a user's real holdings through
@@ -406,7 +405,7 @@ export class BlackLittermanService {
     );
 
     if (positions.length < 2) {
-      throw new Error(
+      throw new BadRequestException(
         'At least two holdings with a positive value are required to compute a Black-Litterman allocation'
       );
     }

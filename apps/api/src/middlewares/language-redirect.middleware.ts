@@ -1,5 +1,5 @@
 import { environment } from '@ghostfolio/api/environments/environment';
-import { getLanguageCodeFromHeader } from '@ghostfolio/api/helper/language.helper';
+import { DEFAULT_LANGUAGE_CODE } from '@ghostfolio/common/config';
 
 import { NextFunction, Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
@@ -17,9 +17,10 @@ export function languageRedirectMiddleware(
     return next();
   }
 
-  const languageCode = getLanguageCodeFromHeader(
-    request.headers['accept-language']
-  );
+  // The application is served in Vietnamese by default, regardless of the
+  // Accept-Language header of the browser. Other languages remain available
+  // via their prefixed routes (e.g. /en/) and the user settings.
+  const languageCode = DEFAULT_LANGUAGE_CODE;
 
   return response.redirect(
     StatusCodes.MOVED_PERMANENTLY,
