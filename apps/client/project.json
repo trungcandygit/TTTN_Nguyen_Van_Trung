@@ -273,6 +273,9 @@
         "development-uk": {
           "buildTarget": "client:build:development-uk"
         },
+        "development-vi": {
+          "buildTarget": "client:build:development-vi"
+        },
         "development-zh": {
           "buildTarget": "client:build:development-zh"
         },
