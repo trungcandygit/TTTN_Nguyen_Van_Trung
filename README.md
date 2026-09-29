@@ -79,7 +79,7 @@ Tác giả là tác giả liên hệ (dấu *) của cả 12 bài dưới đây,
 [1] T. V. Nguyen* et al., "Black-Litterman portfolio optimization using regime switching CAPM and ABC-MCMC: Empirical evidence from the Vietnamese stock market period 2019-2025," _Journal of Policy and Development Research (Học viện Chính sách và Phát triển), ISSN 3030-4091_, vol. 01, pp. 81-99, 2026, doi: 10.63640/3030-4091/jpd.apd.194.  
 Tình trạng: Đã xuất bản; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
 
-[2] T. V. Nguyen* et al., "Tiền gửi không kỳ hạn, hiệu quả hoạt động và ổn định tài chính ngân hàng: Bằng chứng từ mô hình ngưỡng tại Việt Nam," _Tạp chí Kinh tế - Luật và Ngân hàng (Học viện Ngân hàng), ISSN 3030-4199_, 2026.  
+[2] T. V. Nguyen* et al., "Tiền gửi không kỳ hạn, hiệu quả hoạt động và ổn định tài chính ngân hàng: Bằng chứng từ mô hình ngưỡng tại Việt Nam," _Tạp chí Kinh tế - Luật và Ngân hàng (Học viện Ngân hàng), ISSN 3030-4199_, 2026, doi: 10.59276/3030-4199/jelb.bav.895.  
 Tình trạng: Đã đăng; mã bản thảo: 3128; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
 
 ### Đã chấp nhận đăng
@@ -109,7 +109,7 @@ Tình trạng: Đang tìm phản biện.
 [9] T. V. Nguyen* et al., "Nested equity index correlations overstate true co-movement: Evidence from Vietnam," _Asia-Pacific Financial Markets_.  
 Tình trạng: With Editor; Scopus Q2.
 
-[10] T. V. Nguyen* et al., "Who gains from a market upgrade? Stock liquidity and prices around Vietnam's FTSE Russell reclassification," _Finance Open (Elsevier)_.  
+[10] T. V. Nguyen* et al., "Who gains from a market upgrade? Stock liquidity and prices around Vietnam's FTSE Russell reclassification," _Finance Research Open (Elsevier)_.  
 Tình trạng: With Editor.
 
 [11] T. V. Nguyen* et al., "Rated at the peak? Firm valuation around the first LSEG ESG score in five Southeast Asian markets," _Accounting Open (Elsevier)_.  

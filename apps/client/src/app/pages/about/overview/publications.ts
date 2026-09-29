@@ -42,7 +42,7 @@ export const PUBLICATIONS: Publication[] = [
   },
   {
     authors: AUTHORS,
-    details: '2026',
+    details: '2026, doi: 10.59276/3030-4199/jelb.bav.895',
     id: 'klnh-3128',
     indexing: 'Tạp chí trong nước, không thuộc ISI hoặc Scopus',
     manuscriptId: '3128',
@@ -140,7 +140,7 @@ export const PUBLICATIONS: Publication[] = [
     statusLabel: 'With Editor',
     title:
       "Who gains from a market upgrade? Stock liquidity and prices around Vietnam's FTSE Russell reclassification",
-    venue: 'Finance Open (Elsevier)'
+    venue: 'Finance Research Open (Elsevier)'
   },
   {
     authors: AUTHORS,
