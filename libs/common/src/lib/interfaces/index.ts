@@ -35,6 +35,18 @@ import type { LookupItem } from './lookup-item.interface';
 import type { MarketData } from './market-data.interface';
 import type { PortfolioChart } from './portfolio-chart.interface';
 import type { PortfolioDetails } from './portfolio-details.interface';
+import {
+  PortfolioOptimizerAsset,
+  PortfolioOptimizerAssetInput,
+  PortfolioOptimizerBacktest,
+  PortfolioOptimizerMethod,
+  PortfolioOptimizerMetrics,
+  PortfolioOptimizerPortfolio,
+  PortfolioOptimizerRebalance,
+  PortfolioOptimizerRequest,
+  PortfolioOptimizerResponse,
+  PortfolioOptimizerViewInput
+} from './portfolio-optimizer.interface';
 import type { PortfolioPerformance } from './portfolio-performance.interface';
 import type { PortfolioPosition } from './portfolio-position.interface';
 import type { PortfolioReportRule } from './portfolio-report-rule.interface';
@@ -103,6 +115,16 @@ import type { User } from './user.interface';
 import type { XRayRulesSettings } from './x-ray-rules-settings.interface';
 
 export {
+  PortfolioOptimizerAsset,
+  PortfolioOptimizerAssetInput,
+  PortfolioOptimizerBacktest,
+  PortfolioOptimizerMethod,
+  PortfolioOptimizerMetrics,
+  PortfolioOptimizerPortfolio,
+  PortfolioOptimizerRebalance,
+  PortfolioOptimizerRequest,
+  PortfolioOptimizerResponse,
+  PortfolioOptimizerViewInput,
   Access,
   AccessSettings,
   AccessTokenResponse,

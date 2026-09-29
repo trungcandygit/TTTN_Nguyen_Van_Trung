@@ -84,6 +84,7 @@ type Group = 'VN' | 'US' | 'CRYPTO' | 'GOLD' | 'BOND';
 interface AssetDefinition {
   assetClass: string;
   assetSubClass: string;
+  benchmark?: boolean;
   countries?: { code: string; weight: number }[];
   currency: 'USD' | 'VND';
   drift: number;
@@ -433,6 +434,66 @@ const ASSETS: AssetDefinition[] = [
     assetClass: 'FIXED_INCOME',
     assetSubClass: 'MUTUALFUND',
     countries: vn
+  },
+  // Simulated market indices used as benchmarks (not tradable by the personas)
+  {
+    symbol: 'VNINDEX',
+    name: 'VN-Index (chỉ số mô phỏng)',
+    benchmark: true,
+    group: 'VN',
+    currency: 'VND',
+    price0: 1100,
+    drift: 0.09,
+    vol: 0.2,
+    lot: 1,
+    feeRate: 0,
+    assetClass: 'EQUITY',
+    assetSubClass: 'ETF',
+    countries: vn
+  },
+  {
+    symbol: 'VN30INDEX',
+    name: 'VN30 (chỉ số mô phỏng)',
+    benchmark: true,
+    group: 'VN',
+    currency: 'VND',
+    price0: 1180,
+    drift: 0.1,
+    vol: 0.21,
+    lot: 1,
+    feeRate: 0,
+    assetClass: 'EQUITY',
+    assetSubClass: 'ETF',
+    countries: vn
+  },
+  {
+    symbol: 'SPX',
+    name: 'S&P 500 (chỉ số mô phỏng)',
+    benchmark: true,
+    group: 'US',
+    currency: 'USD',
+    price0: 3750,
+    drift: 0.1,
+    vol: 0.16,
+    lot: 1,
+    feeRate: 0,
+    assetClass: 'EQUITY',
+    assetSubClass: 'ETF',
+    countries: us
+  },
+  {
+    symbol: 'BTCUSD',
+    name: 'Bitcoin USD (chỉ số mô phỏng)',
+    benchmark: true,
+    group: 'CRYPTO',
+    currency: 'USD',
+    price0: 29000,
+    drift: 0.45,
+    vol: 0.7,
+    lot: 1,
+    feeRate: 0,
+    assetClass: 'LIQUIDITY',
+    assetSubClass: 'CRYPTOCURRENCY'
   }
 ];
 
@@ -1035,6 +1096,29 @@ async function main() {
     profileIds.set(asset.symbol, profile.id);
   }
 
+  // Register the simulated indices as market benchmarks (Property BENCHMARKS)
+  const benchmarkIds = ASSETS.filter(({ benchmark }) => benchmark).map(
+    ({ symbol }) => profileIds.get(symbol)!
+  );
+  const existingBenchmarks = await prisma.property.findUnique({
+    where: { key: 'BENCHMARKS' }
+  });
+  const kept = (
+    existingBenchmarks
+      ? (JSON.parse(existingBenchmarks.value) as { symbolProfileId: string }[])
+      : []
+  ).filter(({ symbolProfileId }) => !benchmarkIds.includes(symbolProfileId));
+  const benchmarkValue = JSON.stringify([
+    ...kept,
+    ...benchmarkIds.map((symbolProfileId) => ({ symbolProfileId }))
+  ]);
+
+  await prisma.property.upsert({
+    create: { key: 'BENCHMARKS', value: benchmarkValue },
+    update: { value: benchmarkValue },
+    where: { key: 'BENCHMARKS' }
+  });
+
   // Remove the profiles of the previous seed version (ticker as symbol)
   await prisma.marketData.deleteMany({
     where: {
@@ -1063,7 +1147,13 @@ async function main() {
   }[] = [];
 
   for (const asset of ASSETS) {
-    for (const [time, price] of prices.get(asset.symbol)!) {
+    // Benchmarks get a price on every calendar day (weekends carry the last
+    // close): the trend indicators need one data point per day
+    const series: [number, number][] = asset.benchmark
+      ? calendar.map((time) => [time, priceOn(asset.symbol, time)])
+      : [...prices.get(asset.symbol)!];
+
+    for (const [time, price] of series) {
       marketRows.push({
         dataSource: 'MANUAL',
         date: new Date(time),

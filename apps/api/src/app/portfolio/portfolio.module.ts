@@ -27,6 +27,7 @@ import { Module } from '@nestjs/common';
 import { BlackLittermanService } from './black-litterman.service';
 import { PortfolioCalculatorFactory } from './calculator/portfolio-calculator.factory';
 import { CurrentRateService } from './current-rate.service';
+import { OptimizerService } from './optimizer/optimizer.service';
 import { PortfolioController } from './portfolio.controller';
 import { PortfolioService } from './portfolio.service';
 import { RulesService } from './rules.service';
@@ -62,6 +63,7 @@ import { RulesService } from './rules.service';
     AccountService,
     BlackLittermanService,
     CurrentRateService,
+    OptimizerService,
     PortfolioCalculatorFactory,
     PortfolioService,
     RulesService

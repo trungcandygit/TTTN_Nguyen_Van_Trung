@@ -22,6 +22,7 @@ import {
   PortfolioDividendsResponse,
   PortfolioHoldingResponse,
   PortfolioHoldingsResponse,
+  PortfolioOptimizerResponse,
   PortfolioInvestmentsResponse,
   PortfolioPerformanceResponse,
   PortfolioReportResponse
@@ -40,6 +41,7 @@ import {
   HttpException,
   Inject,
   Param,
+  Post,
   Put,
   Query,
   UseInterceptors,
@@ -59,6 +61,8 @@ import { GetDividendsDto } from './get-dividends.dto';
 import { GetHoldingsDto } from './get-holdings.dto';
 import { GetInvestmentsDto } from './get-investments.dto';
 import { GetPerformanceDto } from './get-performance.dto';
+import { OptimizePortfolioDto } from './optimizer/optimize-portfolio.dto';
+import { OptimizerService } from './optimizer/optimizer.service';
 import { PortfolioService } from './portfolio.service';
 import { UpdateHoldingTagsDto } from './update-holding-tags.dto';
 
@@ -69,6 +73,7 @@ export class PortfolioController {
     private readonly apiService: ApiService,
     private readonly blackLittermanService: BlackLittermanService,
     private readonly configurationService: ConfigurationService,
+    private readonly optimizerService: OptimizerService,
     private readonly portfolioService: PortfolioService,
     @Inject(REQUEST) private readonly request: RequestWithUser
   ) {}
@@ -84,6 +89,19 @@ export class PortfolioController {
     @Impersonation() { userId }: ImpersonationContext
   ): Promise<BlackLittermanAllocationResponse> {
     return this.blackLittermanService.getAllocation({ userId });
+  }
+
+  /**
+   * Portfolio optimization (Markowitz, CVaR, Black-Litterman with views,
+   * risk parity) with baselines, efficient frontier and walk-forward backtest.
+   */
+  @Post('optimizer')
+  @RequiresScope(scopes.portfolioRead)
+  public async optimizePortfolio(
+    @Impersonation() { userId }: ImpersonationContext,
+    @Body() body: OptimizePortfolioDto
+  ): Promise<PortfolioOptimizerResponse> {
+    return this.optimizerService.optimize({ request: body, userId });
   }
 
   @Get('details')
