@@ -9,7 +9,7 @@
             alt="Ảnh chân dung của Nguyễn Văn Trung"
             class="avatar float-md-right ml-md-3 mb-3"
             height="160"
-            src="../assets/images/tac-gia.jpg"
+            src="../assets/images/tac-gia.png"
             width="160"
             (error)="hideImage($event)"
           />
@@ -58,11 +58,8 @@
                   <span class="number">[{{ item.number }}]</span>
                   {{ item.publication.authors }}, "{{
                     item.publication.title
-                  }}," <i>{{ item.publication.venue }}</i>
-                  @if (item.publication.details) {
-                    <span>, {{ item.publication.details }}</span>
-                  }
-                  .
+                  }}," <i>{{ item.publication.venue }}</i
+                  >{{ ending(item.publication) }}
                   <div class="small text-muted">
                     Tình trạng: {{ item.publication.statusLabel }}
                     @if (item.publication.manuscriptId) {

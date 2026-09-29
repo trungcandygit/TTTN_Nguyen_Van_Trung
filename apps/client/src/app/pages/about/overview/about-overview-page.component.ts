@@ -21,6 +21,11 @@ export class GfAboutOverviewPageComponent {
   protected readonly orcidId = ORCID_ID;
   protected readonly orcidUrl = ORCID_URL;
 
+  /** Details in IEEE order followed by the final period. */
+  protected ending({ details }: Publication) {
+    return `${details ? `, ${details}` : ''}.`;
+  }
+
   /** Hides the portrait when the file is not in the assets folder. */
   protected hideImage(event: Event) {
     (event.target as HTMLElement).style.display = 'none';
