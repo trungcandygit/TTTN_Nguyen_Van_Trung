@@ -187,6 +187,8 @@ DATABASE_URL=postgresql://user:matkhau@localhost:5432/ghostfolio-db?connect_time
 
 `ACCESS_TOKEN_SALT` và `JWT_SECRET_KEY` nên là chuỗi ngẫu nhiên dài, ví dụ tạo bằng `openssl rand -hex 32`. Không commit file `.env` chứa giá trị thật.
 
+Ứng dụng chỉ được build bằng tiếng Việt (`localize: ["vi"]` trong `apps/client/project.json`, `SUPPORTED_LANGUAGE_CODES = ['vi']`), nên thư mục build client chỉ khoảng 15 MB thay vì hơn 250 MB khi build đủ các ngôn ngữ của Ghostfolio. Các đường dẫn ngôn ngữ khác (ví dụ `/en/`) trả về 404.
+
 Hằng số cấu hình dùng chung nằm ở `libs/common/src/lib/config.ts`, trong đó `DEFAULT_LANGUAGE_CODE = 'vi'` và `DEFAULT_USER_CURRENCY = 'VND'`. Tiền tệ trục quy đổi tỷ giá nội bộ (`DEFAULT_CURRENCY`) vẫn là USD và không nên đổi.
 
 ## Mô hình Black-Litterman

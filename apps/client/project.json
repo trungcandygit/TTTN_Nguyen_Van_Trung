@@ -6,61 +6,9 @@
   "prefix": "gf",
   "i18n": {
     "locales": {
-      "ca": {
-        "baseHref": "/ca/",
-        "translation": "apps/client/src/locales/messages.ca.xlf"
-      },
-      "de": {
-        "baseHref": "/de/",
-        "translation": "apps/client/src/locales/messages.de.xlf"
-      },
-      "es": {
-        "baseHref": "/es/",
-        "translation": "apps/client/src/locales/messages.es.xlf"
-      },
-      "fr": {
-        "baseHref": "/fr/",
-        "translation": "apps/client/src/locales/messages.fr.xlf"
-      },
-      "it": {
-        "baseHref": "/it/",
-        "translation": "apps/client/src/locales/messages.it.xlf"
-      },
-      "ja": {
-        "baseHref": "/ja/",
-        "translation": "apps/client/src/locales/messages.ja.xlf"
-      },
-      "ko": {
-        "baseHref": "/ko/",
-        "translation": "apps/client/src/locales/messages.ko.xlf"
-      },
-      "nl": {
-        "baseHref": "/nl/",
-        "translation": "apps/client/src/locales/messages.nl.xlf"
-      },
-      "pl": {
-        "baseHref": "/pl/",
-        "translation": "apps/client/src/locales/messages.pl.xlf"
-      },
-      "pt": {
-        "baseHref": "/pt/",
-        "translation": "apps/client/src/locales/messages.pt.xlf"
-      },
-      "tr": {
-        "baseHref": "/tr/",
-        "translation": "apps/client/src/locales/messages.tr.xlf"
-      },
-      "uk": {
-        "baseHref": "/uk/",
-        "translation": "apps/client/src/locales/messages.uk.xlf"
-      },
       "vi": {
         "baseHref": "/vi/",
         "translation": "apps/client/src/locales/messages.vi.xlf"
-      },
-      "zh": {
-        "baseHref": "/zh/",
-        "translation": "apps/client/src/locales/messages.zh.xlf"
       }
     },
     "sourceLocale": "en"
@@ -82,7 +30,7 @@
         "buildOptimizer": false,
         "deleteOutputPath": false,
         "extractLicenses": false,
-        "localize": true,
+        "localize": ["vi"],
         "namedChunks": true,
         "ngswConfigPath": "apps/client/ngsw-config.json",
         "optimization": false,
@@ -98,65 +46,9 @@
         "vendorChunk": true
       },
       "configurations": {
-        "development-ca": {
-          "baseHref": "/ca/",
-          "localize": ["ca"]
-        },
-        "development-de": {
-          "baseHref": "/de/",
-          "localize": ["de"]
-        },
-        "development-en": {
-          "baseHref": "/en/",
-          "localize": ["en"]
-        },
-        "development-es": {
-          "baseHref": "/es/",
-          "localize": ["es"]
-        },
-        "development-fr": {
-          "baseHref": "/fr/",
-          "localize": ["fr"]
-        },
-        "development-it": {
-          "baseHref": "/it/",
-          "localize": ["it"]
-        },
-        "development-ja": {
-          "baseHref": "/ja/",
-          "localize": ["ja"]
-        },
-        "development-ko": {
-          "baseHref": "/ko/",
-          "localize": ["ko"]
-        },
-        "development-nl": {
-          "baseHref": "/nl/",
-          "localize": ["nl"]
-        },
-        "development-pl": {
-          "baseHref": "/pl/",
-          "localize": ["pl"]
-        },
-        "development-pt": {
-          "baseHref": "/pt/",
-          "localize": ["pt"]
-        },
-        "development-tr": {
-          "baseHref": "/tr/",
-          "localize": ["tr"]
-        },
-        "development-uk": {
-          "baseHref": "/uk/",
-          "localize": ["uk"]
-        },
         "development-vi": {
           "baseHref": "/vi/",
           "localize": ["vi"]
-        },
-        "development-zh": {
-          "baseHref": "/zh/",
-          "localize": ["zh"]
         },
         "production": {
           "budgets": [
@@ -231,50 +123,8 @@
         "sslKey": "apps/client/localhost.pem"
       },
       "configurations": {
-        "development-ca": {
-          "buildTarget": "client:build:development-ca"
-        },
-        "development-de": {
-          "buildTarget": "client:build:development-de"
-        },
-        "development-en": {
-          "buildTarget": "client:build:development-en"
-        },
-        "development-es": {
-          "buildTarget": "client:build:development-es"
-        },
-        "development-fr": {
-          "buildTarget": "client:build:development-fr"
-        },
-        "development-it": {
-          "buildTarget": "client:build:development-it"
-        },
-        "development-ja": {
-          "buildTarget": "client:build:development-ja"
-        },
-        "development-ko": {
-          "buildTarget": "client:build:development-ko"
-        },
-        "development-nl": {
-          "buildTarget": "client:build:development-nl"
-        },
-        "development-pl": {
-          "buildTarget": "client:build:development-pl"
-        },
-        "development-pt": {
-          "buildTarget": "client:build:development-pt"
-        },
-        "development-tr": {
-          "buildTarget": "client:build:development-tr"
-        },
-        "development-uk": {
-          "buildTarget": "client:build:development-uk"
-        },
         "development-vi": {
           "buildTarget": "client:build:development-vi"
-        },
-        "development-zh": {
-          "buildTarget": "client:build:development-zh"
         },
         "production": {
           "buildTarget": "client:build:production"
@@ -288,21 +138,7 @@
         "buildTarget": "client:build",
         "includeContext": true,
         "outputPath": "src/locales",
-        "targetFiles": [
-          "messages.ca.xlf",
-          "messages.de.xlf",
-          "messages.es.xlf",
-          "messages.fr.xlf",
-          "messages.it.xlf",
-          "messages.ja.xlf",
-          "messages.ko.xlf",
-          "messages.nl.xlf",
-          "messages.pl.xlf",
-          "messages.pt.xlf",
-          "messages.tr.xlf",
-          "messages.uk.xlf",
-          "messages.zh.xlf"
-        ],
+        "targetFiles": ["messages.vi.xlf"],
         "trim": true
       }
     },

@@ -265,20 +265,8 @@ export class SubscriptionService {
   private getStripeLocale(
     languageCode: string
   ): Stripe.Checkout.SessionCreateParams.Locale {
-    const unsupportedLanguageCodes: Record<
-      Exclude<
-        (typeof SUPPORTED_LANGUAGE_CODES)[number],
-        Stripe.Checkout.SessionCreateParams.Locale
-      >,
-      true
-    > = {
-      ca: true,
-      uk: true
-    };
-
     if (
-      (SUPPORTED_LANGUAGE_CODES as readonly string[]).includes(languageCode) &&
-      !(languageCode in unsupportedLanguageCodes)
+      (SUPPORTED_LANGUAGE_CODES as readonly string[]).includes(languageCode)
     ) {
       return languageCode as Stripe.Checkout.SessionCreateParams.Locale;
     }

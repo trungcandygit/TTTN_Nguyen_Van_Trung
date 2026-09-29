@@ -372,23 +372,8 @@ export const SOURCE_LANGUAGE_CODE = 'en';
 
 export const STORYBOOK_PATH = '/development/storybook';
 
-export const SUPPORTED_LANGUAGE_CODES = [
-  'ca',
-  'de',
-  'en',
-  'es',
-  'fr',
-  'it',
-  // 'ja',
-  'ko',
-  'nl',
-  'pl',
-  'pt',
-  'tr',
-  'uk',
-  'vi',
-  'zh'
-] as const;
+// BL Advisor is built only in Vietnamese
+export const SUPPORTED_LANGUAGE_CODES = ['vi'] as const;
 
 export const SYMBOL_MAXIMUM_LENGTH = 255;
 

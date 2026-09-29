@@ -7,7 +7,7 @@ import {
 
 describe('getLanguageCodeFromHeader', () => {
   it('should get the primary language code', () => {
-    expect(getLanguageCodeFromHeader('de-CH,de;q=0.9,en;q=0.8')).toEqual('de');
+    expect(getLanguageCodeFromHeader('vi-VN,vi;q=0.9,en;q=0.8')).toEqual('vi');
   });
 
   it('should use the default language code if the header is missing', () => {
@@ -21,20 +21,21 @@ describe('getLanguageCodeFromHeader', () => {
 
 describe('getSupportedLanguageCode', () => {
   it('should return a supported language code', () => {
-    expect(getSupportedLanguageCode('de')).toEqual('de');
+    expect(getSupportedLanguageCode('vi')).toEqual('vi');
   });
 
   it('should ignore the region subtag', () => {
-    expect(getSupportedLanguageCode('de-CH')).toEqual('de');
+    expect(getSupportedLanguageCode('vi-VN')).toEqual('vi');
   });
 
   it('should ignore the case', () => {
-    expect(getSupportedLanguageCode('DE')).toEqual('de');
+    expect(getSupportedLanguageCode('VI')).toEqual('vi');
   });
 
   it('should use the default language code if the language is not supported', () => {
     expect(getSupportedLanguageCode()).toEqual(DEFAULT_LANGUAGE_CODE);
     expect(getSupportedLanguageCode('')).toEqual(DEFAULT_LANGUAGE_CODE);
     expect(getSupportedLanguageCode('xx')).toEqual(DEFAULT_LANGUAGE_CODE);
+    expect(getSupportedLanguageCode('de')).toEqual(DEFAULT_LANGUAGE_CODE);
   });
 });
