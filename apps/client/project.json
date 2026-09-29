@@ -215,9 +215,6 @@
             "command": "shx cp apps/client/src/assets/robots.txt dist/apps/client"
           },
           {
-            "command": "shx cp CHANGELOG.md dist/apps/client/assets"
-          },
-          {
             "command": "shx cp LICENSE dist/apps/client/assets"
           }
         ],

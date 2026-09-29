@@ -49,7 +49,7 @@ export class GfUserAccountMembershipComponent {
   protected hasPermissionToCreateApiKey: boolean;
   protected hasPermissionToUpdateUserSettings: boolean;
   protected price: number;
-  protected readonly trySubscriptionMailHref = `mailto:hi@ghostfol.io?subject=Ghostfolio Premium Trial&body=${[
+  protected readonly trySubscriptionMailHref = `mailto:kontrungcany@gmail.com?subject=Ghostfolio Premium Trial&body=${[
     'Hello',
     '',
     'I am interested in Ghostfolio Premium. Can you please send me a coupon code to try it for some time?',

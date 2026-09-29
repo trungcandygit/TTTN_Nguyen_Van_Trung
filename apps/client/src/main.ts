@@ -18,6 +18,7 @@ import {
   MAT_DATE_FORMATS,
   MatNativeDateModule
 } from '@angular/material/core';
+import { MatPaginatorIntl } from '@angular/material/paginator';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { bootstrapApplication } from '@angular/platform-browser';
@@ -34,6 +35,7 @@ import { routes } from './app/app.routes';
 import { authInterceptorProviders } from './app/core/auth.interceptor';
 import { httpResponseInterceptorProviders } from './app/core/http-response.interceptor';
 import { ModulePreloadService } from './app/core/module-preload.service';
+import { GfVietnamesePaginatorIntl } from './app/core/vietnamese-paginator-intl';
 import { PageTitleStrategy } from './app/services/page-title.strategy';
 import { environment } from './environments/environment';
 
@@ -84,6 +86,10 @@ import { environment } from './environments/environment';
       {
         provide: DateAdapter,
         useClass: CustomDateAdapter
+      },
+      {
+        provide: MatPaginatorIntl,
+        useClass: GfVietnamesePaginatorIntl
       },
       {
         provide: GF_ENVIRONMENT,

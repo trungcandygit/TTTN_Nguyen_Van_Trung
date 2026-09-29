@@ -1,7 +1,7 @@
 {
   "background_color": "#FFFFFF",
   "categories": ["finance", "utilities"],
-  "description": "Open Source Wealth Management Software",
+  "description": "Hệ thống hỗ trợ phân bổ danh mục đầu tư",
   "display": "standalone",
   "icons": [
     {

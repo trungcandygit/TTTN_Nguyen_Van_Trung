@@ -89,7 +89,7 @@ export class GfAdminSettingsComponent implements OnInit {
   public hasGhostfolioApiKey: boolean;
   public isGhostfolioApiKeyValid: boolean;
   public isLoading = false;
-  public readonly premiumDataProviderMailHref = `mailto:hi@ghostfol.io?subject=Ghostfolio Premium Data Provider&body=${[
+  public readonly premiumDataProviderMailHref = `mailto:kontrungcany@gmail.com?subject=Ghostfolio Premium Data Provider&body=${[
     'Hello,',
     '',
     'I am interested in the Ghostfolio Premium data provider. Could you please give me access so I can try it for some time?',
@@ -181,7 +181,7 @@ export class GfAdminSettingsComponent implements OnInit {
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe(({ dataProviders, settings }) => {
         const filteredProviders = dataProviders.filter(({ dataSource }) => {
-          return dataSource !== 'MANUAL';
+          return dataSource !== 'MANUAL' && dataSource !== 'GHOSTFOLIO';
         });
 
         this.dataSource = new MatTableDataSource(filteredProviders);

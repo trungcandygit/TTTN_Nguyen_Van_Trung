@@ -14,7 +14,7 @@
  */
 import { PrismaPg } from '@prisma/adapter-pg';
 import { PrismaClient } from '@prisma/client';
-import { createHmac, randomUUID } from 'node:crypto';
+import { createHash, createHmac, randomUUID } from 'node:crypto';
 
 const DATABASE_URL = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
 const ACCESS_TOKEN_SALT = process.env.ACCESS_TOKEN_SALT;
@@ -438,6 +438,18 @@ const ASSETS: AssetDefinition[] = [
 
 const assetBySymbol = new Map(ASSETS.map((asset) => [asset.symbol, asset]));
 
+// The app connects an activity to an existing MANUAL asset profile only when
+// its symbol is a UUID, so the stored symbol is a deterministic UUID and the
+// ticker is kept in the name
+const dbSymbolOf = (ticker: string) => {
+  const hex = createHash('md5')
+    .update(`bl-advisor-demo-${ticker}`)
+    .digest('hex');
+  const variant = '89ab'[parseInt(hex[16], 16) % 4];
+
+  return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-4${hex.slice(13, 16)}-${variant}${hex.slice(17, 20)}-${hex.slice(20, 32)}`;
+};
+
 // ---------------------------------------------------------------------------
 // Synthetic prices (one-factor-per-group model with a small global factor)
 // ---------------------------------------------------------------------------
@@ -530,6 +542,8 @@ const fxOn = (time: number) => priceOn('USDVND', time);
 // ---------------------------------------------------------------------------
 
 interface Persona {
+  accountByGroup?: Partial<Record<Group, number>>;
+  accountBySymbol?: Record<string, number>;
   accounts: string[];
   budget: number; // monthly investment budget in VND
   interestOnSavings?: boolean;
@@ -553,6 +567,7 @@ const PERSONAS: Persona[] = [
     sellEveryMonths: 9,
     sellFraction: 0.2,
     accounts: ['Tài khoản chứng khoán', 'Ví crypto'],
+    accountByGroup: { CRYPTO: 1 },
     weights: { VNM: 2, FPT: 3, VCB: 2, AAPL: 2, BTC: 2, SJC: 1 }
   },
   {
@@ -591,6 +606,7 @@ const PERSONAS: Persona[] = [
     sellEveryMonths: 2,
     sellFraction: 0.4,
     accounts: ['Ví Binance', 'Ví lạnh'],
+    accountBySymbol: { ETH: 1, BTC: 1 },
     weights: { SOL: 4, BNB: 3, ETH: 2, BTC: 1 }
   },
   {
@@ -608,7 +624,8 @@ const PERSONAS: Persona[] = [
     budget: 22_000_000,
     sellEveryMonths: 6,
     sellFraction: 0.15,
-    accounts: ['Chứng khoán VN', 'Tài khoản Mỹ', 'Ví crypto'],
+    accounts: ['Chứng khoán VN', 'Tài khoản Mỹ', 'Ví crypto và vàng'],
+    accountByGroup: { US: 1, CRYPTO: 2, GOLD: 2 },
     weights: { FPT: 2, VCB: 2, VOO: 3, BTC: 2, ETH: 1, SJC: 2 }
   },
   {
@@ -618,6 +635,7 @@ const PERSONAS: Persona[] = [
     budget: 10_000_000,
     interestOnSavings: true,
     accounts: ['Tài khoản quỹ', 'Vàng SJC'],
+    accountByGroup: { GOLD: 1 },
     weights: { SJC: 4, VFMVFB: 4, E1VFVN30: 2 }
   },
   {
@@ -653,6 +671,7 @@ const PERSONAS: Persona[] = [
     budget: 9_000_000,
     interestOnSavings: true,
     accounts: ['Tài khoản tiết kiệm', 'Vàng'],
+    accountByGroup: { GOLD: 1 },
     weights: { SJC: 7, VFMVFB: 3 }
   },
   {
@@ -663,6 +682,7 @@ const PERSONAS: Persona[] = [
     sellEveryMonths: 4,
     sellFraction: 0.12,
     accounts: ['Chứng khoán', 'Crypto', 'Vàng & quỹ'],
+    accountByGroup: { CRYPTO: 1, GOLD: 2, BOND: 2 },
     weights: {
       VNM: 1,
       FPT: 1,
@@ -748,11 +768,10 @@ function buildActivities(persona: Persona, accountIds: string[]) {
   const totalWeight = symbols.reduce((s, k) => s + persona.weights[k], 0);
   const start = Date.parse(persona.start);
   const accountFor = (asset: AssetDefinition) => {
-    if (accountIds.length === 1) {
-      return accountIds[0];
-    }
-
-    const index = { VN: 0, US: 1, CRYPTO: 2, GOLD: 2, BOND: 2 }[asset.group];
+    const index =
+      persona.accountBySymbol?.[asset.symbol] ??
+      persona.accountByGroup?.[asset.group] ??
+      0;
 
     return accountIds[Math.min(index, accountIds.length - 1)];
   };
@@ -995,7 +1014,7 @@ async function main() {
         dataSource: 'MANUAL',
         name: asset.name,
         sectors: (asset.sectors ?? []) as never,
-        symbol: asset.symbol
+        symbol: dbSymbolOf(asset.symbol)
       },
       update: {
         assetClass: asset.assetClass as never,
@@ -1006,15 +1025,31 @@ async function main() {
         sectors: (asset.sectors ?? []) as never
       },
       where: {
-        dataSource_symbol: { dataSource: 'MANUAL', symbol: asset.symbol }
+        dataSource_symbol: {
+          dataSource: 'MANUAL',
+          symbol: dbSymbolOf(asset.symbol)
+        }
       }
     });
 
     profileIds.set(asset.symbol, profile.id);
   }
 
+  // Remove the profiles of the previous seed version (ticker as symbol)
   await prisma.marketData.deleteMany({
     where: {
+      dataSource: 'MANUAL',
+      symbol: {
+        in: [
+          ...ASSETS.map(({ symbol }) => symbol),
+          ...ASSETS.map(({ symbol }) => dbSymbolOf(symbol))
+        ]
+      }
+    }
+  });
+  await prisma.symbolProfile.deleteMany({
+    where: {
+      activities: { none: {} },
       dataSource: 'MANUAL',
       symbol: { in: ASSETS.map(({ symbol }) => symbol) }
     }
@@ -1033,7 +1068,7 @@ async function main() {
         dataSource: 'MANUAL',
         date: new Date(time),
         marketPrice: Number(price.toFixed(asset.currency === 'VND' ? 0 : 4)),
-        symbol: asset.symbol
+        symbol: dbSymbolOf(asset.symbol)
       });
     }
   }

@@ -253,6 +253,7 @@ export const publicRoutes = {
     routerLink: ['/' + $localize`:kebab-case@@routes.about:about`],
     subRoutes: {
       changelog: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.about.changelog:changelog`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.about:about`,
@@ -269,6 +270,7 @@ export const publicRoutes = {
         title: $localize`License`
       },
       ossFriends: {
+        excludeFromSitemap: true,
         path: 'oss-friends',
         routerLink: [
           '/' + $localize`:kebab-case@@routes.about:about`,
@@ -277,6 +279,7 @@ export const publicRoutes = {
         title: 'OSS Friends'
       },
       privacyPolicy: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.about.privacyPolicy:privacy-policy`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.about:about`,
@@ -285,6 +288,7 @@ export const publicRoutes = {
         title: $localize`Privacy Policy`
       },
       termsOfService: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.about.termsOfService:terms-of-service`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.about:about`,
@@ -296,6 +300,7 @@ export const publicRoutes = {
     title: $localize`About`
   },
   blog: {
+    excludeFromSitemap: true,
     path: 'blog',
     routerLink: ['/blog'],
     title: $localize`Blog`
@@ -307,6 +312,7 @@ export const publicRoutes = {
     title: $localize`Live Demo`
   },
   faq: {
+    excludeFromSitemap: true,
     path: $localize`:kebab-case@@routes.faq:faq`,
     routerLink: ['/' + $localize`:kebab-case@@routes.faq:faq`],
     subRoutes: {
@@ -337,11 +343,13 @@ export const publicRoutes = {
     title: $localize`Markets`
   },
   openStartup: {
+    excludeFromSitemap: true,
     path: 'open',
     routerLink: ['/open'],
     title: 'Open Startup'
   },
   pricing: {
+    excludeFromSitemap: true,
     path: $localize`:kebab-case@@routes.pricing:pricing`,
     routerLink: ['/' + $localize`:kebab-case@@routes.pricing:pricing`],
     title: $localize`Pricing`
@@ -361,6 +369,7 @@ export const publicRoutes = {
     routerLink: ['/' + $localize`:kebab-case@@routes.resources:resources`],
     subRoutes: {
       glossary: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.resources.glossary:glossary`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.resources:resources`,
@@ -369,6 +378,7 @@ export const publicRoutes = {
         title: $localize`Glossary`
       },
       guides: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.resources.guides:guides`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.resources:resources`,
@@ -385,6 +395,7 @@ export const publicRoutes = {
         title: $localize`Markets`
       },
       personalFinanceTools: {
+        excludeFromSitemap: true,
         path: $localize`:kebab-case@@routes.resources.personalFinanceTools:personal-finance-tools`,
         routerLink: [
           '/' + $localize`:kebab-case@@routes.resources:resources`,

@@ -484,7 +484,7 @@ export class GfHoldingDetailDialogComponent implements OnInit {
             this.assetProfile?.symbol ? ` (${this.assetProfile.symbol})` : ''
           }`;
 
-          this.reportDataGlitchMailHref = `mailto:hi@ghostfol.io?subject=${reportDataGlitchSubject}&body=${[
+          this.reportDataGlitchMailHref = `mailto:kontrungcany@gmail.com?subject=${reportDataGlitchSubject}&body=${[
             'Hello',
             '',
             'I would like to report a data glitch for',

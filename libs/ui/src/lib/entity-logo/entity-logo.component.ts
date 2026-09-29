@@ -42,7 +42,7 @@ export class GfEntityLogoComponent implements OnChanges {
 
     if (this.countryCode) {
       this.emojiFlag = getEmojiFlag(this.countryCode);
-    } else if (this.dataSource && this.symbol) {
+    } else if (this.dataSource && this.symbol && this.dataSource !== 'MANUAL') {
       this.src = this.imageSourceService.getLogoUrlByAssetProfileIdentifier({
         dataSource: this.dataSource,
         symbol: this.symbol

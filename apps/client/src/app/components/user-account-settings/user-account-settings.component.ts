@@ -170,7 +170,7 @@ export class GfUserAccountSettingsComponent implements OnInit {
             this.user.id
           ].join('/');
 
-          this.closeUserAccountMailHref = `mailto:hi@ghostfol.io?subject=Delete Account&body=${[
+          this.closeUserAccountMailHref = `mailto:kontrungcany@gmail.com?subject=Delete Account&body=${[
             'Hello',
             '',
             'Please delete my Ghostfolio account.',

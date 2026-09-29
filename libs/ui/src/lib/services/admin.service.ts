@@ -21,7 +21,6 @@ import {
   EnhancedAssetProfile
 } from '@ghostfolio/common/interfaces';
 import { DateRange } from '@ghostfolio/common/types';
-import { GF_ENVIRONMENT } from '@ghostfolio/ui/environment';
 
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { inject, Service } from '@angular/core';
@@ -31,7 +30,6 @@ import { isNumber } from 'lodash';
 
 @Service()
 export class AdminService {
-  private readonly environment = inject(GF_ENVIRONMENT);
   private readonly http = inject(HttpClient);
 
   public addAssetProfile({ dataSource, symbol }: AssetProfileIdentifier) {
@@ -92,7 +90,7 @@ export class AdminService {
     });
 
     return this.http.get<DataProviderGhostfolioStatusResponse>(
-      `${this.environment.production ? 'https://ghostfol.io' : ''}/api/v2/data-providers/ghostfolio/status`,
+      `/api/v2/data-providers/ghostfolio/status`,
       { headers }
     );
   }

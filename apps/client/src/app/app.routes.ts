@@ -28,24 +28,10 @@ export const routes: Routes = [
       import('./pages/admin/admin-page.routes').then((m) => m.routes)
   },
   {
-    canActivate: [AuthGuard],
-    loadComponent: () =>
-      import('./pages/api/api-page.component').then(
-        (c) => c.GfApiPageComponent
-      ),
-    path: internalRoutes.api.path,
-    title: internalRoutes.api.title
-  },
-  {
     path: internalRoutes.auth.path,
     loadChildren: () =>
       import('./pages/auth/auth-page.routes').then((m) => m.routes),
     title: internalRoutes.auth.title
-  },
-  {
-    path: publicRoutes.blog.path,
-    loadChildren: () =>
-      import('./pages/blog/blog-page.routes').then((m) => m.routes)
   },
   {
     canActivate: [AuthGuard],
@@ -54,11 +40,6 @@ export const routes: Routes = [
         (c) => c.GfDemoPageComponent
       ),
     path: publicRoutes.demo.path
-  },
-  {
-    path: publicRoutes.faq.path,
-    loadChildren: () =>
-      import('./pages/faq/faq-page.routes').then((m) => m.routes)
   },
   {
     canActivate: [AuthGuard],
@@ -75,33 +56,14 @@ export const routes: Routes = [
       import('./pages/home/home-page.routes').then((m) => m.routes)
   },
   {
-    canActivate: [AuthGuard],
-    loadComponent: () =>
-      import('./pages/i18n/i18n-page.component').then(
-        (c) => c.GfI18nPageComponent
-      ),
-    path: internalRoutes.i18n.path,
-    title: internalRoutes.i18n.title
-  },
-  {
     path: publicRoutes.markets.path,
     loadChildren: () =>
       import('./pages/markets/markets-page.routes').then((m) => m.routes)
   },
   {
-    path: publicRoutes.openStartup.path,
-    loadChildren: () =>
-      import('./pages/open/open-page.routes').then((m) => m.routes)
-  },
-  {
     path: internalRoutes.portfolio.path,
     loadChildren: () =>
       import('./pages/portfolio/portfolio-page.routes').then((m) => m.routes)
-  },
-  {
-    path: publicRoutes.pricing.path,
-    loadChildren: () =>
-      import('./pages/pricing/pricing-page.routes').then((m) => m.routes)
   },
   {
     path: publicRoutes.public.path,
@@ -139,7 +101,10 @@ export const routes: Routes = [
     // wildcard, if requested url doesn't match any paths for routes defined
     // earlier
     path: '**',
-    redirectTo: 'home',
-    pathMatch: 'full'
+    loadComponent: () =>
+      import('./pages/not-found/not-found-page.component').then(
+        (c) => c.GfNotFoundPageComponent
+      ),
+    title: 'Không tìm thấy trang'
   }
 ];

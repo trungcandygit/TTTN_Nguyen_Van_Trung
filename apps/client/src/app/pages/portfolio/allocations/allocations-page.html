@@ -367,9 +367,9 @@
           @if (isLoadingBlackLitterman) {
             <mat-progress-bar mode="indeterminate" />
           } @else if (blackLittermanError) {
-            <div class="my-3 text-center text-muted" i18n>
-              Not enough historical data to compute the Black-Litterman
-              allocation for this portfolio.
+            <div class="my-3 text-center text-muted">
+              Cần ít nhất hai khoản nắm giữ có giá trị dương (và đủ lịch sử giá)
+              để tính phân bổ Black-Litterman.
             </div>
           } @else if (blackLittermanAllocation.length > 0) {
             <table class="w-100">
