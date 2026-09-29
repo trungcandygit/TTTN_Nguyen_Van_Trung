@@ -35,6 +35,7 @@ import { GfHistoricalMarketDataEditorComponent } from '@ghostfolio/ui/historical
 import { translate } from '@ghostfolio/ui/i18n';
 import { GfLineChartComponent } from '@ghostfolio/ui/line-chart';
 import { NotificationService } from '@ghostfolio/ui/notifications';
+import { GfNumberInputDirective } from '@ghostfolio/ui/number-input';
 import { GfPortfolioProportionChartComponent } from '@ghostfolio/ui/portfolio-proportion-chart';
 import { AdminService, DataService } from '@ghostfolio/ui/services';
 import { GfSymbolAutocompleteComponent } from '@ghostfolio/ui/symbol-autocomplete';
@@ -115,6 +116,7 @@ import { AssetProfileDialogParams } from './interfaces/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'd-flex flex-column h-100' },
   imports: [
+    GfNumberInputDirective,
     CommonModule,
     FormsModule,
     GfCurrencySelectorComponent,

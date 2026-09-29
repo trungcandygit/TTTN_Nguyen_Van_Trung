@@ -32,3 +32,7 @@ Mã bảo mật (dùng ở ô "Mã bảo mật" khi đăng nhập) là mật kh�
 | USER | `demo-user-15` | Bán dần, thu cổ tức |
 
 Các loại giao dịch có trong dữ liệu: BUY, SELL, DIVIDEND, FEE, INTEREST, LIABILITY. Tài sản: cổ phiếu VN (VNM, FPT, VCB, HPG, MWG, VIC, ACB, MBB, SSI), ETF VN30, cổ phiếu Mỹ (AAPL, MSFT, NVDA, TSLA, GOOGL), ETF VOO, crypto (BTC, ETH, SOL, BNB), vàng SJC, quỹ trái phiếu.
+
+## Benchmark thị trường (mô phỏng)
+
+Lệnh seed cũng tạo 4 chỉ số mô phỏng và đăng ký làm benchmark thị trường (Property `BENCHMARKS`), có giá cho mọi ngày trong lịch để xu hướng 50 và 200 ngày tính được: VN-Index, VN30, S&P 500 và Bitcoin USD. Đây là dữ liệu mô phỏng, không phải giá thị trường thật. Các chỉ số này không nằm trong danh mục của tài khoản demo nào.

@@ -8,23 +8,13 @@
 
         <mat-form-field appearance="outline" class="w-100">
           <mat-label i18n>Savings Rate per Month</mat-label>
-          <input
-            formControlName="paymentPerPeriod"
-            matInput
-            step="100"
-            type="number"
-          />
+          <input formControlName="paymentPerPeriod" gfNumberInput matInput />
           <span class="ml-2" matTextSuffix>{{ currency }}</span>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="w-100">
           <mat-label i18n>Annual Interest Rate</mat-label>
-          <input
-            formControlName="annualInterestRate"
-            matInput
-            step="0.25"
-            type="number"
-          />
+          <input formControlName="annualInterestRate" gfNumberInput matInput />
           <div class="ml-2" matTextSuffix>%</div>
         </mat-form-field>
 
@@ -62,9 +52,8 @@
           <mat-label i18n>Projected Total Amount</mat-label>
           <input
             formControlName="projectedTotalAmount"
+            gfNumberInput
             matInput
-            step="100"
-            type="number"
           />
           <span class="ml-2" matTextSuffix>{{ currency }}</span>
         </mat-form-field>

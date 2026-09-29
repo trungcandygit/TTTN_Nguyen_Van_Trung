@@ -11,6 +11,7 @@ import { validateObjectForForm } from '@ghostfolio/common/utils';
 import { GfCurrencySelectorComponent } from '@ghostfolio/ui/currency-selector';
 import { GfEntityLogoComponent } from '@ghostfolio/ui/entity-logo';
 import { translate } from '@ghostfolio/ui/i18n';
+import { GfNumberInputDirective } from '@ghostfolio/ui/number-input';
 import { DataService } from '@ghostfolio/ui/services';
 import { GfTagsSelectorComponent } from '@ghostfolio/ui/tags-selector';
 
@@ -49,6 +50,7 @@ import { CreateOrUpdateAccountDialogParams } from './interfaces/interfaces';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'h-100' },
   imports: [
+    GfNumberInputDirective,
     CommonModule,
     GfCurrencySelectorComponent,
     GfEntityLogoComponent,

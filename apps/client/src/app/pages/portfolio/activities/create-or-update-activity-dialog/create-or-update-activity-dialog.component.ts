@@ -18,6 +18,7 @@ import { hasPermission, permissions } from '@ghostfolio/common/permissions';
 import { validateObjectForForm } from '@ghostfolio/common/utils';
 import { GfAccountSelectorComponent } from '@ghostfolio/ui/account-selector';
 import { translate } from '@ghostfolio/ui/i18n';
+import { GfNumberInputDirective } from '@ghostfolio/ui/number-input';
 import { DataService } from '@ghostfolio/ui/services';
 import { GfSymbolAutocompleteComponent } from '@ghostfolio/ui/symbol-autocomplete';
 import { GfTagsSelectorComponent } from '@ghostfolio/ui/tags-selector';
@@ -65,6 +66,7 @@ import { getUnitPriceToPrefill } from './unit-price.helper';
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'h-100' },
   imports: [
+    GfNumberInputDirective,
     GfAccountSelectorComponent,
     GfSymbolAutocompleteComponent,
     GfTagsSelectorComponent,

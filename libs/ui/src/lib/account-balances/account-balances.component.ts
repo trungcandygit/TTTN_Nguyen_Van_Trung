@@ -42,11 +42,13 @@ import {
 } from 'ionicons/icons';
 import { get, isNil } from 'lodash';
 
+import { GfNumberInputDirective } from '../number-input';
 import { GfValueComponent } from '../value';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    GfNumberInputDirective,
     GfValueComponent,
     IonIcon,
     MatButtonModule,

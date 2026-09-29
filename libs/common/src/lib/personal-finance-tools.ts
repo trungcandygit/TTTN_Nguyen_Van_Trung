@@ -3881,7 +3881,7 @@ export const personalFinanceTools: Product[] = (
       name: 'TrackinV',
       platforms: ['WEB'],
       pricingPerYear: '€40',
-      slogan: 'See your real investment performance — across every broker',
+      slogan: 'See your real investment performance, across every broker',
       updatedAt: '2026-08-16',
       url: 'https://trackinv.com'
     },
@@ -3912,7 +3912,7 @@ export const personalFinanceTools: Product[] = (
       platforms: ['IOS', 'WEB'],
       pricingPerYear: '$195',
       slogan:
-        'The AI trading journal that reads every entry — not just every trade',
+        'The AI trading journal that reads every entry, not just every trade',
       updatedAt: '2026-09-23',
       url: 'https://tradejournal.ai'
     },
@@ -3944,7 +3944,7 @@ export const personalFinanceTools: Product[] = (
       origin: 'US',
       platforms: ['IOS', 'WEB'],
       pricingPerYear: '$100',
-      slogan: 'Your Trading Journal — now with Forge.',
+      slogan: 'Your Trading Journal, now with Forge.',
       updatedAt: '2026-09-23',
       url: 'https://app.tradersforge.net'
     },

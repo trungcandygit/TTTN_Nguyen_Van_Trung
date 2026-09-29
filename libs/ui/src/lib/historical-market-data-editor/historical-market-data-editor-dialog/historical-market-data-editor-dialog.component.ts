@@ -27,12 +27,14 @@ import { addIcons } from 'ionicons';
 import { calendarClearOutline, refreshOutline } from 'ionicons/icons';
 import { isNil } from 'lodash';
 
+import { GfNumberInputDirective } from '../../number-input';
 import { HistoricalMarketDataEditorDialogParams } from './interfaces/interfaces';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'h-100' },
   imports: [
+    GfNumberInputDirective,
     FormsModule,
     IonIcon,
     MatButtonModule,

@@ -25,8 +25,8 @@
         <mat-label i18n>Value</mat-label>
         <input
           formControlName="balance"
+          gfNumberInput
           matInput
-          type="number"
           (keydown.enter)="$event.stopPropagation()"
         />
         <span class="ml-2" matTextSuffix>{{ currency }}</span>

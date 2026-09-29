@@ -14,7 +14,7 @@ import { TransformDataSourceInResponseInterceptor } from '@ghostfolio/api/interc
 import { ApiService } from '@ghostfolio/api/services/api/api.service';
 import { ConfigurationService } from '@ghostfolio/api/services/configuration/configuration.service';
 import { getIntervalFromDateRange } from '@ghostfolio/common/calculation-helper';
-import { UNKNOWN_KEY } from '@ghostfolio/common/config';
+import { DEFAULT_CURRENCY, UNKNOWN_KEY } from '@ghostfolio/common/config';
 import { SubscriptionType } from '@ghostfolio/common/enums';
 import { isCashPosition } from '@ghostfolio/common/helper';
 import {
@@ -101,7 +101,12 @@ export class PortfolioController {
     @Impersonation() { userId }: ImpersonationContext,
     @Body() body: OptimizePortfolioDto
   ): Promise<PortfolioOptimizerResponse> {
-    return this.optimizerService.optimize({ request: body, userId });
+    return this.optimizerService.optimize({
+      baseCurrency:
+        this.request.user?.settings?.settings?.baseCurrency ?? DEFAULT_CURRENCY,
+      request: body,
+      userId
+    });
   }
 
   @Get('details')

@@ -25,9 +25,9 @@
       <mat-form-field appearance="outline" class="w-100">
         <mat-label i18n>Market Price</mat-label>
         <input
+          gfNumberInput
           matInput
           name="marketPrice"
-          type="number"
           [ngModel]="marketPrice()"
           (ngModelChange)="marketPrice.set($event)"
         />

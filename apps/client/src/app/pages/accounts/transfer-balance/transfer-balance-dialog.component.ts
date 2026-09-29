@@ -1,6 +1,7 @@
 import { TransferBalanceDto } from '@ghostfolio/common/dtos';
 import { AccountWithPlatform } from '@ghostfolio/common/types';
 import { GfAccountSelectorComponent } from '@ghostfolio/ui/account-selector';
+import { GfNumberInputDirective } from '@ghostfolio/ui/number-input';
 
 import {
   ChangeDetectionStrategy,
@@ -33,6 +34,7 @@ import {
   changeDetection: ChangeDetectionStrategy.OnPush,
   host: { class: 'h-100' },
   imports: [
+    GfNumberInputDirective,
     GfAccountSelectorComponent,
     MatButtonModule,
     MatDialogModule,

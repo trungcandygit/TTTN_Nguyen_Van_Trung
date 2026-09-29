@@ -81,6 +81,7 @@ export interface PortfolioOptimizerResponse {
   asOf: string;
   assets: PortfolioOptimizerAsset[];
   backtest?: PortfolioOptimizerBacktest;
+  baseCurrency: string;
   blackLitterman?: {
     delta: number;
     impliedReturns: number[];

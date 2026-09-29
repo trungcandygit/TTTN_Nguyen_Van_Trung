@@ -63,11 +63,13 @@ import { isNumber } from 'lodash';
 import { NgxSkeletonLoaderModule } from 'ngx-skeleton-loader';
 import { debounceTime } from 'rxjs';
 
+import { GfNumberInputDirective } from '../number-input';
 import { FireCalculatorService } from './fire-calculator.service';
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    GfNumberInputDirective,
     CommonModule,
     FormsModule,
     IonIcon,

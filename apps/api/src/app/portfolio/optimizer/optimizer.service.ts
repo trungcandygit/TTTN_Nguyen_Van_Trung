@@ -1,6 +1,8 @@
 import { PortfolioService } from '@ghostfolio/api/app/portfolio/portfolio.service';
+import { ExchangeRateDataService } from '@ghostfolio/api/services/exchange-rate-data/exchange-rate-data.service';
 import { MarketDataService } from '@ghostfolio/api/services/market-data/market-data.service';
 import { SymbolProfileService } from '@ghostfolio/api/services/symbol-profile/symbol-profile.service';
+import { DEFAULT_CURRENCY } from '@ghostfolio/common/config';
 import type {
   PortfolioOptimizerRequest,
   PortfolioOptimizerResponse
@@ -42,15 +44,18 @@ const clamp = (value: number, min: number, max: number) =>
 @Injectable()
 export class OptimizerService {
   public constructor(
+    private readonly exchangeRateDataService: ExchangeRateDataService,
     private readonly marketDataService: MarketDataService,
     private readonly portfolioService: PortfolioService,
     private readonly symbolProfileService: SymbolProfileService
   ) {}
 
   public async optimize({
+    baseCurrency = DEFAULT_CURRENCY,
     request,
     userId
   }: {
+    baseCurrency?: string;
     request: PortfolioOptimizerRequest;
     userId: string;
   }): Promise<PortfolioOptimizerResponse> {
@@ -111,16 +116,46 @@ export class OptimizerService {
       dateQuery: { gte: from }
     });
 
+    // Convert every price series into the user's base currency so that
+    // assets quoted in different currencies are comparable
+    const currencyOf = new Map(
+      profiles.map((profile) => [profile.symbol, profile.currency])
+    );
+    const foreignCurrencies = Array.from(
+      new Set(
+        identifiers
+          .map(({ symbol }) => currencyOf.get(symbol))
+          .filter((currency) => currency && currency !== baseCurrency)
+      )
+    ) as string[];
+    const exchangeRates =
+      foreignCurrencies.length > 0
+        ? await this.exchangeRateDataService.getExchangeRatesByCurrency({
+            currencies: foreignCurrencies,
+            startDate: from,
+            targetCurrency: baseCurrency
+          })
+        : {};
+
     const seriesBySymbol = new Map<string, PricePoint[]>(
       identifiers.map(({ symbol }) => [symbol, []])
     );
 
     for (const item of marketData) {
       if (item.marketPrice > 0) {
-        seriesBySymbol.get(item.symbol)?.push({
-          date: format(item.date, 'yyyy-MM-dd'),
-          price: item.marketPrice
-        });
+        const date = format(item.date, 'yyyy-MM-dd');
+        const currency = currencyOf.get(item.symbol);
+        const rate =
+          currency && currency !== baseCurrency
+            ? exchangeRates[`${currency}${baseCurrency}`]?.[date]
+            : 1;
+
+        if (rate && Number.isFinite(rate)) {
+          seriesBySymbol.get(item.symbol)?.push({
+            date,
+            price: item.marketPrice * rate
+          });
+        }
       }
     }
 
@@ -274,6 +309,7 @@ export class OptimizerService {
 
     return {
       asOf: new Date().toISOString(),
+      baseCurrency,
       assets: identifiers.map(({ dataSource, symbol }, i) => ({
         annualReturn: mu[i],
         annualVolatility: Math.sqrt(sigma[i][i]),

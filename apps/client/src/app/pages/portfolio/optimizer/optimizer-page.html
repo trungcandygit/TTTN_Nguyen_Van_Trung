@@ -108,24 +108,22 @@
           <mat-form-field appearance="outline">
             <mat-label>Trọng số tối đa mỗi tài sản (%)</mat-label>
             <input
+              gfNumberInput
               matInput
               max="100"
               min="1"
               name="max-weight"
-              step="1"
-              type="number"
               [(ngModel)]="form.maxWeightPercent"
             />
           </mat-form-field>
           <mat-form-field appearance="outline">
             <mat-label>Lãi suất phi rủi ro (%/năm)</mat-label>
             <input
+              gfNumberInput
               matInput
               max="50"
               min="-5"
               name="risk-free"
-              step="0.1"
-              type="number"
               [(ngModel)]="form.riskFreeRatePercent"
             />
           </mat-form-field>
@@ -133,12 +131,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Mức tin cậy CVaR (%)</mat-label>
               <input
+                gfNumberInput
                 matInput
                 max="99"
                 min="80"
                 name="cvar-alpha"
-                step="1"
-                type="number"
                 [(ngModel)]="form.cvarAlphaPercent"
               />
             </mat-form-field>
@@ -149,12 +146,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Hệ số ngại rủi ro</mat-label>
               <input
+                gfNumberInput
                 matInput
                 max="50"
                 min="0.1"
                 name="risk-aversion"
-                step="0.1"
-                type="number"
                 [(ngModel)]="form.riskAversion"
               />
             </mat-form-field>
@@ -163,12 +159,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Độ bất định của prior (tau, %)</mat-label>
               <input
+                gfNumberInput
                 matInput
                 max="100"
                 min="0.1"
                 name="tau"
-                step="0.5"
-                type="number"
                 [(ngModel)]="form.tauPercent"
               />
             </mat-form-field>
@@ -229,9 +224,8 @@
               <mat-form-field appearance="outline">
                 <mat-label>Lợi suất (%/năm)</mat-label>
                 <input
+                  gfNumberInput
                   matInput
-                  step="0.5"
-                  type="number"
                   [name]="'view-return-' + $index"
                   [(ngModel)]="view.expectedReturnPercent"
                 />
@@ -281,12 +275,11 @@
             <mat-form-field appearance="outline">
               <mat-label>Cửa sổ ước lượng (ngày giao dịch)</mat-label>
               <input
+                gfNumberInput
                 matInput
                 max="1000"
                 min="60"
                 name="bt-window"
-                step="10"
-                type="number"
                 [(ngModel)]="form.backtestLookbackDays"
               />
             </mat-form-field>
@@ -327,8 +320,8 @@
         <div class="results">
           <div class="hint mb-2">
             Dữ liệu từ {{ result.from }} đến {{ result.to }},
-            {{ num(result.observations, 0) }} quan sát chung. Lợi suất và biến
-            động tính theo tiền tệ gốc của từng tài sản, chưa quy đổi tỷ giá.
+            {{ num(result.observations, 0) }} quan sát chung. Giá đã quy đổi về
+            {{ result.baseCurrency }} theo tỷ giá từng ngày.
           </div>
           @for (warning of result.warnings; track warning) {
             <div class="notice warning" role="alert">{{ warning }}</div>

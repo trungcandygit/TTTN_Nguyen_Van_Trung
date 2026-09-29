@@ -5,6 +5,7 @@ import type {
   PortfolioOptimizerAssetInput,
   PortfolioOptimizerResponse
 } from '@ghostfolio/common/interfaces';
+import { GfNumberInputDirective } from '@ghostfolio/ui/number-input';
 import { DataService } from '@ghostfolio/ui/services';
 
 import { CommonModule } from '@angular/common';
@@ -48,6 +49,7 @@ interface CandidateAsset extends PortfolioOptimizerAssetInput {
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
   imports: [
+    GfNumberInputDirective,
     CommonModule,
     FormsModule,
     MatButtonModule,
