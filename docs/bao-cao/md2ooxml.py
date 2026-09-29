@@ -22,6 +22,7 @@ PIC_NS = 'http://schemas.openxmlformats.org/drawingml/2006/picture'
 R_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
 
 PANDOC = os.environ.get('PANDOC', 'pandoc')
+_omml_cache = {}
 CITE = re.compile(r'\[(P1|W\d|\d+)\]')
 
 
@@ -74,12 +75,36 @@ def run(text, bold=False, italic=False, code=False, size=None):
     return f'<w:r>{rpr}<w:t xml:space="preserve">{esc(text)}</w:t></w:r>'
 
 
+def omml_inline(latex):
+    """Công thức nằm trong dòng chữ (OMML), dựng từ LaTeX bằng pandoc."""
+    key = 'i:' + hashlib.md5(latex.encode()).hexdigest()
+    if key in _omml_cache:
+        return _omml_cache[key]
+    with tempfile.TemporaryDirectory() as tmp:
+        md = os.path.join(tmp, 'eq.md')
+        out = os.path.join(tmp, 'eq.docx')
+        with open(md, 'w', encoding='utf8') as f:
+            f.write(f'${latex}$\n')
+        subprocess.run([PANDOC, '-f', 'markdown', '-t', 'docx', '-o', out, md], check=True)
+        xml = zipfile.ZipFile(out).read('word/document.xml').decode('utf8')
+    match = re.search(r'<m:oMath>.*?</m:oMath>', xml, flags=re.S)
+    if not match:
+        raise RuntimeError(f'pandoc không tạo được công thức trong dòng cho: {latex}')
+    fragment = match.group(0).replace('<m:oMath>', f'<m:oMath xmlns:m="{MATH_NS}">', 1)
+    _omml_cache[key] = fragment
+    return fragment
+
+
 def inline(text, size=None, bold=False, italic=False):
     out = []
-    for part in re.split(r'(`[^`]+`)', text):
+    for part in re.split(r'(`[^`]+`|\$[^$]+\$|\*\*[^*]+\*\*)', text):
         if not part:
             continue
-        if len(part) > 2 and part.startswith('`') and part.endswith('`'):
+        if len(part) > 4 and part.startswith('**') and part.endswith('**'):
+            out.append(inline(part[2:-2], size=size, bold=True, italic=italic))
+        elif len(part) > 2 and part.startswith('$') and part.endswith('$'):
+            out.append(omml_inline(part[1:-1]))
+        elif len(part) > 2 and part.startswith('`') and part.endswith('`'):
             out.append(run(part[1:-1], code=True, size=size, bold=bold))
         else:
             out.append(run(part, size=size, bold=bold, italic=italic))
@@ -181,7 +206,6 @@ def signature_xml(left, right, ctx):
 
 # ---------------------------------------------------------------- công thức
 
-_omml_cache = {}
 
 
 def omml(latex):
@@ -232,7 +256,7 @@ def png_size(data):
     return struct.unpack('>II', data[16:24])
 
 
-def figure_xml(path, caption, ctx, max_w_cm=15.5, max_h_cm=18.5):
+def figure_xml(path, caption, ctx, max_w_cm=15.5, max_h_cm=18.5, source=None):
     full = path if os.path.isabs(path) else os.path.join(ctx.image_root, path)
     data = open(full, 'rb').read()
     width, height = png_size(data)
@@ -258,10 +282,35 @@ def figure_xml(path, caption, ctx, max_w_cm=15.5, max_h_cm=18.5):
             + caption_xml(caption, ctx))
 
 
-def caption_xml(text, ctx, above=False):
-    style = ctx.style('Caption')
-    return para(text, style=style, jc='center', size=None if style else 20, italic=not style,
-                keep_next=above, before=40 if not above else 160, after=160 if not above else 60)
+CAP_HEAD = re.compile(r'^((?:Bảng|Hình) [\w.]+\. [^.]*\.?)')
+
+
+def caption_xml(text, ctx, above=False, source=None):
+    """Chú thích dạng tiêu đề: bảng dùng Heading 4, hình dùng Heading 5.
+
+    Nhãn và tên in đậm nằm trong đoạn tiêu đề để Word dựng danh mục bảng, hình. Phần giải thích và
+    dòng Nguồn (in nghiêng) nằm ở đoạn thường ngay sau đó.
+    """
+    is_table = text.startswith('Bảng')
+    style = 'Heading4' if is_table else 'Heading5'
+    mt = CAP_HEAD.match(text)
+    head, rest = (mt.group(1), text[mt.end():].strip()) if mt else (text, '')
+    rpr = '<w:rPr><w:b/><w:bCs/><w:i w:val="0"/><w:iCs w:val="0"/><w:sz w:val="24"/><w:szCs w:val="24"/></w:rPr>'
+    head_p = (f'<w:p><w:pPr><w:pStyle w:val="{style}"/><w:keepNext/>'
+              '<w:numPr><w:ilvl w:val="0"/><w:numId w:val="0"/></w:numPr>'
+              f'<w:spacing w:before="{160 if above else 60}" w:after="{60 if above else 40}"/>'
+              '<w:ind w:left="0" w:firstLine="0"/><w:jc w:val="center"/></w:pPr>'
+              f'<w:r>{rpr}<w:t xml:space="preserve">{esc(head)}</w:t></w:r></w:p>')
+    if not above:
+        head_p = head_p.replace('<w:keepNext/>', '', 1)
+    tail = ''
+    if rest:
+        tail += inline(rest, size=22)
+    if source:
+        tail += ('<w:r><w:br/></w:r>' if rest else '') + inline(source, size=22, italic=True)
+    if tail:
+        head_p += para('', jc='center', raw=tail, before=0, after=160, keep_lines=True)
+    return head_p
 
 
 # ---------------------------------------------------------------- bảng dữ liệu
@@ -455,9 +504,11 @@ def render(blocks, ctx, refs=None):
             out.append(table_xml(full, ctx, header=True, widths=widths, size=18))
             out.append(para('', after=60))
         elif kind == 'FIG':
-            out.append(figure_xml(payload[0], payload[1], ctx))
+            cap, _, src = payload[1].partition(' || ')
+            out.append(figure_xml(payload[0], cap, ctx, source=src or None))
         elif kind == 'FIGEMPTY':
             caption, note = payload
+            caption, _, source = caption.partition(' || ')
             box = ('<w:tbl><w:tblPr>'
                    f'<w:tblW w:w="{int(ctx.text_width * 0.9)}" w:type="dxa"/><w:jc w:val="center"/>'
                    '<w:tblBorders>'
@@ -471,7 +522,7 @@ def render(blocks, ctx, refs=None):
                    + para(f'[{note}]', jc='center', italic=True, size=22)
                    + '</w:tc></w:tr></w:tbl>')
             out.append(box)
-            out.append(caption_xml(caption, ctx))
+            out.append(caption_xml(caption, ctx, source=source or None))
         elif kind == 'EQ':
             out.append(equation_xml(payload[0], payload[1], ctx))
         elif kind == 'CODE':

@@ -107,6 +107,7 @@ RPR28 = '<w:rPr><w:sz w:val="28"/><w:szCs w:val="28"/></w:rPr>'
 E[14] = rebuild(E[14], r('CÔNG TY TNHH ITM SEMICONDUCTOR VIETNAM',
                          '<w:rPr><w:b w:val="0"/><w:bCs/><w:sz w:val="28"/><w:szCs w:val="8"/></w:rPr>') + TAB)
 E[15] = fill_line(E[15], ['Địa chỉ: Số 06, đường 11, KCN VSIP Bắc Ninh', None], RPR28)
+E[17] = fill_line(E[17], ['Cán bộ hướng dẫn tại công ty/đơn vị: ThS. Nguyễn Bá Luận', None])
 E[18] = fill_line(E[18], ['Giảng viên phối hợp của học viện: ThS. Vũ Hoài Thư', None])
 E[21] = fill_line(E[21], ['Sinh viên thực hiện: Nguyễn Văn Trung', None])
 E[22] = fill_line(E[22], ['Mã số sinh viên: K23DTCN418', None])
@@ -124,6 +125,7 @@ E[32] = fill_line(E[32], ['Chuyên ngành', None, ':', ' Công nghệ thông tin
 E[33] = fill_line(E[33], ['SĐT', None, ':', ' 0355347831', None], RPR_INFO)
 E[34] = fill_line(E[34], ['Email', None, ':', ' 15233582@st.neu.edu.vn', None], RPR_INFO)
 E[35] = fill_line(E[35], ['Tên dự án - project', None, ':', ' BL Advisor: theo dõi danh mục và tối ưu hóa phân bổ tài sản', None], RPR_INFO)
+E[37] = fill_line(E[37], ['Người hướng dẫn', None, ':', ' ThS. Nguyễn Bá Luận', None], RPR_INFO)
 E[41] = fill_line(E[41], ['Cơ quan công tác', None, ':', ' Công ty TNHH ITM Semiconductor Vietnam', None], RPR_INFO)
 E[43] = re.sub(r'<w:r\b.*</w:r>', '', E[43], flags=re.S)
 E[43] = rebuild(E[43], r(DATE_TEXT, '<w:rPr><w:i/><w:szCs w:val="26"/></w:rPr>'))
@@ -134,7 +136,7 @@ for _i in list(range(13, 25)) + list(range(30, 42)):
 # ------------------------------------------------------------ nguồn nội dung
 sys.path.insert(0, HERE)
 files = ['00_front', '01_phan1_phan2_phan3', '02_phan4_nhat_ky', '03_phan5_a', '04_phan5_b',
-         '05_phan5_c', '06_tai_lieu_tham_khao', '07_phu_luc']
+         '05_phan5_c', '05b_cong_trinh', '06_tai_lieu_tham_khao', '07_phu_luc']
 blocks_by_file = {f: m.parse_blocks(open(f'{SRC}/{f}.md', encoding='utf8').read()) for f in files}
 
 data = json.load(open(f'{HERE}/data.json', encoding='utf8'))
@@ -165,17 +167,28 @@ def walk(obj):
 
 
 refs = {}
-order = [('00_front'), ('01_phan1_phan2_phan3'), ('02_phan4_nhat_ky'), ('03_phan5_a'), ('04_phan5_b'), ('05_phan5_c'), ('07_phu_luc')]
+SHOT = 'Nguồn: Ảnh chụp màn hình BL Advisor do sinh viên thực hiện, bản dựng ngày 29/09/2026, dữ liệu demo.'
+
+
+def fig_source(path):
+    if path.endswith('so-do-to-chuc.png'):
+        return 'Nguồn: Sinh viên vẽ lại theo mô tả trong [W7].'
+    if path.startswith('hinh/'):
+        return 'Nguồn: Sinh viên tự vẽ.'
+    return SHOT
+order = [('00_front'), ('01_phan1_phan2_phan3'), ('02_phan4_nhat_ky'), ('03_phan5_a'), ('04_phan5_b'), ('05_phan5_c'), ('05b_cong_trinh'), ('07_phu_luc')]
 for f in order:
     new = []
     for kind, payload in blocks_by_file[f]:
         if kind in ('H1', 'H1N', 'H2', 'H3', 'CODE', 'EQ', 'DATATABLE'):
             new.append((kind, payload))
+        elif kind == 'FIGEMPTY':
+            new.append((kind, (payload[0] + ' || ' + fig_source('screenshots/'), payload[1])))
         elif kind == 'FIG':
             path = payload[0]
             if path.startswith('screenshots/'):
                 path = '../screenshots/bao-cao/' + path[len('screenshots/'):]
-            new.append((kind, (path, walk(payload[1]))))
+            new.append((kind, (path, walk(payload[1] + ' || ' + fig_source(path)))))
         else:
             new.append((kind, walk(payload)))
     blocks_by_file[f] = new
@@ -270,7 +283,7 @@ summ = find_h1n(front, 'TÓM TẮT')
 abst = find_h1n(front, 'ABSTRACT')
 
 toc_front = [(1, '', 'THÔNG TIN CHUNG'), (1, '', 'THÔNG TIN VỀ HỌC PHẦN THỰC TẬP TỐT NGHIỆP'),
-             (1, '', 'LỜI CẢM ƠN'), (1, '', 'MỤC LỤC'), (1, '', 'DANH MỤC BẢNG'), (1, '', 'DANH MỤC HÌNH')]
+             (1, '', 'LỜI CẢM ƠN'), (1, '', 'DANH MỤC CÔNG TRÌNH KHOA HỌC CỦA SINH VIÊN'), (1, '', 'MỤC LỤC'), (1, '', 'DANH MỤC BẢNG'), (1, '', 'DANH MỤC HÌNH')]
 
 thanks_xml = gen(thanks, PORTRAIT)
 abbr_xml = gen(abbr, PORTRAIT, page_break_h1n=True)
@@ -284,6 +297,8 @@ phan2 = gen(p123[1], LANDSCAPE)
 phan3 = gen(p123[2], PORTRAIT)
 phan4 = gen(blocks_by_file['02_phan4_nhat_ky'], LANDSCAPE)
 phan5 = gen(blocks_by_file['03_phan5_a'] + blocks_by_file['04_phan5_b'] + blocks_by_file['05_phan5_c'], PORTRAIT)
+
+cong_trinh = gen(blocks_by_file['05b_cong_trinh'], PORTRAIT, page_break_h1n=True)
 
 # tài liệu tham khảo (IEEE), theo thứ tự trích dẫn
 toc.append((1, '', 'TÀI LIỆU THAM KHẢO'))
@@ -299,10 +314,10 @@ for label, num in sorted(mapping.items(), key=lambda kv: kv[1]):
 apx = gen(blocks_by_file['07_phu_luc'], PORTRAIT, page_break_h1n=True)
 
 # ------------------------------------------------------------ danh mục bảng và hình
-CAP = re.compile(r'<w:p>(?:(?!</w:p>).)*?<w:pStyle w:val="Caption"/>.*?</w:p>', flags=re.S)
+CAP = re.compile(r'<w:p><w:pPr><w:pStyle w:val="Heading[45]"/>.*?</w:p>', flags=re.S)
 CAP_HEAD = re.compile(r'^((?:Bảng|Hình) [\w.]+\. [^.]*)')
 lists = {'Bảng': [], 'Hình': []}
-for chunk in (phan1, phan2, phan3, phan4, phan5, apx):
+for chunk in (cong_trinh, phan1, phan2, phan3, phan4, phan5, apx):
     for cp in CAP.findall(chunk):
         text = html_unescape(''.join(re.findall(r'<w:t(?: [^>]*)?>(.*?)</w:t>', cp, flags=re.S)))
         mt = CAP_HEAD.match(text)
@@ -311,14 +326,21 @@ for chunk in (phan1, phan2, phan3, phan4, phan5, apx):
 
 
 def list_xml(title, key, page_break):
+    """Danh mục bảng hoặc hình: trường TOC lấy các đoạn Heading 4 (bảng) hoặc Heading 5 (hình)."""
     out = m.para(title, style=ctx.style('Heading1N', 'Heading1'), keep_next=True)
     if page_break:
         out = re.sub(r'(<w:pStyle w:val="[^"]+"/>)', r'\1<w:pageBreakBefore/>', out, count=1)
     out = out.replace('</w:pPr>', '<w:ind w:left="0" w:firstLine="0"/><w:jc w:val="center"/></w:pPr>', 1)
-    for item in lists[key]:
+    level = 'Heading 4' if key == 'Bảng' else 'Heading 5'
+    begin = ('<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve">'
+             f' TOC \\h \\z \\t "{level},1" </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>')
+    items = lists[key]
+    for i, item in enumerate(items):
         page = pages.get(f'{key}|{item}', '')
-        out += (f'<w:p><w:pPr><w:pStyle w:val="TOC1"/><w:ind w:left="1134" w:hanging="1134"/></w:pPr>'
-                + r(item) + TAB + r(str(page)) + '</w:p>')
+        pre = begin if i == 0 else ''
+        post = '<w:r><w:fldChar w:fldCharType="end"/></w:r>' if i == len(items) - 1 else ''
+        out += (f'<w:p><w:pPr><w:pStyle w:val="TOC1"/><w:ind w:left="1134" w:hanging="1134"/></w:pPr>{pre}'
+                + r(item) + TAB + r(str(page)) + f'{post}</w:p>')
     return out
 
 
@@ -343,7 +365,7 @@ all_toc = toc_front + [t for t in toc]
 # toc đã ở thứ tự sinh: thanks(không có H1N vì đã bỏ), abbr, summ, abst, phan1..5, refs, apx
 # sắp lại đúng thứ tự tài liệu: front phụ, Phần 1-5, tài liệu tham khảo, phụ lục
 front_extra = [t for t in toc if t[2] in ('DANH MỤC TỪ VIẾT TẮT', 'TÓM TẮT', 'ABSTRACT')]
-rest = [t for t in toc if t not in front_extra]
+rest = [t for t in toc if t not in front_extra and t[2] != 'DANH MỤC CÔNG TRÌNH KHOA HỌC CỦA SINH VIÊN']
 ref_i = next(i for i, t in enumerate(rest) if t[2] == 'TÀI LIỆU THAM KHẢO')
 apx_i = next(i for i, t in enumerate(rest) if t[2] == 'PHỤ LỤC')
 ordered = toc_front + front_extra + [t for t in rest if t[0] == 1 or True]
@@ -380,7 +402,7 @@ new += [e for i, e in enumerate(E[0:28]) if i not in (16, 19, 20, 25)]  # bìa (
 new += [e for i, e in enumerate(E[28:55], 28) if i not in (46, 47, 48, 49, 50)]  # thông tin chung
 new += E[55:75]           # thông tin học phần (bỏ mục hướng dẫn)
 new += [E[94].replace('<w:pStyle w:val="Heading1N"/>', '<w:pStyle w:val="Heading1N"/><w:pageBreakBefore/>', 1)]  # LỜI CẢM ƠN
-new += [thanks_xml]
+new += [thanks_xml, cong_trinh]
 new += [toc_xml(), list_xml('DANH MỤC BẢNG', 'Bảng', True), list_xml('DANH MỤC HÌNH', 'Hình', True)]
 new += [abbr_xml, summ_xml, abst_xml]
 new += [sect_only(E[143])]

@@ -23,5 +23,5 @@
 @REF W3 | ITM Semiconductor Co., Ltd., hồ sơ doanh nghiệp, Dun & Bradstreet và MarketScreener. Truy cập: 29/09/2026.
 @REF W4 | THE ELEC, "ITM to build 5th factory for battery protection IC in Vietnam," Korea Electronics Industry Media. Truy cập: 29/09/2026.
 @REF W5 | ITM Semiconductor Co., Ltd., "World's Leading Company," trang web doanh nghiệp. Truy cập: 29/09/2026.
-@REF W6 | Nguyễn Bá Luân, "Pháp luật về hợp đồng lao động nhìn từ thực tiễn thực hiện tại Công ty TNHH ITM Semiconductor Vietnam," khóa luận tốt nghiệp, Học viện Công nghệ Bưu chính Viễn thông, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.
-@REF W7 | Nguyễn Bá Luân, "Báo cáo tổng hợp thực tập tại Công ty TNHH ITM Semiconductor Vietnam," Đại học Kinh tế Quốc dân, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.
+@REF W6 | Nguyễn Bá Luận, "Pháp luật về hợp đồng lao động nhìn từ thực tiễn thực hiện tại Công ty TNHH ITM Semiconductor Vietnam," khóa luận tốt nghiệp, Học viện Công nghệ Bưu chính Viễn thông, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.
+@REF W7 | Nguyễn Bá Luận, "Báo cáo tổng hợp thực tập tại Công ty TNHH ITM Semiconductor Vietnam," Đại học Kinh tế Quốc dân, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.

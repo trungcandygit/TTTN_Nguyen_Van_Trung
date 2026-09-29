@@ -119,7 +119,7 @@ Về câu hỏi 3, kiểm thử theo tính chất bắt được các lỗi về
 
 @H3 5.7.3. Hướng phát triển
 
-Bốn hướng phát triển được ưu tiên. Một là thêm trần tỷ trọng cho cân bằng rủi ro để so sánh công bằng. Hai là thay ước lượng hiệp phương sai mẫu bằng ước lượng co rút của Ledoit và Wolf [13] và đánh giá độ nhạy theo tham số. Ba là đưa phí giao dịch và thuế vào backtest. Bốn là chạy kiểm thử đầu cuối bằng Cypress trong quy trình tích hợp liên tục và chạy vòng kiểm thử độc lập thứ hai. Phần lý thuyết cũng cho phép mở rộng sang Black-Litterman nghịch đảo và phân cụm tài sản, hướng mà sinh viên đang nghiên cứu ở một bài báo riêng.
+Bốn hướng phát triển được ưu tiên. Một là thêm trần tỷ trọng cho cân bằng rủi ro để so sánh công bằng. Hai là thay ước lượng hiệp phương sai mẫu bằng ước lượng co rút của Ledoit và Wolf [13] và đánh giá độ nhạy theo tham số. Ba là đưa phí giao dịch và thuế vào backtest. Bốn là chạy kiểm thử đầu cuối bằng Cypress trong quy trình tích hợp liên tục và chạy vòng kiểm thử độc lập thứ hai. Phần lý thuyết cũng cho phép mở rộng sang Black-Litterman nghịch đảo và phân cụm tài sản, hướng mà sinh viên đang nghiên cứu ở một bài báo riêng (xem Danh mục công trình khoa học của sinh viên ở cuối phần nội dung).
 
 @H2 5.8. Kết luận
 

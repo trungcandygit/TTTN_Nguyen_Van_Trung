@@ -45,15 +45,15 @@ Mục 5.2 khảo sát nghiên cứu liên quan và trình bày cơ sở lý thuy
 
 @H3 5.2.1. Tối ưu hóa trung bình-phương sai
 
-Markowitz [1] mô tả danh mục bằng hai đại lượng: lợi suất kỳ vọng và phương sai. Gọi w là vectơ tỷ trọng của n tài sản, μ là vectơ lợi suất kỳ vọng hằng năm và Σ là ma trận hiệp phương sai hằng năm. Lợi suất và phương sai của danh mục là:
+Markowitz [1] mô tả danh mục bằng hai đại lượng: lợi suất kỳ vọng và phương sai. Gọi $w$ là vectơ tỷ trọng của $n$ tài sản, $\mu$ là vectơ lợi suất kỳ vọng hằng năm và $\Sigma$ là ma trận hiệp phương sai hằng năm. Lợi suất và phương sai của danh mục là:
 
 @EQ E[R_p] = w^{\top}\mu ,\qquad \mathrm{Var}(R_p) = w^{\top}\Sigma w | (1)
 
-Tập các danh mục cho lợi suất cao nhất ở từng mức phương sai tạo thành đường biên hiệu quả. Có ba bài toán thường gặp trên đường biên. Bài toán phương sai tối thiểu tìm w làm nhỏ nhất phương sai trong công thức (1). Bài toán trung bình-phương sai, với δ là hệ số ngại rủi ro, tìm w làm lớn nhất:
+Tập các danh mục cho lợi suất cao nhất ở từng mức phương sai tạo thành đường biên hiệu quả. Có ba bài toán thường gặp trên đường biên. Bài toán phương sai tối thiểu tìm $w$ làm nhỏ nhất phương sai trong công thức (1). Bài toán trung bình-phương sai, với $\delta$ là hệ số ngại rủi ro, tìm $w$ làm lớn nhất:
 
 @EQ \max_{w}\; \mu^{\top}w - \frac{\delta}{2}\, w^{\top}\Sigma w | (2)
 
-Bài toán Sharpe tối đa tìm w làm lớn nhất tỷ số Sharpe do Sharpe [8] đề xuất, trong đó r_f là lãi suất phi rủi ro:
+Bài toán Sharpe tối đa tìm $w$ làm lớn nhất tỷ số Sharpe do Sharpe [8] đề xuất, trong đó $r_f$ là lãi suất phi rủi ro:
 
 @EQ S(w) = \frac{\mu^{\top}w - r_f}{\sqrt{w^{\top}\Sigma\, w}} | (3)
 
@@ -65,7 +65,7 @@ Michaud [11] chỉ ra rằng tối ưu hóa trung bình-phương sai khuếch đ
 
 @H3 5.2.3. Giá trị chịu rủi ro có điều kiện
 
-Giá trị chịu rủi ro có điều kiện (CVaR) ở mức tin cậy α là mức lỗ trung bình trong phần (1 − α) tệ nhất của phân phối lỗ [4], [5]. Trên T kịch bản lịch sử, mức lỗ của danh mục ở kịch bản t là ℓ_t(w) = −R_t'w, với R_t là vectơ lợi suất của các tài sản ở kịch bản đó. Gọi ℓ_(1) ≥ ℓ_(2) ≥ … là các mức lỗ sắp theo thứ tự giảm dần. CVaR được ước lượng bằng trung bình k mức lỗ lớn nhất, với k bằng phần nguyên trên của (1 − α)T:
+Giá trị chịu rủi ro có điều kiện (CVaR) ở mức tin cậy $\alpha$ là mức lỗ trung bình trong phần $(1-\alpha)$ tệ nhất của phân phối lỗ [4], [5]. Trên $T$ kịch bản lịch sử, mức lỗ của danh mục ở kịch bản $t$ là $\ell_t(w) = -R_t^{\top} w$, với $R_t$ là vectơ lợi suất của các tài sản ở kịch bản đó. Gọi $\ell_{(1)} \ge \ell_{(2)} \ge \dots$ là các mức lỗ sắp theo thứ tự giảm dần. CVaR được ước lượng bằng trung bình $k$ mức lỗ lớn nhất, với $k$ bằng phần nguyên trên của $(1-\alpha)T$:
 
 @EQ \mathrm{CVaR}_{\alpha}(w) = \frac{1}{k}\sum_{j=1}^{k} \ell_{(j)}(w) | (4)
 
@@ -73,19 +73,19 @@ CVaR nhạy với đuôi phân phối nên phù hợp khi lợi suất lệch ho
 
 @H3 5.2.4. Cân bằng rủi ro
 
-Danh mục cân bằng rủi ro (equal risk contribution) yêu cầu mỗi tài sản đóng góp cùng một phần vào rủi ro tổng. Đóng góp của tài sản i vào phương sai là w_i(Σw)_i, nên điều kiện cân bằng là w_i(Σw)_i bằng nhau với mọi i [6]. Maillard, Roncalli và Teïletche chỉ ra rằng độ biến động của danh mục này nằm giữa độ biến động của danh mục phương sai tối thiểu và của danh mục chia đều. Phương pháp không dùng lợi suất kỳ vọng, nên tránh được nguồn sai số lớn nhất ở Mục 5.2.2.
+Danh mục cân bằng rủi ro (equal risk contribution) yêu cầu mỗi tài sản đóng góp cùng một phần vào rủi ro tổng. Đóng góp của tài sản $i$ vào phương sai là $w_i(\Sigma w)_i$, nên điều kiện cân bằng là $w_i(\Sigma w)_i$ bằng nhau với mọi $i$ [6]. Maillard, Roncalli và Teïletche chỉ ra rằng độ biến động của danh mục này nằm giữa độ biến động của danh mục phương sai tối thiểu và của danh mục chia đều. Phương pháp không dùng lợi suất kỳ vọng, nên tránh được nguồn sai số lớn nhất ở Mục 5.2.2.
 
 @H3 5.2.5. Mô hình Black-Litterman
 
 Black và Litterman [2] đề xuất bắt đầu từ lợi suất mà thị trường đang ngầm định, rồi điều chỉnh theo quan điểm của nhà đầu tư. He và Litterman [3] giải thích trực giác của mô hình: danh mục tối ưu không ràng buộc là danh mục cân bằng thị trường cộng tổng có trọng số của các danh mục biểu diễn quan điểm. Idzorek [10] bổ sung cách gắn độ tin cậy cho từng quan điểm.
 
-Các ký hiệu: Σ là ma trận hiệp phương sai của lợi suất; w_mkt là vectơ tỷ trọng cân bằng thị trường (trong dự án là tỷ trọng giá trị hiện tại của danh mục); δ là hệ số ngại rủi ro; τ là độ bất định của lợi suất cân bằng; P là ma trận chọn với mỗi hàng mô tả một quan điểm; Q là vectơ lợi suất mà các quan điểm dự báo; Ω là ma trận độ bất định của các quan điểm. Mô hình gồm ba bước.
+Các ký hiệu: $\Sigma$ là ma trận hiệp phương sai của lợi suất; $w_{\mathrm{mkt}}$ là vectơ tỷ trọng cân bằng thị trường (trong dự án là tỷ trọng giá trị hiện tại của danh mục); $\delta$ là hệ số ngại rủi ro; $\tau$ là độ bất định của lợi suất cân bằng; $P$ là ma trận chọn với mỗi hàng mô tả một quan điểm; $Q$ là vectơ lợi suất mà các quan điểm dự báo; $\Omega$ là ma trận độ bất định của các quan điểm. Mô hình gồm ba bước.
 
-Bước một suy ra lợi suất cân bằng ngầm định π từ tỷ trọng thị trường:
+Bước một suy ra lợi suất cân bằng ngầm định $\pi$ từ tỷ trọng thị trường:
 
 @EQ \pi = \delta\,\Sigma\, w_{\mathrm{mkt}} | (5)
 
-Bước hai kết hợp π với các quan điểm để có lợi suất hậu nghiệm E[R] và ma trận hiệp phương sai M⁻¹ của ước lượng này:
+Bước hai kết hợp $\pi$ với các quan điểm để có lợi suất hậu nghiệm $E[R]$ và ma trận hiệp phương sai $M^{-1}$ của ước lượng này:
 
 @EQ E[R] = \left[(\tau\Sigma)^{-1} + P^{\top}\Omega^{-1}P\right]^{-1}\left[(\tau\Sigma)^{-1}\pi + P^{\top}\Omega^{-1}Q\right],\qquad M^{-1} = \left[(\tau\Sigma)^{-1} + P^{\top}\Omega^{-1}P\right]^{-1} | (6)
 
@@ -93,7 +93,7 @@ Bước ba tìm tỷ trọng tối ưu. Công thức không ràng buộc của B
 
 @EQ w^{*} = \left[\delta\left(\Sigma + M^{-1}\right)\right]^{-1} E[R] | (7)
 
-Khi không có quan điểm nào, E[R] bằng π và w* trùng w_mkt. Đây là tính chất hữu ích để kiểm thử: nó khẳng định cài đặt nhất quán với lý thuyết.
+Khi không có quan điểm nào, $E[R]$ bằng $\pi$ và $w^{*}$ trùng $w_{\mathrm{mkt}}$. Đây là tính chất hữu ích để kiểm thử: nó khẳng định cài đặt nhất quán với lý thuyết.
 
 @H3 5.2.6. Đánh giá ngoài mẫu và kiểm tra ngược
 

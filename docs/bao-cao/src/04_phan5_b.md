@@ -11,7 +11,7 @@ Sinh viên xác định yêu cầu theo cấu trúc của ISO/IEC/IEEE 29148, g�
 | FR3 | Ô nhập tiền, số lượng, phí, số dư tự thêm dấu chấm ngăn cách khi gõ | Cao |
 | FR4 | Người dùng chọn 2 đến 20 tài sản: khoản đang giữ hoặc mã thêm có giá lịch sử | Cao |
 | FR5 | Sáu phương pháp: Sharpe tối đa, phương sai tối thiểu, trung bình-phương sai, CVaR tối thiểu, Black-Litterman, cân bằng rủi ro | Cao |
-| FR6 | Tham số: tỷ trọng tối đa, khoảng dữ liệu lịch sử, lãi suất phi rủi ro, mức tin cậy CVaR, hệ số ngại rủi ro, τ | Cao |
+| FR6 | Tham số: tỷ trọng tối đa, khoảng dữ liệu lịch sử, lãi suất phi rủi ro, mức tin cậy CVaR, hệ số ngại rủi ro, $\tau$ | Cao |
 | FR7 | Nhập tối đa 10 quan điểm tuyệt đối hoặc tương đối, mỗi quan điểm có độ tin cậy 5% đến 95% | Cao |
 | FR8 | Kết quả gồm tỷ trọng hiện tại so với đề xuất, bảng so sánh sáu danh mục chuẩn, đường biên hiệu quả | Cao |
 | FR9 | Kiểm tra ngược walk-forward với cửa sổ ước lượng và tần suất cân bằng lại do người dùng chọn | Trung bình |
@@ -99,13 +99,13 @@ Kho mã có khoảng 900 tệp TypeScript ngoài thư mục công cụ. Phần c
 
 Toàn bộ thuật toán viết bằng TypeScript thuần và dùng ma trận là mảng hai chiều, vì số tài sản nhỏ (tối đa 20). Sáu thành phần chính như sau.
 
-Chiếu lên tập tỷ trọng có trần. Mọi phương pháp cần chiếu một vectơ v lên tập {w : Σw_i = 1, 0 ≤ w_i ≤ c}. Hàm `projectToCappedSimplex` tìm ngưỡng τ sao cho tổng các phần tử cắt min(c, max(0, v_i − τ)) bằng 1, bằng cách chia đôi 200 lần. Nếu trần c nhỏ hơn 1/n thì bài toán vô nghiệm, hàm nâng trần lên 1/n và hệ thống cảnh báo người dùng.
+Chiếu lên tập tỷ trọng có trần. Mọi phương pháp cần chiếu một vectơ $v$ lên tập $\{w : \sum_i w_i = 1,\ 0 \le w_i \le c\}$. Hàm `projectToCappedSimplex` tìm ngưỡng $\tau$ sao cho tổng các phần tử cắt $\min(c, \max(0, v_i - \tau))$ bằng 1, bằng cách chia đôi 200 lần. Nếu trần $c$ nhỏ hơn $1/n$ thì bài toán vô nghiệm, hàm nâng trần lên $1/n$ và hệ thống cảnh báo người dùng.
 
-Bài toán bậc hai. Phương sai tối thiểu, trung bình-phương sai và mọi bước của đường biên đều có dạng cực tiểu hóa (1/2)x'Ax − b'x trên tập trên. Hàm `minimizeQuadratic` dùng gradient chiếu gia tốc kiểu Nesterov với bước 1/λ_max(A), trong đó λ_max tính bằng phép lặp lũy thừa, tối đa 5.000 vòng, dừng khi thay đổi lớn nhất nhỏ hơn 10⁻¹³.
+Bài toán bậc hai. Phương sai tối thiểu, trung bình-phương sai và mọi bước của đường biên đều có dạng cực tiểu hóa $\tfrac{1}{2}x^{\top}Ax - b^{\top}x$ trên tập trên. Hàm `minimizeQuadratic` dùng gradient chiếu gia tốc kiểu Nesterov với bước $1/\lambda_{\max}(A)$, trong đó $\lambda_{\max}$ tính bằng phép lặp lũy thừa, tối đa 5.000 vòng, dừng khi thay đổi lớn nhất nhỏ hơn $10^{-13}$.
 
-Sharpe tối đa. Tỷ số Sharpe dọc theo đường biên có một đỉnh theo hệ số ngại rủi ro δ. Hàm `maximizeSharpe` tìm kiếm tỷ lệ vàng trên log₁₀δ trong khoảng [−3, 6] với 40 vòng, mỗi vòng giải bài toán trung bình-phương sai. Nếu không tài sản nào có lợi suất vượt r_f, hàm trả danh mục phương sai tối thiểu.
+Sharpe tối đa. Tỷ số Sharpe dọc theo đường biên có một đỉnh theo hệ số ngại rủi ro $\delta$. Hàm `maximizeSharpe` tìm kiếm tỷ lệ vàng trên $\log_{10}\delta$ trong khoảng $[-3, 6]$ với 40 vòng, mỗi vòng giải bài toán trung bình-phương sai. Nếu không tài sản nào có lợi suất vượt $r_f$, hàm trả danh mục phương sai tối thiểu.
 
-CVaR tối thiểu. Hàm `minimizeCVaR` dùng phương pháp dưới gradient chiếu trên các kịch bản lịch sử. Mỗi vòng, hàm chọn k kịch bản tệ nhất, tính dưới gradient là trung bình của các dòng lợi suất tương ứng, đi một bước chuẩn hóa 0,05/√(vòng + 1), rồi chiếu. Hàm chạy 2.000 vòng, khởi tạo từ tốt hơn trong hai danh mục (chia đều và phương sai tối thiểu) và giữ nghiệm có CVaR thấp nhất, nên kết quả không bao giờ kém điểm xuất phát.
+CVaR tối thiểu. Hàm `minimizeCVaR` dùng phương pháp dưới gradient chiếu trên các kịch bản lịch sử. Mỗi vòng, hàm chọn $k$ kịch bản tệ nhất, tính dưới gradient là trung bình của các dòng lợi suất tương ứng, đi một bước chuẩn hóa $0{,}05/\sqrt{\text{vòng} + 1}$, rồi chiếu. Hàm chạy 2.000 vòng, khởi tạo từ tốt hơn trong hai danh mục (chia đều và phương sai tối thiểu) và giữ nghiệm có CVaR thấp nhất, nên kết quả không bao giờ kém điểm xuất phát.
 
 Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần hoàn (cyclical coordinate descent) do Griveau-Billion và cộng sự đề xuất. Với mỗi tài sản i, hàm cập nhật tỷ trọng theo công thức (8), trong đó q = 1/n là ngân sách rủi ro của mỗi tài sản.
 
@@ -113,15 +113,15 @@ Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần h
 
 Hàm lặp tối đa 1.000 lượt và chuẩn hóa tổng về 1. Bản cài hiện tại chưa áp trần tỷ trọng (Mục 5.7).
 
-Black-Litterman có độ tin cậy. Với quan điểm k có dòng p_k của ma trận chọn và độ tin cậy c_k, độ bất định của quan điểm là:
+Black-Litterman có độ tin cậy. Với quan điểm $k$ có dòng $p_k$ của ma trận chọn và độ tin cậy $c_k$, độ bất định của quan điểm là:
 
 @EQ \Omega_{kk} = \tau\, p_k^{\top}\Sigma\, p_k\;\frac{1-c_k}{c_k} | (9)
 
-Cách gắn độ tin cậy này theo Idzorek [10]. Khi c_k = 0,5, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro δ lấy từ (E[R_m] − r_f)/Var(R_m) của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có E[R] và M⁻¹ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai Σ + M⁻¹ và lợi suất E[R]. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
+Cách gắn độ tin cậy này theo Idzorek [10]. Khi $c_k = 0{,}5$, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro δ lấy từ $(E[R_m] - r_f)/\mathrm{Var}(R_m)$ của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có $E[R]$ và $M^{-1}$ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai $\Sigma + M^{-1}$ và lợi suất $E[R]$. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
 
 @H3 5.4.3. Chuẩn bị dữ liệu và kiểm tra ngược
 
-Hàm `alignPrices` gom các chuỗi giá theo hợp các ngày, điền giá gần nhất vào ngày thiếu và bắt đầu từ ngày đầu tiên mọi tài sản đều có giá, nên không nhìn trước dữ liệu tương lai. Giá của tài sản khác tiền tệ cơ sở được nhân với tỷ giá của đúng ngày trước khi căn chỉnh. Lợi suất là lợi suất đơn hằng ngày, còn μ và Σ tính hằng năm bằng cách nhân 252 ngày giao dịch. Cần ít nhất 60 quan sát chung, hệ thống cảnh báo khi dưới 250 quan sát.
+Hàm `alignPrices` gom các chuỗi giá theo hợp các ngày, điền giá gần nhất vào ngày thiếu và bắt đầu từ ngày đầu tiên mọi tài sản đều có giá, nên không nhìn trước dữ liệu tương lai. Giá của tài sản khác tiền tệ cơ sở được nhân với tỷ giá của đúng ngày trước khi căn chỉnh. Lợi suất là lợi suất đơn hằng ngày, còn $\mu$ và $\Sigma$ tính hằng năm bằng cách nhân 252 ngày giao dịch. Cần ít nhất 60 quan sát chung, hệ thống cảnh báo khi dưới 250 quan sát.
 
 Hàm `runBacktest` chia phần dữ liệu ngoài mẫu thành các kỳ. Tại đầu mỗi kỳ, hàm ước lượng tỷ trọng từ cửa sổ `lookback` ngày ngay trước đó (mặc định 252), giữ danh mục và để tỷ trọng trôi theo giá đến kỳ sau. Tần suất là 21, 63 hoặc 252 ngày, và hàm nâng bước để số lần cân bằng lại không quá 30. Ba chiến lược cùng chạy trên các mốc này: phương pháp đã chọn, chia đều và giữ tỷ trọng hiện tại. Đường giá trị bắt đầu từ 100.
 
@@ -135,11 +135,11 @@ Bản dựng chỉ giữ ngôn ngữ `vi`, và hằng số `SUPPORTED_LANGUAGE_C
 
 @H3 5.4.6. Dữ liệu demo và benchmark mô phỏng
 
-Tập lệnh `seed-demo.mts` sinh giá bằng mô hình chuyển động Brown hình học có một nhân tố theo nhóm tài sản và một nhân tố toàn cầu. Với tài sản i thuộc nhóm g, lợi suất log ở bước thời gian Δt là:
+Tập lệnh `seed-demo.mts` sinh giá bằng mô hình chuyển động Brown hình học có một nhân tố theo nhóm tài sản và một nhân tố toàn cầu. Với tài sản $i$ thuộc nhóm $g$, lợi suất log ở bước thời gian $\Delta t$ là:
 
 @EQ \ln\frac{S_{t+\Delta t}}{S_t} = \left(\mu_i - \frac{\sigma_i^{2}}{2}\right)\Delta t + \sigma_i\sqrt{\Delta t}\,\Bigl(\beta\, f_g + \beta_0\, f_0 + \sqrt{1-\beta^{2}-\beta_0^{2}}\;\varepsilon_i\Bigr) | (10)
 
-Trong công thức (10), S là giá, μ_i và σ_i là lợi suất và độ biến động hằng năm đặt cho tài sản, f_g là nhân tố của nhóm, f_0 là nhân tố toàn cầu, ε_i là nhiễu riêng, β bằng 0,6 (0,7 với tiền mã hóa) và β_0 bằng 0,2. Các nhân tố và nhiễu là số chuẩn tắc độc lập. Hạt giống cố định làm cho mọi lần nạp cho cùng dữ liệu. Có sáu nhóm tài sản: cổ phiếu Việt Nam, cổ phiếu Mỹ, tiền mã hóa, vàng, trái phiếu và chỉ số. Tiền mã hóa có giá cả cuối tuần, các nhóm khác chỉ có ngày làm việc.
+Trong công thức (10), $S$ là giá, $\mu_i$ và $\sigma_i$ là lợi suất và độ biến động hằng năm đặt cho tài sản, $f_g$ là nhân tố của nhóm, $f_0$ là nhân tố toàn cầu, $\varepsilon_i$ là nhiễu riêng, $\beta$ bằng 0,6 (0,7 với tiền mã hóa) và $\beta_0$ bằng 0,2. Các nhân tố và nhiễu là số chuẩn tắc độc lập. Hạt giống cố định làm cho mọi lần nạp cho cùng dữ liệu. Có sáu nhóm tài sản: cổ phiếu Việt Nam, cổ phiếu Mỹ, tiền mã hóa, vàng, trái phiếu và chỉ số. Tiền mã hóa có giá cả cuối tuần, các nhóm khác chỉ có ngày làm việc.
 
 Bảng 5.7 cho thấy quy mô dữ liệu. Bốn chỉ số tham chiếu (VN-Index, VN30, S&P 500, Bitcoin USD) được gán giá cho mọi ngày trong lịch, kể cả cuối tuần, vì phần mềm gốc tính xu hướng 200 ngày trên 400 điểm giá gần nhất và cần đủ điểm.
 

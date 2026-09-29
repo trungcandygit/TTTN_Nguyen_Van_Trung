@@ -1,6 +1,6 @@
 @H1N LỜI CẢM ƠN
 
-Em xin gửi lời cảm ơn chân thành đến Ban lãnh đạo và các anh chị tại Công ty TNHH ITM Semiconductor Vietnam đã tạo điều kiện để em thực tập tại đơn vị trong ba tháng, từ ngày 01/07/2026 đến ngày 27/09/2026. Cán bộ hướng dẫn tại công ty đã giao việc rõ ràng, góp ý sau mỗi tuần làm việc và cho em thời gian để hoàn thiện sản phẩm. Những buổi trao đổi ấy giúp em nhìn phần mềm như một sản phẩm cần kiểm soát chất lượng, chứ không chỉ là một đoạn mã chạy được.
+Em xin gửi lời cảm ơn chân thành đến Ban lãnh đạo và các anh chị tại Công ty TNHH ITM Semiconductor Vietnam đã tạo điều kiện để em thực tập tại đơn vị trong ba tháng, từ ngày 01/07/2026 đến ngày 27/09/2026. Cán bộ hướng dẫn tại công ty, ThS. Nguyễn Bá Luận, đã giao việc rõ ràng, góp ý sau mỗi tuần làm việc và cho em thời gian để hoàn thiện sản phẩm. Những buổi trao đổi ấy giúp em nhìn phần mềm như một sản phẩm cần kiểm soát chất lượng, chứ không chỉ là một đoạn mã chạy được.
 
 Em xin cảm ơn ThS. Vũ Hoài Thư, giảng viên phối hợp của Khoa Công nghệ thông tin 1, Học viện Công nghệ Bưu chính Viễn thông, đã hướng dẫn cách chọn đề tài, đặt câu hỏi nghiên cứu và trình bày báo cáo theo mẫu của khoa. Em cũng cảm ơn các thầy cô đã dạy em nền tảng về lập trình web, cơ sở dữ liệu và kiểm thử phần mềm, những kiến thức em dùng trực tiếp trong dự án.
 

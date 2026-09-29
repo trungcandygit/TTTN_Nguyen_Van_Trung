@@ -34,7 +34,7 @@
 | Tỷ trọng tối đa mỗi tài sản | 100% | từ 1/n đến 100% (nâng lên 1/n nếu thấp hơn) |
 | Lãi suất phi rủi ro | 0% | từ −5% đến 50% |
 | Mức tin cậy CVaR | 95% | 80% đến 99% |
-| Độ bất định τ | 5% | 0,1% đến 100% |
+| Độ bất định $\tau$ | 5% | 0,1% đến 100% |
 | Hệ số ngại rủi ro | ước lượng, giới hạn [1; 10] | 0,1 đến 50 khi người dùng đặt |
 | Số quan điểm | 0 | tối đa 10, độ tin cậy 5% đến 95% |
 | Cửa sổ ước lượng của backtest | 252 ngày | 60 đến 1.000 ngày |

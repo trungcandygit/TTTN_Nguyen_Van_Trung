@@ -18,7 +18,7 @@
 | Công ty / Đơn vị thực tập | Công ty TNHH ITM Semiconductor Vietnam |
 | Địa chỉ | Số 06, đường 11, Khu công nghiệp VSIP Bắc Ninh, phường Từ Sơn, tỉnh Bắc Ninh |
 | Số điện thoại / Số fax | |
-| Cán bộ hướng dẫn tại đơn vị thực tập | |
+| Cán bộ hướng dẫn tại đơn vị thực tập | ThS. Nguyễn Bá Luận |
 | Chức vụ (vị trí) | |
 | Số điện thoại / E-mail của cán bộ hướng dẫn | |
 | Giảng viên phối hợp hướng dẫn | ThS. Vũ Hoài Thư (thuvh@ptit.edu.vn) |

@@ -21,11 +21,14 @@ def box(x, y, w, h, lines, fill='#fff', bold=False, fs=17):
     return o
 
 
-def arrow(x1, y1, x2, y2, label=None, dash=False):
+def arrow(x1, y1, x2, y2, label=None, dash=False, t=0.5, at=None):
     d = DASH if dash else ''
     o = f'<line x1="{x1}" y1="{y1}" x2="{x2}" y2="{y2}" stroke="#333" stroke-width="1.5" marker-end="url(#a)"{d}/>'
     if label:
-        o += f'<text x="{(x1 + x2) / 2}" y="{(y1 + y2) / 2 - 6}" text-anchor="middle" font-size="14" font-style="italic">{html.escape(label)}</text>'
+        cx, cy = at if at else (x1 + (x2 - x1) * t, y1 + (y2 - y1) * t)
+        w = len(label) * 7.4 + 8
+        o += f'<rect x="{cx - w / 2}" y="{cy - 12}" width="{w}" height="20" fill="#fff"/>'
+        o += f'<text x="{cx}" y="{cy + 3}" text-anchor="middle" font-size="14" font-style="italic">{html.escape(label)}</text>'
     return o
 
 
@@ -56,12 +59,12 @@ b += box(260, 190, 200, 80, ['Dịch vụ tối ưu hóa', 'math.ts, engine.ts']
 b += box(570, 20, 190, 80, ['PostgreSQL 16', 'truy cập qua Prisma 7'], '#f3ecf8', True, 15)
 b += box(570, 120, 190, 80, ['Redis', 'bộ nhớ đệm, hàng đợi'], '#fbeaea', True, 15)
 b += box(570, 220, 190, 80, ['Nguồn giá ngoài', 'Yahoo, CoinGecko, nhập tay'], '#f0f0f0', True, 14)
-b += arrow(170, 180, 260, 110, 'HTTP, JWT')
+b += arrow(170, 180, 260, 110, 'HTTP, JWT', at=(115, 118))
 b += arrow(260, 125, 170, 205, None, True)
-b += arrow(360, 140, 360, 190, 'gọi hàm')
-b += arrow(460, 90, 570, 60, 'Prisma')
-b += arrow(460, 110, 570, 150, 'cache')
-b += arrow(460, 250, 570, 260, 'giá lịch sử')
+b += arrow(360, 140, 360, 190, 'gọi hàm', at=(400, 165))
+b += arrow(460, 85, 570, 60, 'Prisma', t=0.55)
+b += arrow(460, 105, 570, 155, 'cache', t=0.6)
+b += arrow(460, 125, 570, 250, 'giá thị trường', t=0.72)
 page('kien-truc', 790, 330, b)
 
 # Hình 5.2

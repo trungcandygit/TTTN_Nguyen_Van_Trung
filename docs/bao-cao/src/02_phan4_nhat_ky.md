@@ -17,7 +17,7 @@ Mỗi tuần có một bảng. Cột xác nhận của cán bộ hướng dẫn 
 @DIARY Tuần 3 (từ ngày 13/07/2026 đến ngày 19/07/2026)
 | 13/07 (Thứ Hai) | Đọc bài gốc Markowitz (1952) và bài của Michaud (1989) về độ nhạy với sai số đầu vào | Bài báo gốc theo danh mục tài liệu tham khảo | Ghi chú công thức phương sai danh mục | Lợi suất ước lượng nhiễu làm nghiệm tối ưu dao động mạnh |
 | 14/07 (Thứ Ba) | Đọc Rockafellar và Uryasev (2000, 2002) về giá trị chịu rủi ro có điều kiện | Bài báo gốc | Công thức CVaR trên kịch bản lịch sử | CVaR đo mức lỗ trung bình ở phần đuôi, phù hợp lợi suất lệch |
-| 15/07 (Thứ Tư) | Đọc Black và Litterman (1992), He và Litterman (1999) | Bài báo gốc | Sơ đồ ký hiệu: Σ, π, δ, τ, P, Q, Ω | Ma trận Ω quyết định mức tin vào từng quan điểm |
+| 15/07 (Thứ Tư) | Đọc Black và Litterman (1992), He và Litterman (1999) | Bài báo gốc | Sơ đồ ký hiệu: $\Sigma$, $\pi$, $\delta$, $\tau$, $P$, $Q$, $\Omega$ | Ma trận $\Omega$ quyết định mức tin vào từng quan điểm |
 | 16/07 (Thứ Năm) | Tự cài công thức Black-Litterman trên bảng tính với ba tài sản | Kiểm tra bằng ví dụ tay | Bảng tính khớp với ví dụ trong bài | Có số liệu đối chiếu cho kiểm thử tự động sau này |
 | 17/07 (Thứ Sáu) | Viết tài liệu thiết kế thuật toán và danh sách trường hợp kiểm thử | ISO/IEC/IEEE 29119 (kiểm thử phần mềm) | Tài liệu thiết kế thuật toán và danh sách trường hợp kiểm thử | Xác định trước điều kiện đúng cho từng thuật toán |
 
@@ -31,7 +31,7 @@ Mỗi tuần có một bảng. Cột xác nhận của cán bộ hướng dẫn 
 @DIARY Tuần 5 (từ ngày 27/07/2026 đến ngày 02/08/2026)
 | 27/07 (Thứ Hai) | Viết kiểm thử cho phép nhân ma trận, nghịch đảo, chuyển vị | TDD, ISO/IEC/IEEE 29119 | Các kiểm thử ban đầu ở trạng thái đỏ | Đảm bảo phép toán nền tảng đúng trước khi cài mô hình |
 | 28/07 (Thứ Ba) | Cài phép toán ma trận vừa đủ để kiểm thử đạt | TDD | Kiểm thử chuyển sang xanh | Không thêm mã ngoài yêu cầu kiểm thử |
-| 29/07 (Thứ Tư) | Cài lợi suất cân bằng π, độ bất định Ω, lợi suất hậu nghiệm | Công thức của Black và Litterman | Kiểm thử trường hợp không có quan điểm cho π bằng hậu nghiệm | Trường hợp biên này khẳng định mô hình cài đặt nhất quán với lý thuyết |
+| 29/07 (Thứ Tư) | Cài lợi suất cân bằng $\pi$, độ bất định $\Omega$, lợi suất hậu nghiệm | Công thức của Black và Litterman | Kiểm thử trường hợp không có quan điểm cho $\pi$ bằng hậu nghiệm | Trường hợp biên này khẳng định mô hình cài đặt nhất quán với lý thuyết |
 | 30/07 (Thứ Năm) | Nối dịch vụ với dữ liệu giá thật của người dùng | Nguyên tắc tiêm phụ thuộc của NestJS | Endpoint `GET /api/v1/portfolio/allocations/black-litterman` | Khi thiếu lịch sử giá, dịch vụ dùng ma trận dự phòng và báo giới hạn này |
 | 31/07 (Thứ Sáu) | Hiển thị bảng tỷ trọng Black-Litterman trên trang Phân bổ | Nguyên tắc thiết kế giao diện Material | Khối giao diện đầu tiên | Kết quả trùng tỷ trọng hiện tại vì chưa có quan điểm, ghi vào hạn chế |
 
@@ -52,7 +52,7 @@ Mỗi tuần có một bảng. Cột xác nhận của cán bộ hướng dẫn 
 @DIARY Tuần 8 (từ ngày 17/08/2026 đến ngày 23/08/2026)
 | 17/08 (Thứ Hai) | Thiết kế kiểu dữ liệu yêu cầu và phản hồi của tối ưu hóa | ISO/IEC/IEEE 29148 (đặc tả yêu cầu) | Giao diện dùng chung trong `libs/common` | Một định nghĩa kiểu duy nhất cho cả hai phía |
 | 18/08 (Thứ Ba) | Viết kiểm thử và cài hàm căn chỉnh giá, dựng quan điểm | TDD | Căn chỉnh giá điền tiếp giá gần nhất, bắt đầu khi mọi tài sản có giá | Không nhìn trước dữ liệu tương lai |
-| 19/08 (Thứ Tư) | Cài chọn phương pháp và Black-Litterman có độ tin cậy | Idzorek (2007) về độ tin cậy quan điểm | Kiểm thử quan điểm tăng giá làm tăng tỷ trọng đạt | Ω tỷ lệ với (1 − c)/c theo độ tin cậy c |
+| 19/08 (Thứ Tư) | Cài chọn phương pháp và Black-Litterman có độ tin cậy | Idzorek (2007) về độ tin cậy quan điểm | Kiểm thử quan điểm tăng giá làm tăng tỷ trọng đạt | $\Omega$ tỷ lệ với $(1-c)/c$ theo độ tin cậy $c$ |
 | 20/08 (Thứ Năm) | Cài backtest walk-forward, tối đa 30 lần cân bằng lại | Bailey và cộng sự (2017) về quá khớp backtest | Ba đường: chiến lược, chia đều, hiện tại | Chỉ dùng dữ liệu trước mỗi kỳ để ước lượng |
 | 21/08 (Thứ Sáu) | Viết lớp kiểm tra dữ liệu vào và endpoint `POST /api/v1/portfolio/optimizer` | Khuyến nghị của dự án bảo mật ứng dụng web mở (OWASP): kiểm tra dữ liệu đầu vào ở biên hệ thống | Giới hạn 2 đến 20 tài sản, các khoảng tham số | Từ chối sớm dữ liệu sai để tránh tính toán vô ích |
 

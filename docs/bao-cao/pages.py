@@ -27,7 +27,7 @@ for level, num, text in toc:
     if text == 'DANH MỤC TỪ VIẾT TẮT':
         ptr = max(ptr, abbr_page)
     for i in range(ptr, len(lines)):
-        if any((l == norm(text)) if text.startswith('DANH MỤC') else l.startswith(needle) for l in lines[i]):
+        if any((l == norm(text)) if text in ('DANH MỤC BẢNG', 'DANH MỤC HÌNH') else l.startswith(needle) for l in lines[i]):
             found[(num, text)] = i
             ptr = i
             break
@@ -50,13 +50,18 @@ result = {}
 for (num, text), i in found.items():
     shown = roman(i - front_start + 1) if i < first_body else str(i - first_body + 1)
     result[text if not num else f'{num}|{text}'] = shown
+found_abbr = found[('', 'DANH MỤC TỪ VIẾT TẮT')]
+list_start = found[('', 'LỜI CẢM ƠN')]
+skip = set(range(found[('', 'MỤC LỤC')], found_abbr))
 for key, items in meta['lists'].items():
-    ptr = first_body
+    ptr = list_start
     for item in items:
         needle = norm(item)[:30]
         for i in range(ptr, len(lines)):
+            if i in skip:
+                continue
             if any(l.startswith(needle) for l in lines[i]):
-                result[f'{key}|{item}'] = str(i - first_body + 1)
+                result[f'{key}|{item}'] = roman(i - front_start + 1) if i < first_body else str(i - first_body + 1)
                 ptr = i
                 break
         else:
