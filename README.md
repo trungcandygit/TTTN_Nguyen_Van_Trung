@@ -1,15 +1,16 @@
 # BL Advisor
 
-**Quản lý danh mục đầu tư mã nguồn mở bằng tiếng Việt, kèm phân bổ tài sản theo mô hình Black-Litterman.**
+Quản lý danh mục đầu tư mã nguồn mở bằng tiếng Việt, kèm phân bổ tài sản theo mô hình Black-Litterman.
 
 BL Advisor là đồ án thực tập tốt nghiệp của Nguyễn Văn Trung. Dự án được xây dựng trên nền tảng [Ghostfolio](https://github.com/ghostfolio/ghostfolio) (mã nguồn mở, giấy phép AGPL-3.0), bổ sung giao diện tiếng Việt mặc định, tiền tệ VND, mô hình phân bổ Black-Litterman và trang tối ưu hóa danh mục (Markowitz, CVaR, Black-Litterman có quan điểm, Risk Parity, backtest).
 
-> **Lưu ý về nguồn gốc.** Đây là một bản fork của Ghostfolio, không phải phần mềm viết mới từ đầu. Phần lớn chức năng quản lý danh mục (tài khoản, giao dịch, hiệu suất, phân tích rủi ro X-Ray, v.v.) là của Ghostfolio. Phần đóng góp riêng của tác giả được liệt kê rõ ở mục [Đóng góp của tác giả](#đóng-góp-của-tác-giả).
+> Lưu ý về nguồn gốc. Đây là một bản fork của Ghostfolio, không phải phần mềm viết mới từ đầu. Phần lớn chức năng quản lý danh mục (tài khoản, giao dịch, hiệu suất, phân tích rủi ro X-Ray, v.v.) là của Ghostfolio. Phần đóng góp riêng của tác giả được liệt kê rõ ở mục [Đóng góp của tác giả](#đóng-góp-của-tác-giả).
 
 ## Mục lục
 
 - [Giới thiệu](#giới-thiệu)
 - [Đóng góp của tác giả](#đóng-góp-của-tác-giả)
+- [Công bố khoa học](#công-bố-khoa-học)
 - [Tính năng](#tính-năng)
 - [Kiến trúc tổng quan](#kiến-trúc-tổng-quan)
 - [Công nghệ](#công-nghệ)
@@ -23,6 +24,7 @@ BL Advisor là đồ án thực tập tốt nghiệp của Nguyễn Văn Trung. 
 - [Lộ trình](#lộ-trình)
 - [Đóng góp](#đóng-góp)
 - [Giấy phép](#giấy-phép)
+- [Tài liệu tham khảo](#tài-liệu-tham-khảo)
 - [Ghi nhận và liên hệ](#ghi-nhận-và-liên-hệ)
 
 ## Giới thiệu
@@ -31,13 +33,25 @@ Nhà đầu tư cá nhân ở Việt Nam thường phải theo dõi cổ phiếu
 
 BL Advisor giải quyết ba việc:
 
-1. **Theo dõi danh mục** bằng giao diện tiếng Việt, VND là tiền tệ mặc định cho người dùng mới, số hiển thị theo kiểu Việt Nam (1.000.000 và 1.234,56).
-2. **Gợi ý phân bổ tài sản** theo mô hình Black-Litterman, tính trực tiếp từ các khoản nắm giữ thực tế của người dùng, hiển thị ngay trên trang Phân bổ.
-3. **Tối ưu hóa danh mục** trên trang riêng: chọn tài sản đang giữ hoặc tự thêm mã khác, chọn phương pháp, đặt tham số, nhập quan điểm cho Black-Litterman, so sánh với các danh mục chuẩn và kiểm tra ngược (backtest).
+1. Theo dõi danh mục bằng giao diện tiếng Việt, VND là tiền tệ mặc định cho người dùng mới, số hiển thị theo kiểu Việt Nam (1.000.000 và 1.234,56).
+2. Gợi ý phân bổ tài sản theo mô hình Black-Litterman, tính trực tiếp từ các khoản nắm giữ thực tế của người dùng, hiển thị ngay trên trang Phân bổ.
+3. Tối ưu hóa danh mục trên trang riêng: chọn tài sản đang giữ hoặc tự thêm mã khác, chọn phương pháp, đặt tham số, nhập quan điểm cho Black-Litterman, so sánh với các danh mục chuẩn và kiểm tra ngược (backtest).
 
-Ứng dụng có thể tự lưu trữ (self-hosted), dữ liệu nằm trong PostgreSQL của bạn.
+Bạn tự triển khai ứng dụng trên máy của mình và dữ liệu nằm trong PostgreSQL của bạn.
 
-Ảnh chụp màn hình dùng cho báo cáo nằm trong [docs/screenshots](docs/screenshots). Để xem giao diện thật, hãy chạy ứng dụng theo phần [Bắt đầu nhanh](#bắt-đầu-nhanh) với dữ liệu demo.
+Ba ảnh dưới đây lấy từ tài khoản demo (giá mô phỏng). Để xem giao diện thật, hãy chạy ứng dụng theo phần [Bắt đầu nhanh](#bắt-đầu-nhanh) với dữ liệu demo. Ảnh dùng cho báo cáo nằm trong [docs/screenshots](docs/screenshots), và trang Tài nguyên của ứng dụng có hướng dẫn kèm ảnh cho từng chức năng.
+
+![Trang Tối ưu hóa: so sánh tỷ trọng hiện tại và đề xuất](apps/client/src/assets/guide/17-toi-uu-ket-qua.png)
+
+Hình 1. Trang Tối ưu hóa: cột xám là tỷ trọng hiện tại, cột xanh là tỷ trọng đề xuất.
+
+![Đường biên hiệu quả](apps/client/src/assets/guide/19-toi-uu-duong-bien.png)
+
+Hình 2. Đường biên hiệu quả với danh mục hiện tại (hình thoi xám) và danh mục đề xuất (chấm đỏ).
+
+![Kết quả backtest](apps/client/src/assets/guide/20-toi-uu-backtest.png)
+
+Hình 3. Backtest walk-forward: chiến lược đề xuất, chia đều và danh mục hiện tại.
 
 ## Đóng góp của tác giả
 
@@ -54,7 +68,55 @@ Ghostfolio là công trình của Thomas Kaul và các cộng tác viên Ghostfo
 | Định dạng số Việt Nam     | Hiển thị theo `vi-VN`; ô nhập tiền, số lượng, giá, phí, số dư tự thêm dấu chấm ngăn cách khi gõ (directive `gfNumberInput`)                                                                                            | Hoạt động                                       |
 | Kiểm thử                  | Unit test cho Black-Litterman, engine tối ưu hóa, ô nhập số và trang Giới thiệu; kịch bản Cypress trong `e2e/` (chạy trên máy có cài Cypress)                                                                          | Unit test hoạt động, Cypress chưa chạy trong CI |
 
-Nguyên mẫu FastAPI ban đầu của dự án đã bị xóa khỏi cây thư mục và chỉ còn trong lịch sử git. Service Black-Litterman hiện tại là bản chuyển sang TypeScript của cài đặt tham chiếu đó, để chạy được trong backend NestJS và đọc danh mục thật của người dùng.
+Tác giả đã xóa nguyên mẫu FastAPI ban đầu khỏi cây thư mục và lịch sử git vẫn giữ nó. Service Black-Litterman hiện tại là bản TypeScript của cài đặt tham chiếu đó, chạy trong backend NestJS và đọc danh mục thật của người dùng.
+
+## Công bố khoa học
+
+Tác giả là tác giả liên hệ (dấu *) của cả 12 bài dưới đây, theo định dạng IEEE. Dấu "et al." thay cho danh sách đồng tác giả, danh sách đầy đủ có trong từng bản thảo. Chỉ các bài ở mục "Đã công bố" là công bố chính thức. Các mục còn lại là bài đã gửi tạp chí và có thể thay đổi. Hồ sơ công bố cập nhật nằm tại [ORCID](https://orcid.org/0009-0008-3307-6569). Trang Giới thiệu của ứng dụng hiển thị cùng danh sách này.
+
+### Đã công bố
+
+[1] T. V. Nguyen* et al., "Black-Litterman portfolio optimization using regime switching CAPM and ABC-MCMC: Empirical evidence from the Vietnamese stock market period 2019-2025," _Journal of Policy and Development Research (Học viện Chính sách và Phát triển), ISSN 3030-4091_, vol. 01, pp. 81-99, 2026, doi: 10.63640/3030-4091/jpd.apd.194.  
+Tình trạng: Đã xuất bản; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
+
+[2] T. V. Nguyen* et al., "Tiền gửi không kỳ hạn, hiệu quả hoạt động và ổn định tài chính ngân hàng: Bằng chứng từ mô hình ngưỡng tại Việt Nam," _Tạp chí Kinh tế - Luật và Ngân hàng (Học viện Ngân hàng), ISSN 3030-4199_, 2026.  
+Tình trạng: Đã đăng; mã bản thảo: 3128; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
+
+### Đã chấp nhận đăng
+
+[3] T. V. Nguyen* et al., "GRI adoption and corporate brownwashing: Board governance evidence from ASEAN-5," _International Journal of Management and Sustainability (Conscientia Beam), ISSN 2306-9856 (print), 2306-0662 (online)_.  
+Tình trạng: Đã duyệt đăng; mã bản thảo: 20062; Scopus Q3.
+
+### Đang chỉnh sửa theo góp ý phản biện
+
+[4] T. V. Nguyen* et al., "Portfolio optimization with the inverse Black-Litterman framework and clustering machine-learning models: Evidence from Vietnamese bank stocks," _Multidisciplinary Science Journal (Malque Publishing), ISSN 2675-1240_.  
+Tình trạng: Đã sửa xong vòng 2; mã bản thảo: 19322; Scopus Q3 (SJR 2025).
+
+[5] T. V. Nguyen* et al., "Tác động của cấu trúc sở hữu lên ổn định tài chính của các ngân hàng thương mại Việt Nam," _Tạp chí Kinh tế - Luật và Ngân hàng (Học viện Ngân hàng), ISSN 3030-4199_.  
+Tình trạng: Đã qua 2 vòng phản biện, đang chỉnh sửa, chờ duyệt đăng, chưa công bố; mã bản thảo: 3129; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
+
+[6] T. V. Nguyen* et al., "Limits to arbitrage in the Vietnamese physical gold market: The failure of short-term momentum," _Journal of Economic and Banking Studies (Học viện Ngân hàng, bản tiếng Anh), ISSN 2734-9853_.  
+Tình trạng: Đang sửa vòng 1; mã bản thảo: JEBS.1563; Tạp chí trong nước, không thuộc ISI hoặc Scopus.
+
+### Đã gửi tạp chí, chưa có quyết định
+
+[7] T. V. Nguyen* et al., "Corporate brownwashing and firm valuation in ASEAN-5 disclosure regimes," _Cogent Business & Management (Taylor & Francis), ISSN 2331-1975_.  
+Tình trạng: Đang phản biện vòng 1; mã bản thảo: 260865765; ESCI, Scopus Q2.
+
+[8] T. V. Nguyen* et al., "Structural breaks in Vietnamese stock market liquidity: Evidence from the Amihud illiquidity measure and Bai-Perron regime-shift detection," _Asian Journal of Economics and Banking (Đại học Ngân hàng TP. Hồ Chí Minh, bản tiếng Anh)_.  
+Tình trạng: Đang tìm phản biện.
+
+[9] T. V. Nguyen* et al., "Nested equity index correlations overstate true co-movement: Evidence from Vietnam," _Asia-Pacific Financial Markets_.  
+Tình trạng: With Editor; Scopus Q2.
+
+[10] T. V. Nguyen* et al., "Who gains from a market upgrade? Stock liquidity and prices around Vietnam's FTSE Russell reclassification," _Finance Open (Elsevier)_.  
+Tình trạng: With Editor.
+
+[11] T. V. Nguyen* et al., "Rated at the peak? Firm valuation around the first LSEG ESG score in five Southeast Asian markets," _Accounting Open (Elsevier)_.  
+Tình trạng: With Editor.
+
+[12] T. V. Nguyen* et al., "Sales-based real earnings management and the cost of debt: Evidence from five ASEAN markets," _Accounting Open (Elsevier)_.  
+Tình trạng: With Editor.
 
 ## Tính năng
 
@@ -130,10 +192,10 @@ npm install
 # 2. Tạo file .env (xem mục Cấu hình để điền giá trị)
 cp .env.example .env
 
-# 3. Tạo cấu trúc CSDL
+# 3. Tạo cấu trúc cơ sở dữ liệu
 npx prisma migrate deploy
 
-# 4. (Tùy chọn) Nạp dữ liệu demo: 1 admin + 15 người dùng
+# 4. (Tùy chọn) Nạp dữ liệu demo: 1 quản trị viên và 15 người dùng
 npm run database:seed:demo
 
 # 5. Chạy backend (cổng 3333)
@@ -150,21 +212,21 @@ Sau đó mở https://localhost:4200/vi/ trong trình duyệt. Dev server dùng 
 
 Lưu ý:
 
-- Sau khi chạy `npm run database:seed:demo`, hãy **khởi động lại backend** để nạp tỷ giá USD/VND. Nếu cần, xóa cache bằng `redis-cli FLUSHALL`.
+- Sau khi chạy `npm run database:seed:demo`, hãy khởi động lại backend để nạp tỷ giá USD/VND. Nếu cần, xóa cache bằng `redis-cli FLUSHALL`.
 - Lệnh seed đọc biến môi trường từ `.env`, nên phải tạo `.env` trước.
 - Cần PostgreSQL và Redis đang chạy và khớp với giá trị trong `.env`. Bạn có thể dùng bản cài sẵn trên máy, hoặc `docker compose -f docker/docker-compose.dev.yml up -d` (xem [DEVELOPMENT.md](DEVELOPMENT.md), tài liệu gốc của Ghostfolio bằng tiếng Anh).
 
 ## Đăng nhập và tài khoản demo
 
-Hệ thống **không dùng tên đăng nhập**. Người dùng đăng nhập bằng **mã bảo mật** (security token) do hệ thống cấp khi đăng ký, đóng vai trò như mật khẩu.
+Hệ thống không dùng tên đăng nhập. Người dùng đăng nhập bằng mã bảo mật (security token) do hệ thống cấp khi đăng ký, đóng vai trò như mật khẩu.
 
-- Người dùng đầu tiên đăng ký trên một CSDL trống sẽ có vai trò `ADMIN`.
+- Người dùng đầu tiên đăng ký trên một cơ sở dữ liệu trống sẽ có vai trò `ADMIN`.
 - Nếu đã nạp dữ liệu demo, có thể đăng nhập ngay bằng tài khoản quản trị demo với mã bảo mật `admin-bl-advisor`.
 - Danh sách đầy đủ 1 admin và 15 người dùng (mã, mô tả danh mục) nằm ở [docs/DEMO_ACCOUNTS.md](docs/DEMO_ACCOUNTS.md).
 
 Cảnh báo: các mã này chỉ dành cho môi trường phát triển, không dùng ở môi trường thật.
 
-**Về dữ liệu demo:** giá trong bộ demo là **dữ liệu mô phỏng** (bước ngẫu nhiên với seed cố định, neo quanh mức giá hợp lý), lưu với nguồn `MANUAL`, không phải dữ liệu thị trường thật và không dùng để ra quyết định đầu tư. Tiền tệ cơ sở là VND, lịch sử từ năm 2021 đến hiện tại. Chạy lại lệnh seed sẽ tạo lại các tài khoản demo từ đầu và không ảnh hưởng tài khoản khác.
+Về dữ liệu demo: giá trong bộ demo là dữ liệu mô phỏng (bước ngẫu nhiên với seed cố định, neo quanh mức giá hợp lý), lưu với nguồn `MANUAL`, không phải dữ liệu thị trường thật và không dùng để ra quyết định đầu tư. Tiền tệ cơ sở là VND, lịch sử từ năm 2021 đến hiện tại. Chạy lại lệnh seed sẽ tạo lại các tài khoản demo từ đầu và không ảnh hưởng tài khoản khác.
 
 ## Cấu hình
 
@@ -220,9 +282,9 @@ Cách endpoint hiện chạy: `tau = 0.05`; `delta` lấy từ `(E[R_m] - r_f) /
 
 ### Hạn chế hiện tại
 
-- **Khối trên trang Phân bổ không nhận quan điểm.** Endpoint này dùng một quan điểm rỗng với độ bất định rất lớn (`Omega = 1e6`), nên lợi suất hậu nghiệm bằng lợi suất cân bằng ngầm định. Muốn nhập quan điểm, dùng trang Tối ưu hóa ở trên.
-- **Ma trận hiệp phương sai dự phòng.** Khi số dòng giá trùng ngày chung của các mã nắm giữ ít hơn 10, service dùng ma trận đường chéo `0.04 * I` và kỳ vọng bằng 0 để vẫn trả về kết quả xác định. Kết quả trong trường hợp này chỉ mang tính minh họa.
-- **Dữ liệu demo là mô phỏng** (xem mục trên), nên tỷ trọng gợi ý trên tài khoản demo không có ý nghĩa đầu tư.
+- Khối trên trang Phân bổ không nhận quan điểm. Endpoint này dùng một quan điểm rỗng với độ bất định rất lớn (`Omega = 1e6`), nên lợi suất hậu nghiệm bằng lợi suất cân bằng ngầm định. Muốn nhập quan điểm, dùng trang Tối ưu hóa ở trên.
+- Ma trận hiệp phương sai dự phòng. Khi số dòng giá trùng ngày chung của các mã nắm giữ ít hơn 10, service dùng ma trận đường chéo `0.04 * I` và kỳ vọng bằng 0 để vẫn trả về kết quả xác định. Kết quả trong trường hợp này chỉ mang tính minh họa.
+- Dữ liệu demo là mô phỏng (xem mục trên), nên tỷ trọng gợi ý trên tài khoản demo không có ý nghĩa đầu tư.
 - Khối trên trang Phân bổ không có ràng buộc long-only hay giới hạn tỷ trọng và có thể cho tỷ trọng âm; trang Tối ưu hóa thì có ràng buộc long-only và trần tỷ trọng.
 - Đây là công cụ học thuật, không phải tư vấn đầu tư.
 
@@ -250,7 +312,7 @@ Kết quả gồm: tỷ trọng hiện tại và đề xuất, bảng so sánh (
 
 Giới hạn cần biết:
 
-- Lợi suất kỳ vọng ước lượng từ lịch sử (mặc định 2 năm) rất nhiễu, nên nên đặt trọng số tối đa hợp lý. Black-Litterman và Risk Parity ít nhạy với điều này hơn.
+- Lợi suất kỳ vọng ước lượng từ lịch sử (mặc định 2 năm) rất nhiễu, nên nên đặt tỷ trọng tối đa hợp lý. Black-Litterman và Risk Parity ít nhạy với điều này hơn.
 - Backtest chưa tính phí giao dịch, thuế và trượt giá; các tài sản có lịch giao dịch khác nhau được lấp giá gần nhất.
 - Tối đa 20 tài sản mỗi lần; tài sản tự thêm phải có dữ liệu giá lịch sử trong hệ thống.
 - Với dữ liệu demo (giá mô phỏng), kết quả không có ý nghĩa đầu tư.
@@ -288,7 +350,7 @@ Kịch bản end-to-end bằng Cypress nằm trong [e2e/](e2e) (hướng dẫn c
 │   ├── common/               # Kiểu, interface và hằng số dùng chung (config.ts)
 │   └── ui/                   # Thành phần giao diện dùng chung, DataService
 ├── prisma/
-│   ├── schema.prisma         # Lược đồ CSDL
+│   ├── schema.prisma         # Lược đồ cơ sở dữ liệu
 │   ├── migrations/           # Các migration
 │   ├── seed.mts              # Seed gốc của Ghostfolio
 │   └── seed-demo.mts         # Seed dữ liệu demo (1 admin + 15 người dùng)
@@ -333,21 +395,27 @@ Vấn đề bảo mật xem [SECURITY.md](SECURITY.md).
 
 ## Giấy phép
 
-Phát hành theo **GNU Affero General Public License v3.0 (AGPL-3.0)**, xem [LICENSE](LICENSE). Nếu bạn triển khai phiên bản đã chỉnh sửa như một dịch vụ mạng, AGPL yêu cầu cung cấp mã nguồn tương ứng cho người dùng dịch vụ đó.
+Phát hành theo GNU Affero General Public License v3.0 (AGPL-3.0), xem [LICENSE](LICENSE). Nếu bạn triển khai phiên bản đã chỉnh sửa như một dịch vụ mạng, AGPL yêu cầu cung cấp mã nguồn tương ứng cho người dùng dịch vụ đó.
 
 Copyright (C) Thomas Kaul và các cộng tác viên Ghostfolio, cùng các đóng góp của Nguyễn Văn Trung cho BL Advisor.
 
+## Tài liệu tham khảo
+
+[R1] F. Black and R. Litterman, "Global portfolio optimization," _Financial Analysts Journal_, vol. 48, no. 5, pp. 28-43, 1992.
+
+[R2] G. He and R. Litterman, "The intuition behind Black-Litterman model portfolios," Goldman Sachs Investment Management Research, 1999.
+
+[R3] H. Markowitz, "Portfolio selection," _The Journal of Finance_, vol. 7, no. 1, pp. 77-91, 1952.
+
+[R4] R. T. Rockafellar and S. Uryasev, "Optimization of conditional value-at-risk," _Journal of Risk_, vol. 2, no. 3, pp. 21-41, 2000.
+
 ## Ghi nhận và liên hệ
 
-**Ghi nhận**
+### Ghi nhận
 
 - [Ghostfolio](https://github.com/ghostfolio/ghostfolio) của Thomas Kaul và các cộng tác viên: nền tảng của toàn bộ dự án. README gốc của Ghostfolio được lưu ở `README.md.ghostfolio_upstream`.
-- Black, F. và Litterman, R. (1992). Global Portfolio Optimization. _Financial Analysts Journal_, 48(5), 28-43.
-- He, G. và Litterman, R. (1999). The Intuition Behind Black-Litterman Model Portfolios.
-- Markowitz, H. (1952). Portfolio Selection. _The Journal of Finance_.
-- Rockafellar, R. T. và Uryasev, S. (2000). Optimization of Conditional Value-at-Risk. _Journal of Risk_.
 
-**Tác giả**
+### Tác giả
 
 Nguyễn Văn Trung, tốt nghiệp ngành Kế toán tại Đại học Kinh tế Quốc dân và ngành Kinh tế đầu tư tại Học viện Chính sách và Phát triển.
 

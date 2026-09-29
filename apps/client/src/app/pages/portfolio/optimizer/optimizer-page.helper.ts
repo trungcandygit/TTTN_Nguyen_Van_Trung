@@ -13,7 +13,7 @@ export const METHOD_OPTIONS: {
 }[] = [
   {
     description:
-      'Chọn trọng số làm tỷ lệ lợi suất vượt lãi suất phi rủi ro trên rủi ro (Sharpe) cao nhất trên đường biên hiệu quả (Markowitz, 1952).',
+      'Chọn tỷ trọng làm tỷ lệ lợi suất vượt lãi suất phi rủi ro trên rủi ro (Sharpe) cao nhất trên đường biên hiệu quả (Markowitz, 1952).',
     label: 'Markowitz: Sharpe tối đa',
     value: 'MAX_SHARPE'
   },
@@ -138,11 +138,11 @@ export function validateOptimizerForm(form: OptimizerForm): string | null {
   }
 
   if (form.maxWeightPercent < 100 / form.assets.length) {
-    return `Trọng số tối đa phải từ ${(100 / form.assets.length).toFixed(1)}% trở lên khi chọn ${form.assets.length} tài sản.`;
+    return `Tỷ trọng tối đa phải từ ${(100 / form.assets.length).toFixed(1)}% trở lên khi chọn ${form.assets.length} tài sản.`;
   }
 
   if (form.maxWeightPercent > 100) {
-    return 'Trọng số tối đa không được vượt quá 100%.';
+    return 'Tỷ trọng tối đa không được vượt quá 100%.';
   }
 
   return null;

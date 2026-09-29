@@ -1,0 +1,108 @@
+:host {
+  color: rgb(var(--dark-primary-text));
+  display: block;
+
+  .toc {
+    align-self: flex-start;
+    position: sticky;
+    top: 5rem;
+
+    button {
+      background: none;
+      border: 0;
+      color: inherit;
+      cursor: pointer;
+      display: block;
+      padding: 0.3rem 0;
+      text-align: left;
+      width: 100%;
+
+      &:hover {
+        color: rgba(var(--palette-primary-500), 1);
+      }
+    }
+  }
+
+  section {
+    margin-bottom: 3rem;
+    scroll-margin-top: 5rem;
+
+    h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+
+    p,
+    li {
+      line-height: 1.7;
+    }
+
+    ol,
+    ul {
+      padding-left: 1.4rem;
+    }
+  }
+
+  .ui {
+    background-color: rgba(128, 128, 128, 0.15);
+    border-radius: 0.25rem;
+    padding: 0.05rem 0.4rem;
+    white-space: nowrap;
+  }
+
+  figure {
+    margin: 1.25rem 0;
+
+    img {
+      border: 1px solid rgba(128, 128, 128, 0.35);
+      border-radius: 0.5rem;
+      display: block;
+      height: auto;
+      max-width: 100%;
+    }
+
+    figcaption {
+      color: rgba(var(--dark-secondary-text), 1);
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+  }
+
+  .formula {
+    background-color: rgba(128, 128, 128, 0.1);
+    border-radius: 0.25rem;
+    font-family: monospace;
+    margin: 0.75rem 0;
+    overflow-x: auto;
+    padding: 0.6rem 0.9rem;
+  }
+
+  table.guide-table {
+    border-collapse: collapse;
+    margin: 1rem 0;
+    width: 100%;
+
+    th,
+    td {
+      border-bottom: 1px solid rgba(128, 128, 128, 0.3);
+      padding: 0.45rem 0.6rem;
+      text-align: left;
+      vertical-align: top;
+    }
+  }
+
+  .note {
+    border-left: 3px solid rgba(var(--palette-primary-500), 1);
+    margin: 1rem 0;
+    padding: 0.25rem 0 0.25rem 0.9rem;
+  }
+}
+
+:host-context(.theme-dark) {
+  color: rgb(var(--light-primary-text));
+}

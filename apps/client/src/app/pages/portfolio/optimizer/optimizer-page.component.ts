@@ -345,7 +345,7 @@ export class GfOptimizerPageComponent implements OnInit, OnDestroy {
               y: {
                 ...scales.y,
                 grace: '10%',
-                title: { color: textColor, display: true, text: 'Trọng số (%)' }
+                title: { color: textColor, display: true, text: 'Tỷ trọng (%)' }
               }
             }
           },

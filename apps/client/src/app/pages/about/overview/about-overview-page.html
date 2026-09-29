@@ -5,6 +5,14 @@
 
       <mat-card appearance="outlined" class="mb-4">
         <mat-card-content>
+          <img
+            alt="Ảnh chân dung của Nguyễn Văn Trung"
+            class="avatar float-md-right ml-md-3 mb-3"
+            height="160"
+            src="../assets/images/tac-gia.jpg"
+            width="160"
+            (error)="hideImage($event)"
+          />
           <h2 class="h5">Xin chào</h2>
           <p>
             Mình là Nguyễn Văn Trung, tốt nghiệp ngành Kế toán tại Trường Đại
@@ -35,36 +43,36 @@
       <mat-card appearance="outlined" class="mb-4">
         <mat-card-content>
           <h2 class="h5">Công bố khoa học</h2>
-          @if (isLoading) {
-            <mat-progress-bar mode="indeterminate" />
-          } @else if (hasError) {
-            <p class="mb-0 text-muted">
-              Không tải được danh sách công bố từ ORCID. Bạn có thể xem trực
-              tiếp tại
-              <a rel="noopener" target="_blank" [href]="orcidUrl">{{
-                orcidUrl
-              }}</a
-              >.
-            </p>
-          } @else if (works.length === 0) {
-            <p class="mb-0 text-muted">Chưa có công bố nào trên ORCID.</p>
-          } @else {
+          <p class="text-muted">
+            Danh sách theo định dạng IEEE, nhóm theo tình trạng. Dấu * đánh dấu
+            tác giả liên hệ. Chỉ các bài ở nhóm "Đã công bố" là công bố chính
+            thức, các nhóm còn lại là bài đã gửi tạp chí. Hồ sơ đầy đủ của mình
+            có tại
+            <a rel="noopener" target="_blank" [href]="orcidUrl">ORCID</a>.
+          </p>
+          @for (group of groups; track group.title) {
+            <h3 class="h6 mt-4">{{ group.title }}</h3>
             <ul class="list-unstyled mb-0">
-              @for (work of works; track work.title) {
-                <li class="mb-3">
-                  @if (work.url) {
-                    <a rel="noopener" target="_blank" [href]="work.url">{{
-                      work.title
-                    }}</a>
-                  } @else {
-                    {{ work.title }}
+              @for (item of group.items; track item.publication.id) {
+                <li class="mb-3 reference">
+                  <span class="number">[{{ item.number }}]</span>
+                  {{ item.publication.authors }}, "{{
+                    item.publication.title
+                  }}," <i>{{ item.publication.venue }}</i>
+                  @if (item.publication.details) {
+                    <span>, {{ item.publication.details }}</span>
                   }
-                  <div class="text-muted">
-                    {{ work.journal }}
-                    @if (work.journal && work.year) {
-                      <span>, </span>
+                  .
+                  <div class="small text-muted">
+                    Tình trạng: {{ item.publication.statusLabel }}
+                    @if (item.publication.manuscriptId) {
+                      <span>
+                        · Mã bản thảo: {{ item.publication.manuscriptId }}</span
+                      >
                     }
-                    {{ work.year }}
+                    @if (item.publication.indexing) {
+                      <span> · {{ item.publication.indexing }}</span>
+                    }
                   </div>
                 </li>
               }
@@ -81,7 +89,7 @@
           target="_blank"
           >Ghostfolio</a
         >
-        (AGPL-3.0). Danh sách công bố lấy trực tiếp từ API công khai của ORCID.
+        (AGPL-3.0).
       </p>
     </div>
   </div>

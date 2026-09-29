@@ -1,75 +1,1085 @@
 <div class="container">
   <div class="row">
-    <div class="col-lg-8 offset-lg-2">
-      <h1 class="h3 mb-4 text-center">Hướng dẫn sử dụng BL Advisor</h1>
+    <div class="col-12">
+      <h1 class="h3 mb-3 text-center">Hướng dẫn sử dụng BL Advisor</h1>
+      <p class="mb-4 mx-auto text-center" style="max-width: 46rem">
+        BL Advisor giúp bạn ghi lại giao dịch, theo dõi danh mục đầu tư bằng
+        đồng Việt Nam (VND) và tìm tỷ trọng phân bổ hợp lý hơn. Trang này đi từ
+        lúc tạo tài khoản đến lúc chạy tối ưu hóa danh mục. Các ảnh chụp lấy từ
+        tài khoản demo với giá mô phỏng, nên số liệu của bạn sẽ khác.
+      </p>
+    </div>
+  </div>
 
-      <mat-card appearance="outlined" class="mb-3">
-        <mat-card-content>
-          <h2 class="h5">1. Tạo tài khoản và đăng nhập</h2>
-          <p class="mb-0">
-            Bấm <strong>Bắt đầu</strong> để tạo tài khoản. Hệ thống cấp một
-            <strong>mã bảo mật</strong> duy nhất và chỉ hiển thị một lần, hãy
-            lưu lại cẩn thận. Những lần sau, bấm <strong>Đăng nhập</strong> rồi
-            dán mã này vào. Không có tên đăng nhập hay mật khẩu khác.
-          </p>
-        </mat-card-content>
-      </mat-card>
+  <div class="row">
+    <nav aria-label="Mục lục" class="col-lg-3 d-none d-lg-block toc">
+      <div class="mb-2 text-muted">Mục lục</div>
+      @for (section of sections; track section.id) {
+        <button type="button" (click)="scrollTo(section.id)">
+          {{ section.title }}
+        </button>
+      }
+    </nav>
 
-      <mat-card appearance="outlined" class="mb-3">
-        <mat-card-content>
-          <h2 class="h5">2. Nhập giao dịch</h2>
-          <p class="mb-0">
-            Vào <strong>Danh mục đầu tư → Giao dịch → Thêm giao dịch</strong>.
-            Chọn loại giao dịch (Mua, Bán, Cổ tức…), gõ tên hoặc mã cổ phiếu rồi
-            chọn từ danh sách gợi ý. Đơn giá được tự điền theo giá thị trường
-            hiện tại và bạn có thể sửa lại cho đúng giá thực tế đã khớp lệnh.
-            Chọn loại tiền tệ là <strong>VND</strong> nếu giao dịch bằng đồng
-            Việt Nam.
-          </p>
-        </mat-card-content>
-      </mat-card>
+    <div class="col-lg-9">
+      <section id="bat-dau">
+        <h2>1. Tạo tài khoản và đăng nhập</h2>
+        <p>
+          BL Advisor không dùng tên đăng nhập hay mật khẩu. Hệ thống cấp cho bạn
+          một mã bảo mật, và mã đó đóng vai trò mật khẩu.
+        </p>
+        <ol>
+          <li>Mở trang chủ (Hình 1) và bấm <span class="ui">Bắt đầu</span>.</li>
+          <li>
+            Bấm <span class="ui">Tạo tài khoản</span> (Hình 2). Hệ thống sinh
+            một mã bảo mật và hiển thị đúng một lần.
+          </li>
+          <li>
+            Sao chép mã và lưu vào trình quản lý mật khẩu hoặc một tệp riêng. BL
+            Advisor không gửi email khôi phục, nên bạn mất quyền vào tài khoản
+            nếu mất mã.
+          </li>
+          <li>
+            Lần sau, bấm <span class="ui">Đăng nhập</span>, dán mã vào ô
+            <span class="ui">Mã bảo mật</span> (Hình 3) và bấm
+            <span class="ui">Đăng nhập</span>. Đánh dấu ô
+            <span class="ui">Duy trì đăng nhập</span> nếu bạn dùng máy cá nhân.
+          </li>
+        </ol>
 
-      <mat-card appearance="outlined" class="mb-3">
-        <mat-card-content>
-          <h2 class="h5">3. Xem danh mục và phân bổ</h2>
-          <p class="mb-0">
-            Trang <strong>Tổng quan</strong> cho biết giá trị tài sản ròng và
-            hiệu suất. Trang <strong>Phân bổ</strong> cho biết tỷ trọng theo
-            khoản nắm giữ, nhóm tài sản, ngành, quốc gia và tài khoản.
-          </p>
-        </mat-card-content>
-      </mat-card>
+        <figure>
+          <img
+            alt="Trang chủ BL Advisor với nút Đăng nhập và Bắt đầu"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/01-trang-chu.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 1. Trang chủ. Nút "Đăng nhập" và "Bắt đầu" nằm ở góc trên bên
+            phải.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            alt="Trang tạo tài khoản với nút Tạo tài khoản"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/03-dang-ky.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 2. Trang tạo tài khoản. Nút "Tạo tài khoản" sinh mã bảo mật của
+            bạn.
+          </figcaption>
+        </figure>
+        <figure>
+          <img
+            alt="Hộp thoại đăng nhập với ô Mã bảo mật"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/02-dang-nhap.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 3. Hộp thoại đăng nhập. Bạn dán mã bảo mật vào ô "Mã bảo mật".
+            Biểu tượng con mắt cho bạn xem mã đã dán.
+          </figcaption>
+        </figure>
 
-      <mat-card appearance="outlined" class="mb-3">
-        <mat-card-content>
-          <h2 class="h5">4. Phân bổ theo mô hình Black-Litterman</h2>
-          <p>
-            Ở cuối trang <strong>Phân bổ</strong> có khối
-            <strong>Phân bổ theo mô hình Black-Litterman</strong>. Mô hình kết
-            hợp lợi suất cân bằng thị trường với quan điểm của nhà đầu tư để đưa
-            ra tỷ trọng tối ưu cho từng khoản nắm giữ:
-          </p>
-          <ul>
-            <li>Lợi suất cân bằng: <code>π = δ · Σ · w_mkt</code></li>
-            <li>
-              Lợi suất hậu nghiệm:
-              <code>E[R] = [(τΣ)⁻¹ + P′Ω⁻¹P]⁻¹ [(τΣ)⁻¹π + P′Ω⁻¹Q]</code>
-            </li>
-            <li>Trọng số tối ưu: <code>w* = (δ(Σ + M⁻¹))⁻¹ · E[R]</code></li>
-          </ul>
-          <p class="mb-0">
-            <strong>Điều kiện:</strong> cần ít nhất hai khoản nắm giữ có giá trị
-            dương. <strong>Hạn chế hiện tại:</strong> chưa có giao diện nhập
-            quan điểm nhà đầu tư nên kết quả đang bằng lợi suất cân bằng; nếu
-            lịch sử giá chung của các mã dưới 10 ngày, hệ thống dùng ma trận
-            hiệp phương sai giả định thay cho dữ liệu thật.
-          </p>
-        </mat-card-content>
-      </mat-card>
+        <p>
+          Người đầu tiên đăng ký trên một hệ thống trống trở thành quản trị viên
+          (ADMIN), người đăng ký sau là người dùng thường (USER). Quản trị viên
+          thấy thêm mục quản trị ở thanh menu.
+        </p>
+      </section>
 
-      <p class="small text-center text-muted">
-        Nội dung chỉ nhằm mục đích học tập và nghiên cứu, không phải lời khuyên
-        đầu tư.
+      <section id="thiet-lap">
+        <h2>2. Thiết lập ban đầu</h2>
+        <p>
+          Bấm biểu tượng người dùng ở góc trên bên phải và chọn
+          <span class="ui">Cài đặt</span> để mở Hình 4. Ba mục ảnh hưởng đến
+          cách bạn đọc số liệu:
+        </p>
+        <ul>
+          <li>
+            <span class="ui">Đơn vị tiền tệ cơ sở</span>: tiền tệ dùng để tính
+            tổng giá trị và hiệu suất. Người dùng mới có sẵn VND. Khi bạn đổi
+            sang tiền tệ khác, mọi giá trị quy đổi lại theo tỷ giá.
+          </li>
+          <li>
+            <span class="ui">Vùng ngôn ngữ</span>: định dạng ngày và số. Với
+            <code>vi-VN</code>, dấu chấm ngăn cách hàng nghìn và dấu phẩy ngăn
+            phần thập phân, ví dụ 1.234.567,89.
+          </li>
+          <li>
+            <span class="ui">Chế độ trình chiếu</span>: che các số nhạy cảm như
+            hiệu suất tuyệt đối và số lượng khi bạn chia sẻ màn hình.
+          </li>
+        </ul>
+        <figure>
+          <img
+            alt="Trang Cài đặt với đơn vị tiền tệ cơ sở, ngôn ngữ và vùng ngôn ngữ"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/04-cai-dat.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 4. Trang Cài đặt. Dòng nhỏ dưới ô "Vùng ngôn ngữ" cho xem trước
+            cách ngày và số hiển thị.
+          </figcaption>
+        </figure>
+        <p>
+          Mục <span class="ui">Chế độ Zen</span> giảm bớt thông tin trên màn
+          hình khi thị trường biến động. Mục
+          <span class="ui">Xuất dữ liệu</span> ở cuối trang tải toàn bộ dữ liệu
+          của bạn về máy (xem mục 12).
+        </p>
+      </section>
+
+      <section id="tai-khoan">
+        <h2>3. Tạo tài khoản đầu tư</h2>
+        <p>
+          Tài khoản đầu tư là nơi bạn gom giao dịch theo công ty chứng khoán, ví
+          tiền mã hóa hoặc ngân hàng. Mỗi người dùng tạo được nhiều tài khoản,
+          và mỗi tài khoản có tiền tệ riêng. Vào
+          <span class="ui">Tài khoản</span> trên thanh menu để xem danh sách
+          (Hình 5). Bảng cho thấy số giao dịch, số dư tiền mặt và giá trị của
+          từng tài khoản.
+        </p>
+        <figure>
+          <img
+            alt="Danh sách tài khoản gồm Chứng khoán, Crypto, Vàng và quỹ"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/05-tai-khoan.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 5. Danh sách tài khoản. Nút tròn có dấu cộng ở góc dưới thêm
+            tài khoản mới, nút "Chuyển số dư tiền mặt" chuyển tiền giữa hai tài
+            khoản.
+          </figcaption>
+        </figure>
+        <p>Để thêm tài khoản, bạn làm như sau:</p>
+        <ol>
+          <li>Bấm nút tròn có dấu cộng ở góc dưới bên phải.</li>
+          <li>
+            Nhập <span class="ui">Tên</span> (Hình 6), ví dụ "Chứng khoán SSI".
+          </li>
+          <li>
+            Chọn <span class="ui">Loại tiền tệ</span> của tài khoản. Chọn VND
+            với tài khoản chứng khoán trong nước, USD với tài khoản mua cổ phiếu
+            Mỹ.
+          </li>
+          <li>
+            Nhập <span class="ui">Số dư tiền mặt</span> hiện có. Ô này nhận số
+            theo dạng Việt Nam: bạn gõ 5000000 và ô tự hiện 5.000.000.
+          </li>
+          <li>
+            Điền <span class="ui">Ghi chú</span> hoặc
+            <span class="ui">Nhãn</span> nếu cần, rồi bấm
+            <span class="ui">Lưu</span>.
+          </li>
+        </ol>
+        <figure>
+          <img
+            alt="Hộp thoại Thêm tài khoản"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/06-tao-tai-khoan.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 6. Hộp thoại "Thêm tài khoản" với các trường tên, loại tiền tệ,
+            số dư tiền mặt, ghi chú và nhãn.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="giao-dich">
+        <h2>4. Nhập giao dịch</h2>
+        <p>
+          Giao dịch là dữ liệu gốc của mọi số liệu trong BL Advisor. Vào
+          <span class="ui">Danh mục đầu tư</span> rồi
+          <span class="ui">Giao dịch</span> để xem danh sách (Hình 7). Mỗi dòng
+          gồm tên, loại, ngày, số lượng, đơn giá, phí, giá trị, tiền tệ và tài
+          khoản.
+        </p>
+        <figure>
+          <img
+            alt="Danh sách giao dịch với các loại Mua và Cổ tức"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/07-giao-dich.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 7. Danh sách giao dịch. Nhãn "Mua" và "Cổ tức" cho biết loại
+            giao dịch. Nút "Nhập giao dịch" ở trên nạp nhiều giao dịch từ tệp.
+          </figcaption>
+        </figure>
+
+        <h3>Các loại giao dịch</h3>
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th>Loại</th>
+              <th>Khi nào dùng</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mua, Bán</td>
+              <td>Bạn mua hoặc bán cổ phiếu, ETF, tiền mã hóa, vàng.</td>
+            </tr>
+            <tr>
+              <td>Cổ tức</td>
+              <td>
+                Bạn nhận cổ tức bằng tiền. Số lượng là số cổ phiếu, đơn giá là
+                cổ tức trên mỗi cổ phiếu.
+              </td>
+            </tr>
+            <tr>
+              <td>Phí</td>
+              <td>
+                Bạn trả phí không gắn với một lệnh, ví dụ phí lưu ký hàng năm.
+              </td>
+            </tr>
+            <tr>
+              <td>Lãi</td>
+              <td>Bạn nhận lãi tiền gửi hoặc lãi trái phiếu.</td>
+            </tr>
+            <tr>
+              <td>Khoản vay</td>
+              <td>
+                Bạn vay tiền, ví dụ margin. Khoản vay trừ vào tài sản ròng.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          ETF là quỹ hoán đổi danh mục, giao dịch trên sàn như một cổ phiếu.
+        </p>
+
+        <h3>Các bước nhập một giao dịch</h3>
+        <ol>
+          <li>
+            Bấm nút tròn có dấu cộng ở góc dưới bên phải trang Giao dịch để mở
+            hộp thoại <span class="ui">Thêm giao dịch</span> (Hình 8).
+          </li>
+          <li>
+            Chọn <span class="ui">Loại</span> và
+            <span class="ui">Tài khoản</span>.
+          </li>
+          <li>
+            Gõ tên, mã hoặc ISIN của tài sản vào ô
+            <span class="ui">Tên, mã hoặc ISIN</span> và chọn từ danh sách gợi
+            ý. Danh sách lấy từ các nguồn dữ liệu đã cấu hình và từ các tài sản
+            nhập tay có sẵn trong hệ thống.
+          </li>
+          <li>
+            Chọn <span class="ui">Ngày</span>, nhập
+            <span class="ui">Số lượng</span> và <span class="ui">Đơn giá</span>.
+            Sửa đơn giá cho đúng giá đã khớp lệnh trên sàn.
+          </li>
+          <li>
+            Nhập <span class="ui">Phí</span> nếu có, chọn tiền tệ của đơn giá,
+            rồi bấm <span class="ui">Lưu</span>. Dòng cuối hộp thoại cho biết
+            tổng giá trị của giao dịch.
+          </li>
+        </ol>
+        <figure>
+          <img
+            alt="Hộp thoại Thêm giao dịch"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/08-them-giao-dich.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 8. Hộp thoại "Thêm giao dịch" cho một lệnh Mua. Dòng dưới cùng
+            bên trái hiển thị tổng giá trị và tiền tệ.
+          </figcaption>
+        </figure>
+        <p>
+          Các ô số lượng, đơn giá và phí tự thêm dấu chấm ngăn cách khi bạn gõ.
+          Bạn gõ dấu phẩy để nhập phần thập phân, ví dụ 0,5 hoặc 85.000,5. Dán
+          một số có dấu chấm hoặc dấu phẩy cũng được, hệ thống đọc theo quy ước
+          Việt Nam.
+        </p>
+        <div class="note">
+          Nếu bạn nhập một cổ phiếu chưa có trong danh sách gợi ý, bạn tạo tài
+          sản nhập tay trong mục quản trị (dành cho quản trị viên) và cập nhật
+          giá lịch sử cho tài sản đó. Tối ưu hóa danh mục cần giá lịch sử của
+          mọi tài sản bạn chọn.
+        </div>
+      </section>
+
+      <section id="tong-quan">
+        <h2>5. Đọc trang Tổng quan</h2>
+        <p>
+          Trang <span class="ui">Tổng quan</span> (Hình 9) cho bạn thấy giá trị
+          tài sản ròng bằng số lớn ở giữa, kèm biểu đồ diễn biến giá trị. Hai số
+          nhỏ bên dưới là mức thay đổi tuyệt đối và phần trăm trong khoảng thời
+          gian đang chọn.
+        </p>
+        <figure>
+          <img
+            alt="Trang Tổng quan với biểu đồ giá trị tài sản ròng"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/09-tong-quan.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 9. Trang Tổng quan. Số lớn là tài sản ròng bằng VND, hai số nhỏ
+            bên dưới là thay đổi tuyệt đối và phần trăm.
+          </figcaption>
+        </figure>
+        <p>
+          Menu bên trái có bốn trang phụ.
+          <span class="ui">Khoản nắm giữ</span> liệt kê từng tài sản (Hình 10).
+          Mỗi dòng cho biết ngày giao dịch đầu tiên, số lượng, giá trị, tỷ
+          trọng, mức thay đổi và hiệu suất. Bạn chuyển giữa "Đang hoạt động" và
+          "Đã đóng" để xem cả các vị thế đã bán hết.
+          <span class="ui">Tóm tắt</span> tổng hợp tài sản, khoản vay, phí và cổ
+          tức. <span class="ui">Danh sách theo dõi</span> lưu các mã bạn chưa
+          mua. <span class="ui">Thị trường</span> hiển thị các benchmark (mục
+          6).
+        </p>
+        <figure>
+          <img
+            alt="Bảng Khoản nắm giữ với giá trị, tỷ trọng và hiệu suất từng tài sản"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/10-khoan-nam-giu.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 10. Bảng "Khoản nắm giữ". Cột "Phân bổ" là tỷ trọng của từng
+            tài sản trong tổng giá trị, cột "Hiệu suất" là phần trăm lãi hoặc lỗ
+            so với giá vốn.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="phan-tich">
+        <h2>6. Phân tích và so sánh với benchmark</h2>
+        <p>
+          Vào <span class="ui">Danh mục đầu tư</span> rồi
+          <span class="ui">Phân tích</span> (Hình 11). Ba thẻ đầu trang cho biết
+          tổng số tiền, mức thay đổi có tính đến ảnh hưởng của tiền tệ và hiệu
+          suất tương ứng. Biểu đồ "Hiệu suất" vẽ đường tăng trưởng của danh mục
+          theo phần trăm.
+        </p>
+        <figure>
+          <img
+            alt="Trang Phân tích với ba thẻ số liệu và biểu đồ hiệu suất"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/11-phan-tich.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 11. Trang Phân tích. Ô "So sánh với..." ở trên biểu đồ thêm
+            đường của một benchmark vào cùng biểu đồ.
+          </figcaption>
+        </figure>
+        <p>
+          Benchmark là chỉ số thị trường làm mốc so sánh. Bạn bấm ô
+          <span class="ui">So sánh với...</span> và chọn một benchmark. Nếu
+          đường của danh mục nằm trên đường benchmark, danh mục của bạn tăng
+          nhanh hơn thị trường trong cùng kỳ.
+        </p>
+        <p>
+          Hệ thống demo có bốn benchmark mô phỏng: VN-Index, VN30, S&amp;P 500
+          và Bitcoin USD. Trang <span class="ui">Tổng quan</span>, mục
+          <span class="ui">Thị trường</span> (Hình 12) liệt kê chúng cùng đỉnh
+          cao gần nhất và mức chênh so với đỉnh. Biểu tượng gấu hiện khi chỉ số
+          giảm sâu so với đỉnh.
+        </p>
+        <figure>
+          <img
+            alt="Bảng Thị trường với bốn benchmark mô phỏng"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/12-thi-truong.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 12. Bảng "Thị trường" với bốn benchmark mô phỏng. Cột cuối là
+            mức chênh so với đỉnh cao nhất từng ghi nhận.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="phan-bo">
+        <h2>7. Xem phân bổ</h2>
+        <p>
+          Trang <span class="ui">Phân bổ</span> (Hình 13) chia danh mục theo
+          nhiều chiều: nền tảng, loại tiền tệ, nhóm tài sản, quốc gia, tài khoản
+          và nhà phát hành ETF. Mỗi biểu đồ vành khuyên cho thấy phần trăm của
+          từng nhóm trong tổng giá trị. Bạn dùng trang này để phát hiện việc dồn
+          vốn vào một loại tài sản, một đồng tiền hoặc một quốc gia.
+        </p>
+        <figure>
+          <img
+            alt="Trang Phân bổ với các biểu đồ vành khuyên theo nền tảng, tiền tệ và nhóm tài sản"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/13-phan-bo.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 13. Trang Phân bổ. Mỗi vành khuyên là một cách chia danh mục.
+            Vành màu xám nghĩa là chưa có dữ liệu cho chiều đó.
+          </figcaption>
+        </figure>
+        <p>
+          Cuối trang có khối "Phân bổ theo mô hình Black-Litterman" (Hình 14).
+          Khối này dùng tỷ trọng hiện tại làm cân bằng thị trường và chưa có
+          quan điểm nào của bạn, nên tỷ trọng Black-Litterman trùng với tỷ trọng
+          hiện tại. Nó cần ít nhất hai khoản nắm giữ có giá trị dương và đủ lịch
+          sử giá. Để nhập quan điểm, đặt trần tỷ trọng hoặc so sánh phương pháp,
+          bạn dùng trang Tối ưu hóa (mục 8).
+        </p>
+        <figure>
+          <img
+            alt="Khối Phân bổ theo mô hình Black-Litterman với bảng tỷ trọng hiện tại và tỷ trọng Black-Litterman"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/14-phan-bo-black-litterman.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 14. Khối Black-Litterman trên trang Phân bổ. Hai cột tỷ trọng
+            giống nhau vì chưa có quan điểm nào.
+          </figcaption>
+        </figure>
+      </section>
+
+      <section id="toi-uu-hoa">
+        <h2>8. Tối ưu hóa danh mục</h2>
+        <p>
+          Trang <span class="ui">Tối ưu hóa</span> nằm trong menu
+          <span class="ui">Danh mục đầu tư</span>. Bạn chọn tài sản, chọn phương
+          pháp và tham số, rồi hệ thống đề xuất tỷ trọng mới, so sánh với các
+          danh mục chuẩn và chạy thử trên dữ liệu quá khứ. Kết quả chỉ mang tính
+          tham khảo, không phải lời khuyên đầu tư.
+        </p>
+
+        <h3>8.1. Chọn tài sản</h3>
+        <p>
+          Hình 15 là phần đầu của trang. Các khoản bạn đang nắm giữ hiện thành
+          những ô có hộp chọn, tám khoản có tỷ trọng lớn nhất được chọn sẵn. Bạn
+          bỏ chọn khoản nào không muốn đưa vào.
+        </p>
+        <figure>
+          <img
+            alt="Trang Tối ưu hóa với danh sách tài sản, phương pháp và tham số"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/15-toi-uu-chon-tai-san.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 15. Phần đầu trang Tối ưu hóa: chọn tài sản, ô tìm mã thêm,
+            phương pháp và tham số.
+          </figcaption>
+        </figure>
+        <p>
+          Để thêm một mã ngoài danh mục, bạn gõ tên hoặc mã vào ô "Thêm mã khác"
+          (ví dụ VN-Index hoặc Vinamilk) và bấm vào kết quả. Mã thêm có nhãn
+          "(thêm)" và có dấu × để bỏ. Tài sản thêm phải có giá lịch sử trong hệ
+          thống, nếu không hệ thống báo lỗi và nêu tên mã thiếu dữ liệu. Bạn
+          chọn từ 2 đến 20 tài sản.
+        </p>
+
+        <h3>8.2. Chọn phương pháp</h3>
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th>Phương pháp</th>
+              <th>Ý tưởng</th>
+              <th>Nên dùng khi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Markowitz: Sharpe tối đa</td>
+              <td>
+                Chọn tỷ trọng cho tỷ số Sharpe cao nhất. Tỷ số Sharpe bằng lợi
+                suất vượt lãi suất phi rủi ro chia cho độ biến động.
+              </td>
+              <td>Bạn tin lợi suất lịch sử phản ánh tương lai.</td>
+            </tr>
+            <tr>
+              <td>Markowitz: phương sai tối thiểu</td>
+              <td>
+                Chọn danh mục dao động ít nhất, không dùng dự báo lợi suất.
+              </td>
+              <td>Bạn ưu tiên ổn định.</td>
+            </tr>
+            <tr>
+              <td>Markowitz: trung bình-phương sai</td>
+              <td>
+                Tối đa hóa lợi suất kỳ vọng trừ đi phần phạt theo hệ số ngại rủi
+                ro. Hệ số càng cao, danh mục càng thận trọng.
+              </td>
+              <td>Bạn muốn tự chỉnh mức ngại rủi ro.</td>
+            </tr>
+            <tr>
+              <td>CVaR tối thiểu</td>
+              <td>
+                Giảm mức lỗ trung bình trong các phiên tệ nhất. CVaR là viết tắt
+                của Conditional Value at Risk, nghĩa là giá trị chịu rủi ro có
+                điều kiện.
+              </td>
+              <td>Bạn lo các cú giảm mạnh hơn độ dao động thông thường.</td>
+            </tr>
+            <tr>
+              <td>Black-Litterman</td>
+              <td>
+                Bắt đầu từ cân bằng thị trường (danh mục hiện tại) rồi điều
+                chỉnh theo quan điểm của bạn (mục 8.4 và mục 9).
+              </td>
+              <td>Bạn có nhận định riêng về một vài tài sản.</td>
+            </tr>
+            <tr>
+              <td>Cân bằng rủi ro (Risk Parity)</td>
+              <td>Mỗi tài sản đóng góp cùng một mức rủi ro vào danh mục.</td>
+              <td>Bạn không muốn dựa vào dự báo lợi suất.</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3>8.3. Đặt tham số</h3>
+        <ul>
+          <li>
+            <span class="ui">Dữ liệu lịch sử</span>: khoảng thời gian dùng để
+            ước lượng lợi suất và độ biến động, từ 1 đến 5 năm. Khoảng dài cho
+            ước lượng ổn định hơn nhưng phản ánh chậm những thay đổi gần đây.
+          </li>
+          <li>
+            <span class="ui">Tỷ trọng tối đa mỗi tài sản</span>: trần cho từng
+            tài sản, tính bằng phần trăm. Với 8 tài sản, trần thấp nhất hợp lệ
+            là 12,5% (100 chia 8). Trần thấp buộc danh mục đa dạng hơn.
+          </li>
+          <li>
+            <span class="ui">Lãi suất phi rủi ro</span>: lãi suất năm của một
+            khoản gần như không rủi ro, ví dụ tiền gửi kỳ hạn dài. Tỷ số Sharpe
+            dùng con số này.
+          </li>
+          <li>
+            <span class="ui">Mức tin cậy CVaR</span> (chỉ với CVaR): 95% nghĩa
+            là hệ thống tính mức lỗ trung bình của 5% phiên tệ nhất.
+          </li>
+          <li>
+            <span class="ui">Hệ số ngại rủi ro</span> (trung bình-phương sai và
+            Black-Litterman): giá trị điển hình từ 2 đến 4. Ô này nhận số thập
+            phân với dấu phẩy, ví dụ 2,5.
+          </li>
+          <li>
+            <span class="ui">Độ bất định của prior</span> (chỉ với
+            Black-Litterman, ký hiệu τ): tỷ lệ càng nhỏ, hệ thống càng tin vào
+            cân bằng thị trường. Giá trị mặc định 5% là mức thường dùng.
+          </li>
+        </ul>
+
+        <h3>8.4. Nhập quan điểm (Black-Litterman)</h3>
+        <p>
+          Khi bạn chọn Black-Litterman, mục "Quan điểm của bạn" xuất hiện (Hình
+          16). Bạn bấm <span class="ui">+ Thêm quan điểm</span> và chọn một
+          trong hai loại:
+        </p>
+        <ul>
+          <li>
+            Tuyệt đối: "Vinamilk sinh lời 12% mỗi năm". Bạn chọn loại
+            <span class="ui">Tuyệt đối</span>, chọn tài sản và nhập 12 vào ô
+            <span class="ui">Lợi suất</span>.
+          </li>
+          <li>
+            Tương đối: "FPT vượt Vietcombank 3% mỗi năm". Bạn chọn loại
+            <span class="ui">Tương đối</span>, chọn FPT ở ô tài sản, chọn
+            Vietcombank ở ô <span class="ui">Vượt trội so với</span> và nhập 3.
+          </li>
+        </ul>
+        <p>
+          Thanh <span class="ui">Độ tin cậy</span> chạy từ 5% đến 95%. Mức 50%
+          là mặc định. Độ tin cậy cao kéo kết quả về phía quan điểm của bạn, độ
+          tin cậy thấp giữ kết quả gần cân bằng thị trường. Bạn nhập được tối đa
+          10 quan điểm. Nếu để trống, kết quả bám theo cân bằng thị trường.
+        </p>
+        <figure>
+          <img
+            alt="Phần tham số Black-Litterman và một quan điểm tuyệt đối về NVIDIA"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/16-toi-uu-quan-diem.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 16. Mục "Quan điểm của bạn": một quan điểm tuyệt đối cho NVIDIA
+            với lợi suất 10% mỗi năm và độ tin cậy 50%. Nút "Xóa" bỏ quan điểm.
+          </figcaption>
+        </figure>
+
+        <h3>8.5. Backtest</h3>
+        <p>
+          Backtest kiểm tra xem phương pháp bạn chọn có hiệu quả nếu dùng trong
+          quá khứ hay không. Hệ thống làm theo kiểu walk-forward: tại mỗi kỳ cân
+          bằng lại, nó chỉ dùng dữ liệu trước ngày đó để tính tỷ trọng, giữ danh
+          mục đến kỳ sau rồi lặp lại. Cách này tránh nhìn trước dữ liệu tương
+          lai. Bạn đặt độ dài cửa sổ ước lượng (mặc định 252 ngày giao dịch,
+          khoảng một năm) và tần suất cân bằng lại (hàng tháng, hàng quý hoặc
+          hàng năm). Hệ thống giới hạn tối đa 30 lần cân bằng lại.
+        </p>
+
+        <h3>8.6. Đọc kết quả</h3>
+        <p>
+          Bạn bấm <span class="ui">Tối ưu hóa danh mục</span> và chờ vài giây.
+          Kết quả gồm năm phần.
+        </p>
+        <p>
+          Phần thứ nhất là biểu đồ cột và bảng "Phân bổ đề xuất" (Hình 17). Cột
+          xám là tỷ trọng hiện tại, cột xanh là tỷ trọng đề xuất. Bảng có thêm
+          cột "Thay đổi": số xanh nghĩa là nên tăng tỷ trọng, số đỏ nghĩa là nên
+          giảm. Trong Hình 17, quỹ trái phiếu VFMVFB tăng và NVIDIA giảm. Nếu
+          lợi suất cân bằng của NVIDIA cao hơn 10%, quan điểm trong Hình 16 kéo
+          nó xuống và tỷ trọng giảm theo. Bảng lợi suất Black-Litterman ở cuối
+          kết quả cho bạn xem con số cụ thể.
+        </p>
+        <figure>
+          <img
+            alt="Biểu đồ cột so sánh tỷ trọng hiện tại và đề xuất"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/17-toi-uu-ket-qua.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 17. Kết quả tối ưu hóa: cột xám là tỷ trọng hiện tại, cột xanh
+            là tỷ trọng đề xuất, trục dọc tính bằng phần trăm. Tỷ trọng tối đa
+            đặt là 40%.
+          </figcaption>
+        </figure>
+        <p>
+          Phần thứ hai là bảng so sánh (Hình 18). Mỗi dòng là một danh mục: hiện
+          tại, chia đều, nghịch đảo biến động, Risk Parity, phương sai tối
+          thiểu, Sharpe tối đa, CVaR tối thiểu và kết quả của bạn (dòng đậm).
+          Các cột đo lợi suất năm, độ biến động năm, tỷ số Sharpe, CVaR 95% mỗi
+          ngày và mức sụt giảm tối đa (khoảng giảm sâu nhất từ đỉnh xuống đáy).
+          Bạn so dòng kết quả với dòng "Danh mục hiện tại": Sharpe cao hơn và
+          sụt giảm nhỏ hơn cho thấy đề xuất cải thiện danh mục trên dữ liệu lịch
+          sử.
+        </p>
+        <figure>
+          <img
+            alt="Bảng so sánh các danh mục theo lợi suất, biến động, Sharpe, CVaR và sụt giảm tối đa"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/18-toi-uu-so-sanh.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 18. Bảng so sánh các danh mục. Dòng đậm "Kết quả" là danh mục
+            đề xuất.
+          </figcaption>
+        </figure>
+        <p>
+          Phần thứ ba là đường biên hiệu quả (Hình 19). Đường xanh biểu diễn các
+          danh mục cho lợi suất cao nhất ở từng mức rủi ro. Chấm xanh lá là từng
+          tài sản riêng lẻ, hình thoi xám là danh mục hiện tại, chấm đỏ là danh
+          mục đề xuất. Danh mục hiện tại nằm dưới đường biên nghĩa là có cách
+          phân bổ khác cho lợi suất cao hơn ở cùng mức rủi ro.
+        </p>
+        <figure>
+          <img
+            alt="Đường biên hiệu quả với các tài sản, danh mục hiện tại và danh mục đề xuất"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/19-toi-uu-duong-bien.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 19. Đường biên hiệu quả. Trục ngang là độ biến động năm, trục
+            dọc là lợi suất kỳ vọng năm, cả hai tính bằng phần trăm.
+          </figcaption>
+        </figure>
+        <p>
+          Phần thứ tư, chỉ có với Black-Litterman, là bảng lợi suất cân bằng
+          (prior) và lợi suất hậu nghiệm (posterior) của từng tài sản. Cột thứ
+          hai cho thấy quan điểm của bạn đã dịch chuyển lợi suất kỳ vọng bao
+          nhiêu.
+        </p>
+        <p>
+          Phần thứ năm là kết quả backtest (Hình 20). Đường xanh là chiến lược
+          của bạn, đường xám là chia đều, đường cam là giữ tỷ trọng hiện tại, cả
+          ba cùng bắt đầu ở 100. Bảng bên dưới cho tổng lợi suất, lợi suất năm,
+          biến động, Sharpe và sụt giảm tối đa của từng chiến lược trong giai
+          đoạn ngoài mẫu.
+        </p>
+        <figure>
+          <img
+            alt="Đường giá trị của chiến lược tối ưu, chia đều và danh mục hiện tại trong backtest"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/20-toi-uu-backtest.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 20. Kết quả backtest. Ba đường cùng xuất phát ở 100 và cho thấy
+            giá trị của từng chiến lược theo thời gian.
+          </figcaption>
+        </figure>
+
+        <h3>8.7. Giới hạn cần biết</h3>
+        <ul>
+          <li>
+            Lợi suất tính từ quá khứ và có nhiễu lớn, nhất là với dưới hai năm
+            dữ liệu. Hệ thống cảnh báo khi có ít hơn 250 quan sát chung. Bạn đặt
+            tỷ trọng tối đa để tránh dồn vốn vào vài tài sản.
+          </li>
+          <li>
+            Giá các tài sản khác tiền tệ được quy đổi về tiền tệ cơ sở theo tỷ
+            giá từng ngày, nên lợi suất đã gồm cả biến động tỷ giá.
+          </li>
+          <li>
+            Backtest chưa tính phí giao dịch, thuế và trượt giá. Kết quả thực tế
+            sẽ thấp hơn.
+          </li>
+          <li>
+            Giá trong bản demo là mô phỏng, nên kết quả trên tài khoản demo chỉ
+            minh họa cách dùng.
+          </li>
+        </ul>
+      </section>
+
+      <section id="black-litterman">
+        <h2>9. Mô hình Black-Litterman</h2>
+        <p>
+          Mục này dành cho bạn muốn hiểu cách mô hình tính. Black và Litterman
+          (1992) đề xuất bắt đầu từ lợi suất mà thị trường đang ngầm định, rồi
+          điều chỉnh theo quan điểm của nhà đầu tư. Bạn tránh được kết quả cực
+          đoan mà Markowitz cho ra khi lợi suất lịch sử nhiễu.
+        </p>
+        <p>Các ký hiệu dùng trong công thức:</p>
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th>Ký hiệu</th>
+              <th>Ý nghĩa</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Σ</td>
+              <td>
+                Ma trận hiệp phương sai của lợi suất các tài sản, quy về năm.
+              </td>
+            </tr>
+            <tr>
+              <td>w_mkt</td>
+              <td>
+                Vectơ tỷ trọng cân bằng thị trường. BL Advisor dùng tỷ trọng giá
+                trị hiện tại của danh mục.
+              </td>
+            </tr>
+            <tr>
+              <td>δ</td>
+              <td>Hệ số ngại rủi ro.</td>
+            </tr>
+            <tr>
+              <td>τ</td>
+              <td>
+                Độ bất định của prior. Giá trị nhỏ nghĩa là tin nhiều vào cân
+                bằng thị trường.
+              </td>
+            </tr>
+            <tr>
+              <td>π</td>
+              <td>Lợi suất cân bằng ngầm định.</td>
+            </tr>
+            <tr>
+              <td>P</td>
+              <td>
+                Ma trận chọn: mỗi hàng mô tả một quan điểm (một tài sản, hoặc
+                hiệu của hai tài sản).
+              </td>
+            </tr>
+            <tr>
+              <td>Q</td>
+              <td>Vectơ lợi suất mà các quan điểm dự báo.</td>
+            </tr>
+            <tr>
+              <td>Ω</td>
+              <td>
+                Ma trận độ bất định của các quan điểm, suy ra từ độ tin cậy bạn
+                chọn.
+              </td>
+            </tr>
+            <tr>
+              <td>E[R]</td>
+              <td>
+                Lợi suất kỳ vọng hậu nghiệm sau khi kết hợp prior và quan điểm.
+              </td>
+            </tr>
+            <tr>
+              <td>M⁻¹</td>
+              <td>Ma trận hiệp phương sai của ước lượng E[R].</td>
+            </tr>
+            <tr>
+              <td>w*</td>
+              <td>Vectơ tỷ trọng tối ưu.</td>
+            </tr>
+          </tbody>
+        </table>
+        <p>
+          Mô hình đi qua ba bước. Bước đầu suy ra lợi suất cân bằng từ tỷ trọng
+          thị trường:
+        </p>
+        <div class="formula">(1) π = δ · Σ · w_mkt</div>
+        <p>Bước hai kết hợp lợi suất cân bằng π với quan điểm P, Q:</p>
+        <div class="formula">
+          (2) E[R] = [(τΣ)⁻¹ + P′Ω⁻¹P]⁻¹ · [(τΣ)⁻¹π + P′Ω⁻¹Q]
+        </div>
+        <p>
+          Bước ba tìm tỷ trọng tối ưu từ E[R] và độ bất định của nó. Khối trên
+          trang Phân bổ dùng công thức (3) không ràng buộc rồi chuẩn hóa tổng về
+          1:
+        </p>
+        <div class="formula">(3) w* = [δ · (Σ + M⁻¹)]⁻¹ · E[R]</div>
+        <p>
+          Trang Tối ưu hóa dùng lợi suất E[R] từ công thức (2) nhưng thay công
+          thức (3) bằng bài toán tối ưu có ràng buộc: tỷ trọng không âm, tổng
+          bằng 1 và không vượt trần bạn đặt. Độ bất định Ω của mỗi quan điểm
+          bằng τ · P Σ P′ · (1 − c) / c, với c là độ tin cậy bạn chọn. Khi c
+          bằng 0,5, công thức trở về mặc định của He và Litterman (1999). Khi
+          bạn không nhập quan điểm nào, E[R] bằng π và kết quả bám theo cân bằng
+          thị trường.
+        </p>
+      </section>
+
+      <section id="fire">
+        <h2>10. Công cụ FIRE</h2>
+        <p>
+          FIRE là viết tắt của "độc lập tài chính, nghỉ hưu sớm". Trang
+          <span class="ui">FIRE</span> (Hình 21) ước tính bạn có bao nhiêu tiền
+          vào ngày nghỉ hưu và bao nhiêu tiền rút được mỗi tháng.
+        </p>
+        <figure>
+          <img
+            alt="Trang FIRE với công cụ tính toán và biểu đồ tài sản dự kiến"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/21-fire.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 21. Công cụ FIRE. Cột đậm là tài sản hiện có, phần cột nhạt là
+            phần tăng thêm nhờ tiết kiệm và lãi suất theo từng năm.
+          </figcaption>
+        </figure>
+        <ul>
+          <li>
+            <span class="ui">Tỷ lệ tiết kiệm mỗi tháng</span>: số tiền bạn bỏ
+            thêm vào danh mục mỗi tháng.
+          </li>
+          <li>
+            <span class="ui">Lãi suất hằng năm</span>: lợi suất bạn kỳ vọng mỗi
+            năm.
+          </li>
+          <li>
+            <span class="ui">Ngày nghỉ hưu</span> và
+            <span class="ui">Tổng số tiền dự kiến</span>: hai ô liên kết với
+            nhau. Bạn nhập một ô và hệ thống tính ô còn lại.
+          </li>
+        </ul>
+        <p>
+          Phần "Thu nhập hưu trí bền vững" bên dưới cho biết số tiền rút được
+          mỗi năm và mỗi tháng theo tỷ lệ rút an toàn (SWR), mặc định 4%. Tỷ lệ
+          này là phần trăm tài sản bạn rút hằng năm mà không cạn vốn trong thời
+          gian dài. Bạn đổi SWR trong danh sách chọn ở phần đó.
+        </p>
+      </section>
+
+      <section id="x-ray">
+        <h2>11. X-ray</h2>
+        <p>
+          Trang <span class="ui">X-ray</span> (Hình 22) kiểm tra danh mục theo
+          một bộ quy tắc và báo những chỗ có rủi ro. Dòng đầu cho biết bao nhiêu
+          quy tắc chưa đạt, ví dụ "2 trên tổng 16 quy tắc phù hợp với danh mục".
+          Các quy tắc chia thành nhóm: thanh khoản, quỹ dự phòng khẩn cấp, rủi
+          ro tập trung theo tiền tệ và theo nhóm tài sản, phí. Biểu tượng cảnh
+          báo đỏ đánh dấu quy tắc chưa đạt.
+        </p>
+        <figure>
+          <img
+            alt="Trang X-ray với các nhóm quy tắc và cảnh báo"
+            height="760"
+            loading="lazy"
+            src="../assets/guide/22-x-ray.png"
+            width="1200"
+          />
+          <figcaption>
+            Hình 22. Trang X-ray. Mỗi nhóm liệt kê các quy tắc và trạng thái của
+            chúng. Nút ba chấm bên phải mở tùy chọn ngưỡng cho quy tắc.
+          </figcaption>
+        </figure>
+        <p>
+          Bạn bấm nút ba chấm cạnh một quy tắc để tắt quy tắc đó hoặc đổi ngưỡng
+          cho phù hợp chiến lược của mình.
+        </p>
+      </section>
+
+      <section id="du-lieu">
+        <h2>12. Nhập và xuất dữ liệu</h2>
+        <ul>
+          <li>
+            Nhập giao dịch: trang Giao dịch có nút
+            <span class="ui">Nhập giao dịch</span> để nạp giao dịch từ một tệp
+            (Hình 7). Bạn nhập số lượng lớn giao dịch một lần bằng cách này.
+          </li>
+          <li>
+            Xuất giao dịch: nút ba chấm bên cạnh nút nhập cho phép xuất giao
+            dịch ra tệp.
+          </li>
+          <li>
+            Xuất toàn bộ dữ liệu: nút <span class="ui">Xuất dữ liệu</span> ở
+            cuối trang Cài đặt (Hình 4) tải dữ liệu tài khoản của bạn về máy.
+          </li>
+        </ul>
+        <p>
+          Hãy sao lưu dữ liệu định kỳ, nhất là trước khi xóa tài khoản đầu tư.
+        </p>
+      </section>
+
+      <section id="su-co">
+        <h2>13. Xử lý sự cố</h2>
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th>Hiện tượng</th>
+              <th>Cách xử lý</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Quên mã bảo mật</td>
+              <td>
+                Không có cách khôi phục. Nếu bạn đã bật đăng nhập bằng sinh trắc
+                học hoặc trình duyệt còn phiên đăng nhập, bạn vào Cài đặt để xem
+                lại thông tin. Nếu không, bạn tạo tài khoản mới.
+              </td>
+            </tr>
+            <tr>
+              <td>
+                Trang Tối ưu hóa báo "Không có dữ liệu giá lịch sử cho ..."
+              </td>
+              <td>
+                Mã trong thông báo chưa có giá. Bạn bỏ mã đó khỏi danh sách hoặc
+                nhờ quản trị viên cập nhật giá lịch sử cho tài sản.
+              </td>
+            </tr>
+            <tr>
+              <td>Báo "Chỉ có N quan sát chung"</td>
+              <td>
+                Các tài sản đã chọn không có đủ ngày giá trùng nhau. Bạn tăng
+                khoảng dữ liệu lịch sử hoặc bỏ tài sản có lịch sử ngắn.
+              </td>
+            </tr>
+            <tr>
+              <td>Báo tỷ trọng tối đa quá thấp</td>
+              <td>
+                Với N tài sản, tỷ trọng tối đa phải từ 100/N phần trăm trở lên.
+                Bạn tăng trần hoặc chọn ít tài sản hơn.
+              </td>
+            </tr>
+            <tr>
+              <td>Khối Black-Litterman trên trang Phân bổ báo thiếu dữ liệu</td>
+              <td>
+                Bạn cần ít nhất hai khoản nắm giữ có giá trị dương và có giá
+                lịch sử.
+              </td>
+            </tr>
+            <tr>
+              <td>Số hiển thị sai định dạng</td>
+              <td>
+                Kiểm tra <span class="ui">Vùng ngôn ngữ</span> trong Cài đặt và
+                chọn <code>vi-VN</code>.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="thuat-ngu">
+        <h2>14. Thuật ngữ</h2>
+        <table class="guide-table">
+          <tbody>
+            <tr>
+              <td>Benchmark</td>
+              <td>Chỉ số thị trường làm mốc so sánh hiệu suất danh mục.</td>
+            </tr>
+            <tr>
+              <td>CVaR</td>
+              <td>
+                Mức lỗ trung bình trong các phiên tệ nhất, ví dụ 5% phiên tệ
+                nhất.
+              </td>
+            </tr>
+            <tr>
+              <td>ETF</td>
+              <td>Quỹ hoán đổi danh mục, giao dịch trên sàn như cổ phiếu.</td>
+            </tr>
+            <tr>
+              <td>Đường biên hiệu quả</td>
+              <td>
+                Tập hợp các danh mục có lợi suất cao nhất ở mỗi mức rủi ro.
+              </td>
+            </tr>
+            <tr>
+              <td>FIRE</td>
+              <td>Độc lập tài chính, nghỉ hưu sớm.</td>
+            </tr>
+            <tr>
+              <td>Sharpe</td>
+              <td>Lợi suất vượt lãi suất phi rủi ro chia cho độ biến động.</td>
+            </tr>
+            <tr>
+              <td>Sụt giảm tối đa</td>
+              <td>
+                Mức giảm sâu nhất của giá trị danh mục từ một đỉnh xuống đáy kế
+                tiếp.
+              </td>
+            </tr>
+            <tr>
+              <td>SWR</td>
+              <td>Tỷ lệ rút an toàn: phần trăm tài sản rút hằng năm.</td>
+            </tr>
+            <tr>
+              <td>Tỷ trọng</td>
+              <td>Phần trăm giá trị của một tài sản trong tổng danh mục.</td>
+            </tr>
+            <tr>
+              <td>VND</td>
+              <td>Đồng Việt Nam.</td>
+            </tr>
+            <tr>
+              <td>Walk-forward</td>
+              <td>
+                Cách backtest chỉ dùng dữ liệu trước mỗi thời điểm để ra quyết
+                định.
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </section>
+
+      <p class="mb-5 small text-center text-muted">
+        Nội dung phục vụ học tập và nghiên cứu, không phải lời khuyên đầu tư.
       </p>
     </div>
   </div>

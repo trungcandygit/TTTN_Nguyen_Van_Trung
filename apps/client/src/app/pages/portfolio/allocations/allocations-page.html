@@ -352,32 +352,32 @@
     <div class="col-md-12">
       <mat-card appearance="outlined" class="mb-3">
         <mat-card-header class="overflow-hidden w-100">
-          <mat-card-title class="text-truncate" i18n
-            >Black-Litterman Allocation</mat-card-title
+          <mat-card-title class="text-truncate"
+            >Phân bổ theo mô hình Black-Litterman</mat-card-title
           >
-          <mat-card-subtitle>
-            <ng-container i18n
-              >Optimal weights implied by the Black-Litterman model, based on
-              the current holdings as the market-weight prior and no additional
-              investor views</ng-container
-            >
-          </mat-card-subtitle>
         </mat-card-header>
         <mat-card-content>
+          <p class="mb-3 text-muted">
+            Khối này dùng tỷ trọng hiện tại làm cân bằng thị trường và chưa có
+            quan điểm nào của bạn, nên tỷ trọng Black-Litterman trùng với tỷ
+            trọng hiện tại. Muốn nhập quan điểm, đặt giới hạn tỷ trọng hoặc so
+            sánh với các phương pháp khác, hãy dùng trang
+            <a [routerLink]="['/portfolio', 'optimizer']">Tối ưu hóa</a>.
+          </p>
           @if (isLoadingBlackLitterman) {
             <mat-progress-bar mode="indeterminate" />
           } @else if (blackLittermanError) {
             <div class="my-3 text-center text-muted">
-              Cần ít nhất hai khoản nắm giữ có giá trị dương (và đủ lịch sử giá)
+              Cần ít nhất hai khoản nắm giữ có giá trị dương và đủ lịch sử giá
               để tính phân bổ Black-Litterman.
             </div>
           } @else if (blackLittermanAllocation.length > 0) {
             <table class="w-100">
               <thead>
                 <tr>
-                  <th class="text-left" i18n>Symbol</th>
-                  <th class="text-right" i18n>Current Weight</th>
-                  <th class="text-right" i18n>Black-Litterman Weight</th>
+                  <th class="text-left">Khoản nắm giữ</th>
+                  <th class="text-right">Tỷ trọng hiện tại</th>
+                  <th class="text-right">Tỷ trọng Black-Litterman</th>
                 </tr>
               </thead>
               <tbody>
@@ -389,6 +389,7 @@
                     <td class="text-left text-truncate">{{ holding.name }}</td>
                     <td class="text-right">
                       <gf-value
+                        class="d-flex justify-content-end"
                         [isPercent]="true"
                         [locale]="user?.settings?.locale"
                         [value]="holding.currentWeight"
@@ -396,6 +397,7 @@
                     </td>
                     <td class="text-right">
                       <gf-value
+                        class="d-flex justify-content-end"
                         [isPercent]="true"
                         [locale]="user?.settings?.locale"
                         [value]="holding.blackLittermanWeight"
@@ -406,9 +408,7 @@
               </tbody>
             </table>
           } @else {
-            <div class="my-3 text-center text-muted" i18n>
-              No data available
-            </div>
+            <div class="my-3 text-center text-muted">Chưa có dữ liệu</div>
           }
         </mat-card-content>
       </mat-card>

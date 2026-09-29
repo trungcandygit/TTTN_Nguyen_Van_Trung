@@ -85,7 +85,7 @@ describe('validateOptimizerForm', () => {
 
   it('rejects a maximum weight that makes the problem infeasible', () => {
     expect(validateOptimizerForm({ ...form, maxWeightPercent: 30 })).toContain(
-      'Trọng số tối đa'
+      'Tỷ trọng tối đa'
     );
   });
 });

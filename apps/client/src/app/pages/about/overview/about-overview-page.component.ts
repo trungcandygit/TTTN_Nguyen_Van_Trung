@@ -1,62 +1,43 @@
-import { HttpBackend, HttpClient } from '@angular/common/http';
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  DestroyRef,
-  OnInit,
-  inject
-} from '@angular/core';
-import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { MatCardModule } from '@angular/material/card';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 
-import {
-  ORCID_ID,
-  ORCID_URL,
-  ORCID_WORKS_API_URL,
-  OrcidWork,
-  parseOrcidWorks
-} from './orcid.helper';
+import { ORCID_ID, ORCID_URL } from './orcid.helper';
+import { PUBLICATIONS, PUBLICATION_GROUPS, Publication } from './publications';
+
+interface NumberedPublication {
+  number: number;
+  publication: Publication;
+}
 
 @Component({
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [MatCardModule, MatProgressBarModule],
+  imports: [MatCardModule],
   selector: 'gf-about-overview-page',
   styleUrls: ['./about-overview-page.scss'],
   templateUrl: './about-overview-page.html'
 })
-export class GfAboutOverviewPageComponent implements OnInit {
+export class GfAboutOverviewPageComponent {
   protected readonly email = 'kontrungcany@gmail.com';
-  protected hasError = false;
-  protected isLoading = true;
   protected readonly orcidId = ORCID_ID;
   protected readonly orcidUrl = ORCID_URL;
-  protected works: OrcidWork[] = [];
 
-  private readonly changeDetectorRef = inject(ChangeDetectorRef);
-  private readonly destroyRef = inject(DestroyRef);
-  // Talks to a third-party API (ORCID): a client built on HttpBackend bypasses
-  // the interceptors, so the login token of the user is never sent to ORCID
-  private readonly httpClient = new HttpClient(inject(HttpBackend));
-
-  public ngOnInit() {
-    this.httpClient
-      .get(ORCID_WORKS_API_URL, { headers: { Accept: 'application/json' } })
-      .pipe(takeUntilDestroyed(this.destroyRef))
-      .subscribe({
-        error: () => {
-          this.hasError = true;
-          this.isLoading = false;
-
-          this.changeDetectorRef.markForCheck();
-        },
-        next: (response) => {
-          this.works = parseOrcidWorks(response);
-          this.isLoading = false;
-
-          this.changeDetectorRef.markForCheck();
-        }
-      });
+  /** Hides the portrait when the file is not in the assets folder. */
+  protected hideImage(event: Event) {
+    (event.target as HTMLElement).style.display = 'none';
   }
+
+  /** Groups by status, with reference numbers running through all groups. */
+  protected readonly groups = (() => {
+    let number = 0;
+
+    return PUBLICATION_GROUPS.map(({ statuses, title }) => ({
+      items: PUBLICATIONS.filter(({ status }) => statuses.includes(status)).map(
+        (publication): NumberedPublication => ({
+          number: ++number,
+          publication
+        })
+      ),
+      title
+    })).filter(({ items }) => items.length > 0);
+  })();
 }

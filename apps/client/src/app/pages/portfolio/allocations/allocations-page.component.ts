@@ -47,7 +47,7 @@ import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
 import { MatCardModule } from '@angular/material/card';
 import { MatDialog } from '@angular/material/dialog';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import {
   Account,
   AssetClass,
@@ -70,7 +70,8 @@ import { AllocationsPageParams } from './interfaces/interfaces';
     GfValueComponent,
     GfWorldMapChartComponent,
     MatCardModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    RouterLink
   ],
   selector: 'gf-allocations-page',
   styleUrls: ['./allocations-page.scss'],

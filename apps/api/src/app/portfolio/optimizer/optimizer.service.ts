@@ -85,7 +85,7 @@ export class OptimizerService {
       request.maxWeight !== undefined
     ) {
       warnings.push(
-        `Trọng số tối đa đã được nâng lên ${(100 / identifiers.length).toFixed(1)}% để bài toán có nghiệm.`
+        `Tỷ trọng tối đa đã được nâng lên ${(100 / identifiers.length).toFixed(1)}% để bài toán có nghiệm.`
       );
     }
 
