@@ -8,14 +8,14 @@ Nhà đầu tư cá nhân ở Việt Nam thường giữ nhiều loại tài s�
 
 Các phần mềm quản lý danh mục nước ngoài đáp ứng một phần nhu cầu, nhưng giao diện không có tiếng Việt, đồng tiền mặc định là đô la Mỹ và định dạng số theo quy ước Anh Mỹ. Với người dùng Việt Nam, dấu chấm là dấu ngăn cách hàng nghìn (1.000.000 đồng), còn dấu phẩy ngăn cách phần thập phân (1.234,56). Phần mềm dùng quy ước ngược lại dễ gây nhầm lẫn khi nhập tiền. Phần mềm mã nguồn mở có sẵn chủ yếu dừng ở việc theo dõi và trình bày, ít khi gợi ý cách phân bổ.
 
-Lý thuyết danh mục hiện đại cho ta các công cụ để phân bổ: Markowitz [1] đưa ra đường biên hiệu quả, Rockafellar và Uryasev [4] đưa ra tối ưu hóa giá trị chịu rủi ro có điều kiện, và Black và Litterman [2] cho phép trộn quan điểm của nhà đầu tư vào lợi suất cân bằng của thị trường. Những phương pháp này chủ yếu xuất hiện trong tài liệu học thuật và trong công cụ của tổ chức chuyên nghiệp, rất ít khi đến tay người đầu tư cá nhân qua một giao diện tiếng Việt.
+Lý thuyết danh mục hiện đại cho nhà đầu tư các công cụ để phân bổ: Markowitz [1] đưa ra đường biên hiệu quả, Rockafellar và Uryasev [4] đưa ra tối ưu hóa giá trị chịu rủi ro có điều kiện, và Black và Litterman [2] cho phép trộn quan điểm của nhà đầu tư vào lợi suất cân bằng của thị trường. Những phương pháp này chủ yếu xuất hiện trong tài liệu học thuật và trong công cụ của tổ chức chuyên nghiệp, rất ít khi đến tay người đầu tư cá nhân qua một giao diện tiếng Việt.
 
 @H3 5.1.2. Vấn đề và câu hỏi nghiên cứu
 
 Từ bối cảnh trên, dự án xác định ba câu hỏi:
 
 - Câu hỏi 1. Có thể mở rộng một nền tảng mã nguồn mở hiện có để người dùng Việt Nam dùng bằng tiếng Việt, tiền tệ mặc định là đồng Việt Nam (VND) và số nhập theo quy ước Việt Nam mà không phải viết lại hệ thống hay không.
-- Câu hỏi 2. Có thể cài đặt trong cùng một máy chủ TypeScript bốn phương pháp phân bổ (Markowitz, giá trị chịu rủi ro có điều kiện, Black-Litterman và cân bằng rủi ro), kèm đường biên hiệu quả và kiểm tra ngược, sao cho một yêu cầu với tối đa 20 tài sản trả kết quả trong thời gian tương tác, dưới 5 giây, hay không.
+- Câu hỏi 2. Có thể cài đặt trong cùng một máy chủ TypeScript bốn nhóm phương pháp phân bổ (Markowitz, giá trị chịu rủi ro có điều kiện, Black-Litterman và cân bằng rủi ro), gồm sáu biến thể (Markowitz có ba biến thể: phương sai tối thiểu, trung bình-phương sai và Sharpe tối đa; ba nhóm còn lại mỗi nhóm một biến thể), gọi tắt là sáu phương pháp, kèm đường biên hiệu quả và kiểm tra ngược, sao cho một yêu cầu với tối đa 20 tài sản trả kết quả trong thời gian tương tác, dưới 5 giây, hay không.
 - Câu hỏi 3. Có thể kiểm chứng tính đúng của các thuật toán bằng kiểm thử tự động dựa trên tính chất toán học, thay cho việc so sánh với một bộ giải bên ngoài, hay không.
 
 Giả thuyết kiểm chứng ở Mục 5.5 gồm ba mệnh đề: H1, một lần chạy tối ưu hóa kèm backtest hoàn tất dưới 5 giây trên dữ liệu demo; H2, mọi phương pháp trả tỷ trọng không âm, cộng bằng 1 và không vượt trần đã đặt (trừ cân bằng rủi ro, xem Mục 5.7); H3, một quan điểm tăng giá với độ tin cậy cao làm tăng tỷ trọng của tài sản tương ứng so với khi không có quan điểm.
@@ -57,7 +57,7 @@ Bài toán Sharpe tối đa tìm $w$ làm lớn nhất tỷ số Sharpe do Sharp
 
 @EQ S(w) = \frac{\mu^{\top}w - r_f}{\sqrt{w^{\top}\Sigma\, w}} | (3)
 
-Trong dự án, mọi bài toán đều giới hạn tỷ trọng không âm, tổng bằng 1 và mỗi tỷ trọng không vượt trần c do người dùng đặt.
+Trong dự án, mọi bài toán đều giới hạn tỷ trọng không âm, tổng bằng 1 và mỗi tỷ trọng không vượt trần $c$ do người dùng đặt.
 
 @H3 5.2.2. Sai số ước lượng và các giải pháp
 
@@ -103,7 +103,7 @@ Chỉ số Sharpe và các chỉ số khác tính trên cùng dữ liệu đã d
 
 Ghostfolio [18] là phần mềm quản lý danh mục mã nguồn mở, viết bằng NestJS và Angular, có tính hiệu suất, phân bổ và phân tích rủi ro tĩnh (X-ray). Trong phạm vi khảo sát của sinh viên, gồm tài liệu và mã nguồn phiên bản 3.74.0 trên GitHub, phần mềm gốc không có mô-đun tối ưu hóa danh mục theo Markowitz, CVaR hay Black-Litterman, và không có giao diện tiếng Việt đầy đủ. Kết luận này giới hạn ở phạm vi tìm kiếm nêu trên, sinh viên không khảo sát các công cụ thương mại.
 
-Tác giả cũng nghiên cứu Black-Litterman trên thị trường cổ phiếu Việt Nam ở mức mô hình [P1] và đang hoàn thiện một bài về khung Black-Litterman nghịch đảo kết hợp học máy phân cụm cho cổ phiếu ngân hàng. Dự án thực tập chuyển các ý tưởng đó từ bản tính toán sang một hệ thống dùng được: đọc danh mục thật của người dùng, nhận quan điểm qua giao diện và hiển thị kết quả kèm so sánh.
+Sinh viên cũng nghiên cứu Black-Litterman trên thị trường cổ phiếu Việt Nam ở mức mô hình [P1] và đang hoàn thiện một bài về khung Black-Litterman nghịch đảo kết hợp học máy phân cụm cho cổ phiếu ngân hàng. Dự án thực tập chuyển các ý tưởng đó từ bản tính toán sang một hệ thống dùng được: đọc danh mục thật của người dùng, nhận quan điểm qua giao diện và hiển thị kết quả kèm so sánh.
 
 @TABLE Bảng 5.1. Đối chiếu nhu cầu, khoảng trống và cách giải quyết của dự án
 | Nhu cầu của nhà đầu tư cá nhân Việt Nam | Khoảng trống của công cụ có sẵn | Cách giải quyết trong BL Advisor |

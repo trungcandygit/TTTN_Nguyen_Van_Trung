@@ -141,6 +141,9 @@ blocks_by_file = {f: m.parse_blocks(open(f'{SRC}/{f}.md', encoding='utf8').read(
 
 data = json.load(open(f'{HERE}/data.json', encoding='utf8'))
 styles_xml = open(f'{WORK}/word/styles.xml', encoding='utf8').read()
+styles_xml = re.sub(r'(<w:style [^>]*w:styleId="TOC2".*?)<w:i/><w:iCs/>', r'\1', styles_xml, count=1, flags=re.S)
+styles_xml = re.sub(r'(<w:style [^>]*w:styleId="Heading3".*?<w:rPr><w:b/><w:bCs/>)<w:i/>', r'\1', styles_xml, count=1, flags=re.S)
+open(f'{WORK}/word/styles.xml', 'w', encoding='utf8').write(styles_xml)
 style_ids = set(re.findall(r'w:styleId="([^"]+)"', styles_xml))
 ctx = m.Context(styles=style_ids, image_root=HERE, data=data, first_rid=100)
 PORTRAIT, LANDSCAPE = 8788, 13437
@@ -232,6 +235,7 @@ def gen(blocks, width, front=False, page_break_h1n=False):
     blocks = strip_blocks(blocks)
     for idx, (kind, payload) in enumerate(blocks):
         nxt = blocks[idx + 1] if idx + 1 < len(blocks) else None
+        ctx.keep_lead = kind == 'P' and bool(nxt) and nxt[0] == 'EQ'
         ctx.keep_tail = 2 if (kind == 'TABLE' and nxt and nxt[0] == 'P' and nxt[1].startswith('Ngày ')) else 0
         if kind == 'H1':
             h1_count += 1
@@ -303,9 +307,7 @@ abst_xml = gen(abst, PORTRAIT, page_break_h1n=True)
 p123 = split_h1(blocks_by_file['01_phan1_phan2_phan3'])
 assert len(p123) == 3
 phan1 = gen(p123[0], PORTRAIT)
-ctx.table_font = 18
 phan2 = gen(p123[1], LANDSCAPE)
-ctx.table_font = 20
 phan3 = gen(p123[2], PORTRAIT)
 phan4 = gen(blocks_by_file['02_phan4_nhat_ky'], LANDSCAPE)
 phan5 = gen(blocks_by_file['03_phan5_a'] + blocks_by_file['04_phan5_b'] + blocks_by_file['05_phan5_c'], PORTRAIT)
@@ -341,8 +343,9 @@ def list_xml(title, key, page_break):
     """Danh mục bảng hoặc hình: trường TOC lấy các đoạn Heading 4 (bảng) hoặc Heading 5 (hình)."""
     out = m.para(title, style=ctx.style('Heading1N', 'Heading1'), keep_next=True)
     if page_break:
-        out = re.sub(r'(<w:pStyle w:val="[^"]+"/>)', r'\1<w:pageBreakBefore/>', out, count=1)
+        out = out.replace('<w:keepNext/>', '<w:keepNext/><w:pageBreakBefore/>', 1)
     out = out.replace('</w:pPr>', '<w:ind w:left="0" w:firstLine="0"/><w:jc w:val="center"/></w:pPr>', 1)
+    out = bm_wrap(out, bm[title], bm[title + '#id'])
     level = 'Heading 4' if key == 'Bảng' else 'Heading 5'
     begin = ('<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve">'
              f' TOC \\h \\z \\t "{level},1" </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>')
@@ -351,8 +354,9 @@ def list_xml(title, key, page_break):
         page = pages.get(f'{key}|{item}', '')
         pre = begin if i == 0 else ''
         post = '<w:r><w:fldChar w:fldCharType="end"/></w:r>' if i == len(items) - 1 else ''
-        out += (f'<w:p><w:pPr><w:pStyle w:val="TOC1"/><w:ind w:left="1134" w:hanging="1134"/></w:pPr>{pre}'
-                + r(item) + TAB + r(str(page)) + f'{post}</w:p>')
+        name = bm.get((key, item))
+        inner = link(name, r(item) + TAB + (pageref(name, page) if name else r(str(page))))
+        out += f'<w:p><w:pPr><w:pStyle w:val="TOC1"/><w:ind w:left="1134" w:hanging="1134"/></w:pPr>{pre}{inner}{post}</w:p>'
     return out
 
 
@@ -385,27 +389,98 @@ ordered = toc_front + front_extra + [t for t in rest if t[0] == 1 or True]
 titles = [t[2] for t in ordered]
 
 
+def pageref(name, page):
+    return ('<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve">'
+            f' PAGEREF {name} \\h </w:instrText></w:r><w:r><w:fldChar w:fldCharType="separate"/></w:r>'
+            + r(str(page)) + '<w:r><w:fldChar w:fldCharType="end"/></w:r>')
+
+
+def link(name, inner):
+    return f'<w:hyperlink w:anchor="{name}" w:history="1">{inner}</w:hyperlink>' if name else inner
+
+
 def toc_xml():
     out = m.para('MỤC LỤC', style=ctx.style('Heading1N', 'Heading1'))
     out = out.replace('<w:keepNext/>', '', 1) if False else out
+    out = out.replace('<w:pPr>', '<w:pPr>', 1)
     out = re.sub(r'(<w:pStyle w:val="[^"]+"/>)', r'\1<w:pageBreakBefore/>', out, count=1).replace('</w:pPr>', '<w:ind w:left="0" w:firstLine="0"/><w:jc w:val="center"/></w:pPr>', 1)
     fld_begin = ('<w:r><w:fldChar w:fldCharType="begin"/></w:r><w:r><w:instrText xml:space="preserve"> TOC \\o "1-2" \\h \\z \\u </w:instrText></w:r>'
                  '<w:r><w:fldChar w:fldCharType="separate"/></w:r>')
+    out = out  # heading MỤC LỤC được gắn bookmark ở cuối hàm
     n = len(ordered)
+    entries_xml = ''
     for i, (level, num, text) in enumerate(ordered):
-        if text == 'MỤC LỤC':
-            pass
         page = pages.get(text if not num else f'{num}|{text}', '')
         style = 'TOC1' if level == 1 else 'TOC2'
         label = (f'{num} ' if num and level == 1 else '')
         inner = ''
         if level == 2:
             inner += (r(num) if num else '') + TAB
-        inner += r(label + text) + TAB + r(str(page))
+        inner += r(label + text) + TAB
+        name = bm.get(text)
+        inner = link(name, inner + (pageref(name, page) if name else r(str(page))))
         pre = fld_begin if i == 0 else ''
         post = '<w:r><w:fldChar w:fldCharType="end"/></w:r>' if i == n - 1 else ''
-        out += f'<w:p><w:pPr><w:pStyle w:val="{style}"/></w:pPr>{pre}{inner}{post}</w:p>'
-    return out
+        entries_xml += f'<w:p><w:pPr><w:pStyle w:val="{style}"/></w:pPr>{pre}{inner}{post}</w:p>'
+    return bm_wrap(out, bm['MỤC LỤC'], bm['MỤC LỤC#id']) + entries_xml
+
+
+# ------------------------------------------------------------ bookmark để mục lục, danh mục bấm nhảy được
+bm = {}
+_bid = [9000]
+
+
+def new_bm():
+    _bid[0] += 1
+    return f'_Toc{_bid[0]}', _bid[0]
+
+
+def bm_wrap(p, name, bid):
+    i = p.index('</w:pPr>') + len('</w:pPr>') if '</w:pPr>' in p[:600] else len(open_tag(p))
+    return (p[:i] + f'<w:bookmarkStart w:id="{bid}" w:name="{name}"/>' + p[i:-len('</w:p>')]
+            + f'<w:bookmarkEnd w:id="{bid}"/></w:p>')
+
+
+def plain_text(p):
+    return html_unescape(''.join(re.findall(r'<w:t(?: [^>]*)?>(.*?)</w:t>', p, flags=re.S))).strip()
+
+
+heading_texts = {t for _, _, t in ordered}
+HEAD = re.compile(r'<w:p>(?:(?!</w:p>).)*?<w:pStyle w:val="(?:Heading1|Heading1N|Heading2)"/>(?:(?!</w:p>).)*?</w:p>', flags=re.S)
+
+
+def tag_chunk(chunk):
+    def sub_h(mt):
+        p = mt.group(0)
+        text = plain_text(p)
+        if text in heading_texts and text not in bm:
+            name, bid = new_bm()
+            bm[text] = name
+            return bm_wrap(p, name, bid)
+        return p
+
+    def sub_c(mt):
+        p = mt.group(0)
+        mt2 = CAP_HEAD.match(plain_text(p))
+        if not mt2:
+            return p
+        item = mt2.group(1).strip()
+        name, bid = new_bm()
+        bm[(item.split(' ')[0], item)] = name
+        return bm_wrap(p, name, bid)
+
+    return CAP.sub(sub_c, HEAD.sub(sub_h, chunk))
+
+
+for _i, _t in ((28, 'THÔNG TIN CHUNG'), (55, 'THÔNG TIN VỀ HỌC PHẦN THỰC TẬP TỐT NGHIỆP'), (94, 'LỜI CẢM ƠN')):
+    _n, _b = new_bm()
+    bm[_t] = _n
+    E[_i] = bm_wrap(E[_i], _n, _b)
+for _t in ('MỤC LỤC', 'DANH MỤC BẢNG', 'DANH MỤC HÌNH'):
+    bm[_t] = new_bm()[0]
+    bm[_t + '#id'] = _bid[0]
+phan1, phan2, phan3, phan4, phan5, cong_trinh, apx, abbr_xml, summ_xml, abst_xml, ref_xml = [
+    tag_chunk(c) for c in (phan1, phan2, phan3, phan4, phan5, cong_trinh, apx, abbr_xml, summ_xml, abst_xml, ref_xml)]
 
 
 # ------------------------------------------------------------ ráp các phần tử

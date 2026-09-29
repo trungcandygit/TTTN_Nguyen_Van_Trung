@@ -67,7 +67,7 @@ Cán bộ hướng dẫn (Ký tên và ghi rõ họ tên) | Sinh viên thực t�
 
 @H2 Thông tin doanh nghiệp
 
-Công ty TNHH ITM Semiconductor Vietnam (viết tắt ITMV) là công ty trách nhiệm hữu hạn một thành viên, có 100% vốn đầu tư từ Hàn Quốc và thuộc tập đoàn ITM. Công ty hoạt động theo Giấy chứng nhận đầu tư số 212043.000651 do Ủy ban nhân dân tỉnh Bắc Ninh cấp ngày 18/04/2014, mã số thuế 2300847785 được cấp ngày 21/04/2014 [W1], [W2], [W6]. Công ty mẹ, ITM Semiconductor Co., Ltd., thành lập ngày 23/02/2000 tại Hàn Quốc và niêm yết trên sàn KOSDAQ [W3], [W6]. Bảng 3.1 tóm tắt các thông tin pháp lý cơ bản.
+Công ty TNHH ITM Semiconductor Vietnam (viết tắt ITMV) là công ty trách nhiệm hữu hạn một thành viên, có 100% vốn đầu tư từ Hàn Quốc và thuộc tập đoàn ITM. Công ty hoạt động theo Giấy chứng nhận đầu tư số 212043.000651 do Ủy ban nhân dân tỉnh Bắc Ninh cấp ngày 18/04/2014, mã số thuế 2300847785 được cấp ngày 21/04/2014 [W6]. Thông tin đăng ký doanh nghiệp cũng có trên trang hồ sơ doanh nghiệp [W1]. Công ty mẹ, ITM Semiconductor Co., Ltd., thành lập ngày 23/02/2000 tại Hàn Quốc và niêm yết trên sàn KOSDAQ [W3], [W6]. Bảng 3.1 tóm tắt các thông tin pháp lý cơ bản.
 
 @TABLE Bảng 3.1. Thông tin pháp lý và quy mô của ITMV
 | Chỉ tiêu | Nội dung |
@@ -82,13 +82,13 @@ Công ty TNHH ITM Semiconductor Vietnam (viết tắt ITMV) là công ty trách 
 | Quy mô lao động | Khoảng 3.500 người tính đến năm 2024 (theo cơ sở dữ liệu EMIS, trích qua [W6]) |
 | Công ty mẹ | ITM Semiconductor Co., Ltd., thành lập năm 2000 |
 
-Sinh viên chưa đối chiếu các con số trong Bảng 3.1 và các mô tả trong Phần 3 với hồ sơ nội bộ của công ty. Chúng đến từ nguồn công khai và từ hai tài liệu chưa công bố do một sinh viên khác cung cấp [W6], [W7].
+Sinh viên chưa đối chiếu các con số trong Bảng 3.1 và các mô tả trong Phần 3 với hồ sơ nội bộ của công ty. Chúng đến từ nguồn công khai và từ hai tài liệu chưa công bố của một sinh viên Khoa Luật, Đại học Kinh tế Quốc dân, cũng thực tập tại công ty [W6], [W7]. Hai tài liệu này viết về pháp luật lao động và thực tập tổng hợp, nên chỉ dùng làm nguồn tham khảo cho các mô tả chung về công ty.
 
 @H2 Lịch sử hình thành và phát triển của doanh nghiệp
 
 Đầu thập niên 2010, dòng vốn đầu tư trực tiếp nước ngoài vào sản xuất điện tử tại Việt Nam tăng nhanh, nhất là từ các tập đoàn Hàn Quốc. Bắc Ninh có hạ tầng khu công nghiệp đồng bộ, vị trí gần Hà Nội và chính sách ưu đãi nên trở thành điểm đến của nhiều nhà sản xuất linh kiện. Khu công nghiệp Việt Nam - Singapore (VSIP) Bắc Ninh nằm trong nhóm đó [W6].
 
-Công ty mẹ phát triển và sản xuất các sản phẩm bảo vệ cho pin thứ cấp, chủ yếu là mô-đun bảo vệ (Protection Module Package, PMP) và vi mạch bảo vệ một chip (Protection One Chip, POC). Sau khi mở rộng sản xuất ở Hàn Quốc và Trung Quốc, tập đoàn đưa nhà máy tại Việt Nam vào hoạt động sau khi được cấp giấy chứng nhận đầu tư tháng 4 năm 2014 [W2]. Nhà máy đầu tiên đặt trong Khu công nghiệp VSIP Bắc Ninh, sau đó công ty mở thêm nhà máy trong cùng khu để tăng công suất. Báo chí ngành điện tử Hàn Quốc cho biết tập đoàn đã vận hành bốn nhà máy tại khu công nghiệp này và xây thêm nhà máy thứ năm trên diện tích 22.453 mét vuông [W4]. Tài liệu tổng hợp của sinh viên cùng đơn vị mô tả ba nhà máy V1, V2, V3 [W6]. Hai cách đếm khác nhau về thời điểm và về phạm vi, và báo cáo này không hòa giải chúng. Bảng 3.1 dùng cách đếm ba nhà máy.
+Công ty mẹ phát triển và sản xuất các sản phẩm bảo vệ cho pin thứ cấp, chủ yếu là mô-đun bảo vệ (Protection Module Package, PMP) và vi mạch bảo vệ một chip (Protection One Chip, POC). Sau khi mở rộng sản xuất ở Hàn Quốc và Trung Quốc, tập đoàn đưa nhà máy tại Việt Nam vào hoạt động sau khi được cấp giấy chứng nhận đầu tư tháng 4 năm 2014 [W6]. Nhà máy đầu tiên đặt trong Khu công nghiệp VSIP Bắc Ninh, sau đó công ty mở thêm nhà máy trong cùng khu để tăng công suất. Cổng thông tin của tỉnh Bắc Ninh có đăng các thông báo tuyển dụng công nhân của công ty tại khu công nghiệp này [W2]. Báo chí ngành điện tử Hàn Quốc cho biết tập đoàn đã vận hành bốn nhà máy tại khu công nghiệp này và xây thêm nhà máy thứ năm trên diện tích 22.453 mét vuông [W4]. Tài liệu tổng hợp của sinh viên cùng đơn vị mô tả ba nhà máy V1, V2, V3 [W6]. Hai cách đếm khác nhau về thời điểm và về phạm vi, và báo cáo này không hòa giải chúng. Bảng 3.1 dùng cách đếm ba nhà máy.
 
 Theo nguồn đó, công ty vận hành theo mô hình nhà máy vệ tinh: sản phẩm làm theo tiêu chuẩn kỹ thuật của công ty mẹ và phần lớn cung cấp cho các nhà máy lắp ráp điện thoại của Samsung tại Việt Nam [W6].
 
@@ -116,6 +116,6 @@ Trong dự án, sinh viên tự đặt ba nguyên tắc kỹ thuật: dữ liệ
 
 Theo báo cáo tổng hợp [W7], công ty tổ chức theo mô hình trực tuyến chức năng. Tổng Giám đốc do tập đoàn mẹ bổ nhiệm đứng đầu. Bên dưới là năm Phó Tổng Giám đốc phụ trách sản xuất, kỹ thuật và chất lượng, hành chính và nhân sự, tài chính và kế toán, an toàn và môi trường. Mỗi Phó Tổng Giám đốc quản lý các phòng ban chuyên môn, và ba nhà máy V1, V2, V3 thuộc khối sản xuất (Hình 3.1) [W7].
 
-@FIG hinh/so-do-to-chuc.png | Hình 3.1. Sơ đồ tổ chức của ITMV, vẽ lại theo mô tả trong tài liệu [W7]. Ô vàng là ba nhà máy sản xuất; PCM: mô-đun mạch bảo vệ; PMP: mô-đun bảo vệ; POC: vi mạch bảo vệ một chip; NFC: giao tiếp trường gần; TSP: màn hình cảm ứng; EPM: quản lý chương trình kỹ thuật.
+@FIG hinh/so-do-to-chuc.png | Hình 3.1. Sơ đồ tổ chức của ITMV, vẽ lại theo mô tả trong tài liệu [W7]. Ô vàng là ba nhà máy sản xuất; PCM: mô-đun mạch bảo vệ; PMP: mô-đun bảo vệ; POC: vi mạch bảo vệ một chip; NFC: giao tiếp trường gần; TSP: màn hình cảm ứng; EPM: tên phòng phụ trách chương trình kỹ thuật và dự án sản xuất mới.
 
 Phòng Công nghệ thông tin của công ty quản lý hạ tầng, bảo mật dữ liệu và hỗ trợ các hệ thống quản lý sản xuất như ERP và MES [W7]. Sinh viên thực hiện dự án học tập độc lập, không thuộc phòng ban nào trong sơ đồ, làm việc dưới sự hướng dẫn của cán bộ hướng dẫn tại công ty và báo cáo tiến độ hằng tuần theo mẫu của khoa. Hình 3.1 chưa phải văn bản chính thức của công ty. Nguồn của phần giới thiệu này nằm ở mục Tài liệu tham khảo, từ [W1] đến [W7].

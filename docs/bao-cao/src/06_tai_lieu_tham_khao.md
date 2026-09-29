@@ -14,14 +14,14 @@
 @REF 14 | D. H. Bailey, J. M. Borwein, M. López de Prado, and Q. J. Zhu, "The probability of backtest overfitting," //The Journal of Computational Finance//, vol. 20, no. 4, pp. 39-69, 2017, doi: 10.21314/JCF.2016.322.
 @REF 15 | ISO/IEC/IEEE, Software and systems engineering: Software testing: Part 1: General concepts, ISO/IEC/IEEE 29119-1, 2022.
 @REF 16 | K. Beck, //Test-Driven Development: By Example//. Boston, MA, USA: Addison-Wesley, 2003.
-@REF 17 | Free Software Foundation, GNU Affero General Public License, version 3, Nov. 2007. [Online]. Available: https://www.gnu.org/licenses/agpl-3.0.html
-@REF 18 | T. Kaul et al., //Ghostfolio: Open source wealth management software//, GitHub repository. [Online]. Available: https://github.com/ghostfolio/ghostfolio
+@REF 17 | Free Software Foundation, GNU Affero General Public License, version 3, Nov. 2007. [Online]. Available: https://www.gnu.org/licenses/agpl-3.0.html. Accessed: Sep. 29, 2026.
+@REF 18 | T. Kaul et al., //Ghostfolio: Open source wealth management software//, GitHub repository. [Online]. Available: https://github.com/ghostfolio/ghostfolio. Accessed: Sep. 29, 2026.
 @REF 19 | Chính phủ nước Cộng hòa xã hội chủ nghĩa Việt Nam, Nghị định số 13/2023/NĐ-CP về bảo vệ dữ liệu cá nhân, ngày 17 tháng 4 năm 2023.
 @REF P1 | T. V. Nguyen et al., "Black-Litterman portfolio optimization using regime switching CAPM and ABC-MCMC: Empirical evidence from the Vietnamese stock market period 2019-2025," //Journal of Policy and Development Research//, vol. 01, pp. 81-99, 2026, doi: 10.63640/3030-4091/jpd.apd.194.
 @REF W1 | Công ty TNHH ITM Semiconductor Vietnam, thông tin đăng ký doanh nghiệp, KCN VSIP Bắc Ninh, Bắc Ninh, Việt Nam. [Online]. Available: https://www.dnb.com/business-directory/company-profiles.itm_semiconductor_vietnam_company_limited.af4f8d1c2a2141731ea91a53901d3e4b.html. Accessed: Sep. 29, 2026.
 @REF W2 | Ban Quản lý các khu công nghiệp tỉnh Bắc Ninh, "Công ty TNHH ITM Semiconductor Việt Nam (KCN VSIP) tuyển dụng," Cổng thông tin điện tử tỉnh Bắc Ninh. [Online]. Available: https://iza.bacninh.gov.vn/news/-/details/141248/cong-ty-tnhh-itm-semiconductor-viet-nam-kcn-vsip-tuyen-dung. Accessed: Sep. 29, 2026.
-@REF W3 | ITM Semiconductor Co., Ltd., hồ sơ doanh nghiệp, Dun & Bradstreet và MarketScreener. [Online]. Available: https://in.marketscreener.com/quote/stock/ITM-SEMICONDUCTOR-CO-LTD-120976052/. Accessed: Sep. 29, 2026.
+@REF W3 | ITM Semiconductor Co., Ltd., hồ sơ doanh nghiệp, MarketScreener. [Online]. Available: https://in.marketscreener.com/quote/stock/ITM-SEMICONDUCTOR-CO-LTD-120976052/. Accessed: Sep. 29, 2026.
 @REF W4 | THE ELEC, "ITM to build 5th factory for battery protection IC in Vietnam," Korea Electronics Industry Media. [Online]. Available: https://thelec.net/news/articleView.html?idxno=1978. Accessed: Sep. 29, 2026.
-@REF W5 | ITM Semiconductor Co., Ltd., "World's Leading Company," trang web doanh nghiệp. Truy cập: 29/09/2026 (địa chỉ trang không được lưu lại).
-@REF W6 | Nguyễn Bá Luận, "Pháp luật về hợp đồng lao động nhìn từ thực tiễn thực hiện tại Công ty TNHH ITM Semiconductor Vietnam," khóa luận tốt nghiệp, Học viện Công nghệ Bưu chính Viễn thông, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.
-@REF W7 | Nguyễn Bá Luận, "Báo cáo tổng hợp thực tập tại Công ty TNHH ITM Semiconductor Vietnam," Đại học Kinh tế Quốc dân, tài liệu chưa công bố, sinh viên cùng đơn vị cung cấp.
+@REF W5 | ITM Semiconductor Co., Ltd., "World's Leading Company," trang web doanh nghiệp. [Online]. Available: trang web chính thức của ITM Semiconductor Co., Ltd. Accessed: Sep. 29, 2026.
+@REF W6 | Nguyễn Bá Luận, "Pháp luật về hợp đồng lao động nhìn từ thực tiễn thực hiện tại Công ty TNHH ITM Semiconductor Vietnam," khóa luận thực tập tốt nghiệp, Khoa Luật kinh tế, Đại học Kinh tế Quốc dân, Hà Nội, 2026, tài liệu chưa công bố.
+@REF W7 | Nguyễn Bá Luận, "Báo cáo tổng hợp thực tập tại Công ty TNHH ITM Semiconductor Vietnam," báo cáo thực tập tổng hợp, Khoa Luật, Đại học Kinh tế Quốc dân, Hà Nội, 2026, tài liệu chưa công bố.

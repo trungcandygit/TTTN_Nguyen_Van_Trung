@@ -10,7 +10,7 @@ Sinh viên xác định yêu cầu theo cấu trúc của ISO/IEC/IEEE 29148, g�
 | FR2 | VND là tiền tệ mặc định cho người dùng mới, số hiển thị theo vi-VN | Cao |
 | FR3 | Ô nhập tiền, số lượng, phí, số dư tự thêm dấu chấm ngăn cách khi gõ | Cao |
 | FR4 | Người dùng chọn 2 đến 20 tài sản: khoản đang giữ hoặc mã thêm có giá lịch sử | Cao |
-| FR5 | Sáu phương pháp: Sharpe tối đa, phương sai tối thiểu, trung bình-phương sai, CVaR tối thiểu, Black-Litterman, cân bằng rủi ro | Cao |
+| FR5 | Sáu biến thể (bốn nhóm phương pháp): Sharpe tối đa, phương sai tối thiểu, trung bình-phương sai, CVaR tối thiểu, Black-Litterman, cân bằng rủi ro | Cao |
 | FR6 | Tham số: tỷ trọng tối đa, khoảng dữ liệu lịch sử, lãi suất phi rủi ro, mức tin cậy CVaR, hệ số ngại rủi ro, $\tau$ | Cao |
 | FR7 | Nhập tối đa 10 quan điểm tuyệt đối hoặc tương đối, mỗi quan điểm có độ tin cậy 5% đến 95% | Cao |
 | FR8 | Kết quả gồm tỷ trọng hiện tại so với đề xuất, bảng so sánh sáu danh mục chuẩn, đường biên hiệu quả | Cao |
@@ -59,7 +59,7 @@ Một ràng buộc của phần mềm gốc ảnh hưởng đến thiết kế d
 
 @H3 5.3.4. Thiết kế giao diện lập trình
 
-Trang Tối ưu hóa dùng một endpoint mới, và trang Phân bổ dùng một endpoint đã có (Bảng 5.5). Endpoint POST nhận thân yêu cầu gồm danh sách tài sản, phương pháp và tham số; một lớp kiểm tra dữ liệu vào (class-validator) từ chối yêu cầu sai kiểu hoặc ngoài khoảng cho phép trước khi tính toán.
+Cả ba endpoint trong Bảng 5.5 do sinh viên thêm: hai endpoint cho Black-Litterman và tối ưu hóa là mới hoàn toàn, còn endpoint benchmark phục vụ trang Thị trường và trang Phân tích. Endpoint POST nhận thân yêu cầu gồm danh sách tài sản, phương pháp và tham số; một lớp kiểm tra dữ liệu vào (class-validator) từ chối yêu cầu sai kiểu hoặc ngoài khoảng cho phép trước khi tính toán.
 
 @TABLE Bảng 5.5. Các endpoint của phần bổ sung
 | Phương thức và đường dẫn | Mục đích | Quyền |
@@ -85,7 +85,7 @@ Kho mã có khoảng 900 tệp TypeScript ngoài thư mục công cụ. Phần c
 
 @TABLE Bảng 5.6. Các tệp chính của phần bổ sung
 | Tệp | Vai trò |
-| apps/api/src/app/portfolio/black-litterman.service.ts | Phép toán ma trận và mô hình Black-Litterman gốc, dịch vụ đọc danh mục |
+| apps/api/src/app/portfolio/black-litterman.service.ts | Phép toán ma trận và mô hình Black-Litterman không quan điểm (bản đầu tiên của sinh viên), dịch vụ đọc danh mục |
 | apps/api/src/app/portfolio/optimizer/optimizer.math.ts | Thuật toán tối ưu: chiếu, Markowitz, CVaR, cân bằng rủi ro, chỉ số |
 | apps/api/src/app/portfolio/optimizer/optimizer.engine.ts | Căn chỉnh giá, dựng quan điểm, chọn phương pháp, backtest |
 | apps/api/src/app/portfolio/optimizer/optimizer.service.ts | Đọc giá và tỷ giá, dựng phản hồi |
@@ -107,7 +107,7 @@ Sharpe tối đa. Tỷ số Sharpe dọc theo đường biên có một đỉnh 
 
 CVaR tối thiểu. Hàm `minimizeCVaR` dùng phương pháp dưới gradient chiếu trên các kịch bản lịch sử. Mỗi vòng, hàm chọn $k$ kịch bản tệ nhất, tính dưới gradient là trung bình của các dòng lợi suất tương ứng, đi một bước chuẩn hóa $0{,}05/\sqrt{k+1}$, với $k$ là số thứ tự vòng lặp bắt đầu từ 0, rồi chiếu. Hàm chạy 2.000 vòng, khởi tạo từ tốt hơn trong hai danh mục (chia đều và phương sai tối thiểu) và giữ nghiệm có CVaR thấp nhất, nên kết quả không bao giờ kém điểm xuất phát.
 
-Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần hoàn (cyclical coordinate descent) cho danh mục cân bằng rủi ro. Với mỗi tài sản i, hàm cập nhật tỷ trọng theo công thức (8), trong đó q = 1/n là ngân sách rủi ro của mỗi tài sản.
+Cân bằng rủi ro. Hàm `riskParityWeights` dùng giảm tọa độ tuần hoàn (cyclical coordinate descent) cho danh mục cân bằng rủi ro. Với mỗi tài sản $i$, hàm cập nhật tỷ trọng theo công thức (8), trong đó $q = 1/n$ là ngân sách rủi ro của mỗi tài sản.
 
 @EQ w_i \leftarrow \frac{-b_i + \sqrt{b_i^{2} + 4\,a_i\,q}}{2\,a_i},\qquad a_i = \Sigma_{ii},\quad b_i = \sum_{j\neq i}\Sigma_{ij}\,w_j | (8)
 
@@ -117,7 +117,7 @@ Black-Litterman có độ tin cậy. Với quan điểm $k$ có dòng $p_k$ củ
 
 @EQ \Omega_{kk} = \tau\, p_k^{\top}\Sigma\, p_k\;\frac{1-c_k}{c_k} | (9)
 
-Cách gắn độ tin cậy này theo Idzorek [10]. Khi $c_k = 0{,}5$, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro δ lấy từ $(E[R_m] - r_f)/\text{Var}(R_m)$ của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có $E[R]$ và $M^{-1}$ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai $\Sigma + M^{-1}$ và lợi suất $E[R]$. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
+Cách gắn độ tin cậy này theo Idzorek [10]. Khi $c_k = 0{,}5$, công thức (9) trả về mặc định của He và Litterman [3]. Hệ số ngại rủi ro $\delta$ lấy từ $(E[R_m] - r_f)/\text{Var}(R_m)$ của danh mục hiện tại, giới hạn trong khoảng [1, 10], và dùng 2,5 khi giá trị này không dương. Sau khi có $E[R]$ và $M^{-1}$ từ công thức (6), hàm không dùng công thức không ràng buộc (7) mà giải bài toán trung bình-phương sai không âm có trần với ma trận hiệp phương sai $\Sigma + M^{-1}$ và lợi suất $E[R]$. Lựa chọn này tránh tỷ trọng âm và tỷ trọng vượt trần, vốn là hạn chế của công thức (7).
 
 @H3 5.4.3. Chuẩn bị dữ liệu và kiểm tra ngược
 

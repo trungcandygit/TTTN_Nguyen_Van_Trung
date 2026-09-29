@@ -50,6 +50,7 @@ class Context:
         self.doc_pr = 1000
         self.headings = []  # (mức, chữ) để dựng mục lục
         self.cite_map = {}
+        self.keep_lead = False
         self.keep_tail = 0  # số hàng cuối của bảng kế tiếp phải dính với đoạn sau
 
     def style(self, wanted, fallback=None):
@@ -92,6 +93,7 @@ def omml_inline(latex):
     if not match:
         raise RuntimeError(f'pandoc không tạo được công thức trong dòng cho: {latex}')
     fragment = match.group(0).replace('<m:oMath>', f'<m:oMath xmlns:m="{MATH_NS}">', 1)
+    fragment = fragment.replace('<m:nor /><m:sty m:val="p" />', '<m:nor />')
     _omml_cache[key] = fragment
     return fragment
 
@@ -233,6 +235,7 @@ def omml(latex):
     if not fragment:
         raise RuntimeError(f'pandoc không tạo được công thức cho: {latex}')
     fragment = fragment.replace('<m:oMathPara>', f'<m:oMathPara xmlns:m="{MATH_NS}">', 1)
+    fragment = fragment.replace('<m:nor /><m:sty m:val="p" />', '<m:nor />')
     _omml_cache[key] = fragment
     return fragment
 
@@ -312,7 +315,7 @@ def caption_xml(text, ctx, above=False, source=None):
     if rest:
         tail += inline(rest, size=22)
     if source:
-        tail += ('<w:r><w:br/></w:r>' if rest else '') + inline(source, size=22, italic=True)
+        tail += ('<w:r><w:br/></w:r>' if rest else '') + inline(source, size=22)
     if tail:
         head_p += para('', jc='center', raw=tail, before=0, after=160, keep_lines=True)
     return head_p
@@ -341,6 +344,17 @@ def data_table(key, ctx):
         return (caption_xml(caption, ctx, above=True)
                 + table_xml(rows, ctx, widths=[int(ctx.text_width * s) for s in (0.30, 0.13, 0.14, 0.12, 0.15, 0.16)])
                 + para('', after=60))
+    if key == 'weights_table':
+        byname = {p['label']: p for p in data['portfolios']}
+        cols = [('Hiện tại', 'Danh mục hiện tại'), ('Chia đều', 'Chia đều (1/N)'), ('Nghịch đảo BĐ', 'Nghịch đảo biến động'),
+                ('Cân bằng RR', 'Cân bằng rủi ro'), ('Sharpe tối đa', 'Markowitz: Sharpe tối đa')]
+        rows = [['Tài sản', 'Lợi suất năm', 'Biến động năm'] + [c[0] for c in cols]]
+        for i, a in enumerate(data['assets']):
+            rows.append([a['name'].replace(' (dữ liệu mẫu)', ''), pct(a['annualReturn']), pct(a['annualVolatility'])]
+                        + [pct(byname[c[1]]['weights'][i]) for c in cols])
+        caption = ('Bảng 5.10. Thống kê từng tài sản và tỷ trọng của năm danh mục trong Bảng 5.9 '
+                   '(BĐ: biến động; RR: rủi ro)')
+        return (caption_xml(caption, ctx, above=True) + table_xml(rows, ctx) + para('', after=60))
     if key == 'backtest_compare':
         bt = data.get('backtest')
         if not bt:
@@ -350,8 +364,9 @@ def data_table(key, ctx):
             m = r['metrics']
             rows.append([r['label'], pct(m['totalReturn']), pct(m['annualReturn']),
                          pct(m['annualVolatility']), vi_number(m['sharpe'], 2), pct(m['maxDrawdown'])])
-        caption = (f'Bảng 5.10. Kết quả backtest walk-forward ngoài mẫu (cửa sổ {bt["lookbackDays"]} ngày, '
-                   f'cân bằng lại mỗi {bt["rebalanceEveryDays"]} ngày, {bt["rebalances"]} lần)')
+        caption = (f'Bảng 5.11. Kết quả backtest walk-forward ngoài mẫu (cửa sổ {bt["lookbackDays"]} ngày, '
+                   f'cân bằng lại mỗi {bt["rebalanceEveryDays"]} ngày, {bt["rebalances"]} lần, giai đoạn ngoài mẫu '
+                   f'{len(bt["dates"])} ngày; lợi suất năm là trung bình lợi suất ngày nhân 252, tổng lợi suất là tích lũy các kỳ)')
         return caption_xml(caption, ctx, above=True) + table_xml(rows, ctx) + para('', after=60)
     raise KeyError(key)
 
@@ -489,7 +504,7 @@ def render(blocks, ctx, refs=None):
         elif kind == 'P':
             out.append(para(payload, style=ctx.style('Content'), jc='both',
                             first_line=567 if len(payload) > 90 else None, after=120,
-                            keep_next=payload.startswith('Ngày ') and len(payload) < 40))
+                            keep_next=(payload.startswith('Ngày ') and len(payload) < 40) or ctx.keep_lead))
         elif kind == 'BULLETS':
             for item in payload:
                 out.append(para(item, style=ctx.style('ListParagraph'), num=ctx.bullet_num_id, jc='both', after=60))
@@ -514,7 +529,7 @@ def render(blocks, ctx, refs=None):
             full = [DIARY_HEAD] + [r[:5] + [''] * (6 - len(r[:5])) for r in rows]
             widths = [int(ctx.text_width * s) for s in (0.10, 0.20, 0.17, 0.17, 0.24)]
             widths.append(ctx.text_width - sum(widths))
-            out.append(table_xml(full, ctx, header=True, widths=widths, size=18))
+            out.append(table_xml(full, ctx, header=True, widths=widths))
             out.append(para('', after=60))
         elif kind == 'FIG':
             cap, _, src = payload[1].partition(' || ')
@@ -532,7 +547,7 @@ def render(blocks, ctx, refs=None):
                    '<w:tr><w:trPr><w:cantSplit/><w:trHeight w:val="4200" w:hRule="atLeast"/></w:trPr>'
                    f'<w:tc><w:tcPr><w:tcW w:w="{int(ctx.text_width * 0.9)}" w:type="dxa"/>'
                    '<w:vAlign w:val="center"/></w:tcPr>'
-                   + para(f'[{note}]', jc='center', italic=True, size=22)
+                   + para(f'[{note}]', jc='center', size=22)
                    + '</w:tc></w:tr></w:tbl>')
             out.append(box)
             out.append(caption_xml(caption, ctx, source=source or None))
@@ -540,7 +555,7 @@ def render(blocks, ctx, refs=None):
             out.append(equation_xml(payload[0], payload[1], ctx))
         elif kind == 'CODE':
             for line in payload:
-                out.append(para('', raw=run(line or ' ', code=True, size=16), shd='F2F2F2', before=0, after=0))
+                out.append(para('', raw=run(line or ' ', code=True, size=20), shd='F2F2F2', before=0, after=0))
             out.append(para('', after=60))
         elif kind == 'DATATABLE':
             out.append(data_table(payload, ctx))
