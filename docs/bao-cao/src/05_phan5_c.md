@@ -32,7 +32,7 @@ Sinh viên chạy tối ưu hóa trên tài khoản demo-user-12 (762 giao dịc
 
 @DATATABLE opt_compare
 
-Hai quan hệ lý thuyết được xác nhận. Danh mục Sharpe tối đa nằm trên đường biên hiệu quả, và danh mục phương sai tối thiểu có độ biến động thấp nhất trong các danh mục chịu cùng trần 40%. Một quan hệ khác cần giải thích: danh mục cân bằng rủi ro có tỷ số Sharpe (0,91) cao hơn danh mục Sharpe tối đa (0,71). Nguyên nhân là ràng buộc không đồng đều giữa hai phương pháp. Trần 40% áp cho Sharpe tối đa, còn bản cân bằng rủi ro chưa áp trần và có thể đặt tỷ trọng lớn vào quỹ trái phiếu có độ biến động 2,9% mỗi năm. Kết quả này không phản bác lý thuyết, nó cho thấy hạn chế của bản cài đặt hiện tại (Mục 5.7).
+Hai quan hệ lý thuyết được xác nhận. Trong các danh mục chịu trần 40% (hiện tại, chia đều, phương sai tối thiểu, Sharpe tối đa và CVaR tối thiểu), danh mục Sharpe tối đa có tỷ số Sharpe cao nhất (0,82) và danh mục phương sai tối thiểu có độ biến động thấp nhất (8,3%). Một quan hệ khác cần giải thích: danh mục cân bằng rủi ro có tỷ số Sharpe (0,98) và danh mục nghịch đảo biến động (0,84) đều cao hơn danh mục Sharpe tối đa (0,82). Nguyên nhân là ràng buộc không đồng đều giữa các phương pháp. Trần 40% áp cho Sharpe tối đa, còn cân bằng rủi ro và nghịch đảo biến động chưa áp trần. Hai danh mục này đặt 65,1% và 58,1% vào quỹ trái phiếu, tài sản có độ biến động 2,9% mỗi năm và lợi suất 9,5% mỗi năm trong mẫu, cao hơn hẳn trần 40%. Kết quả này không phản bác lý thuyết. Nó cho thấy hạn chế của bản cài đặt hiện tại (Mục 5.7) và cho thấy trần tỷ trọng là một ràng buộc có giá.
 
 Bảng 5.10 trình bày kết quả backtest walk-forward của cùng cấu hình với phương pháp Sharpe tối đa, cửa sổ ước lượng 252 ngày và cân bằng lại hằng quý.
 

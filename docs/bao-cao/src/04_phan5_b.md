@@ -2,7 +2,7 @@
 
 @H3 5.3.1. Yêu cầu
 
-Sinh viên xác định yêu cầu theo cấu trúc của ISO/IEC/IEEE 29148, gộp thành yêu cầu chức năng và phi chức năng. Bảng 5.2 liệt kê các yêu cầu chức năng của phần sinh viên bổ sung, và Bảng 5.3 liệt kê yêu cầu phi chức năng. Yêu cầu chức năng của phần mềm gốc (tài khoản, giao dịch, hiệu suất) được giữ nguyên và không nêu lại.
+Sinh viên xác định yêu cầu theo cấu trúc của ISO/IEC/IEEE 29148, gộp thành yêu cầu chức năng và phi chức năng. Bảng 5.2 liệt kê các yêu cầu chức năng (mã FR) của phần sinh viên bổ sung, và Bảng 5.3 liệt kê yêu cầu phi chức năng (mã NFR). Yêu cầu chức năng của phần mềm gốc (tài khoản, giao dịch, hiệu suất) được giữ nguyên và không nêu lại.
 
 @TABLE Bảng 5.2. Yêu cầu chức năng của phần bổ sung
 | Mã | Yêu cầu | Mức ưu tiên |
@@ -35,7 +35,7 @@ Yêu cầu phi chức năng dựa trên các đặc tính chất lượng của 
 
 Hệ thống gồm bốn thành phần chạy độc lập (Hình 5.1). Trình duyệt tải giao diện Angular và gọi máy chủ qua giao thức truyền siêu văn bản (HTTP) theo kiểu REST (Representational State Transfer) ở đường dẫn `/api/v1`. Máy chủ NestJS xử lý nghiệp vụ, đọc và ghi PostgreSQL qua Prisma, và dùng Redis làm bộ nhớ đệm và hàng đợi tác vụ nền. Trong máy chủ, hai dịch vụ của sinh viên nằm cạnh các dịch vụ gốc: `BlackLittermanService` cho khối trên trang Phân bổ và `OptimizerService` cho trang Tối ưu hóa. Cả hai đọc khoản nắm giữ từ `PortfolioService`, giá từ `MarketDataService` và tỷ giá từ `ExchangeRateDataService`.
 
-@FIG hinh/kien-truc.png | Hình 5.1. Kiến trúc hệ thống BL Advisor: trình duyệt, máy chủ NestJS, PostgreSQL, Redis và các dịch vụ tối ưu hóa.
+@FIG hinh/kien-truc.png | Hình 5.1. Kiến trúc hệ thống BL Advisor. Mũi tên liền là yêu cầu hoặc lời gọi, mũi tên đứt là phản hồi. HTTP: giao thức truyền siêu văn bản; JWT: mã thông báo JSON Web Token; Prisma: lớp truy cập cơ sở dữ liệu.
 
 @TABLE Bảng 5.4. Công nghệ sử dụng
 | Lớp | Công nghệ | Vai trò |
@@ -53,7 +53,7 @@ Sinh viên chọn giữ nguyên bộ công nghệ của Ghostfolio thay vì vi�
 
 Bản thiết kế dữ liệu dùng lược đồ Prisma của Ghostfolio và không thêm bảng mới. Sinh viên chỉ dùng thêm các bản ghi có sẵn theo cách mới. Hồ sơ tài sản (SymbolProfile) lưu tên, tiền tệ, nguồn dữ liệu và ký hiệu. Giá lịch sử (MarketData) lưu giá theo ngày. Giao dịch (Order, hiển thị là Activity) nối người dùng, tài khoản và hồ sơ tài sản. Danh sách benchmark thị trường nằm trong bảng thuộc tính Property với khóa `BENCHMARKS`, là một chuỗi JSON (JavaScript Object Notation) chứa mã các hồ sơ được chọn.
 
-@FIG hinh/du-lieu.png | Hình 5.2. Các thực thể dữ liệu dự án sử dụng và quan hệ giữa chúng.
+@FIG hinh/du-lieu.png | Hình 5.2. Các thực thể dữ liệu dự án sử dụng. Mũi tên chỉ hướng tham chiếu, 1..n và n..1 là bản số của quan hệ; UUID: mã định danh duy nhất toàn cầu.
 
 Một ràng buộc của phần mềm gốc ảnh hưởng đến thiết kế dữ liệu demo: giao dịch chỉ nối được với hồ sơ tài sản nhập tay khi ký hiệu là mã định danh duy nhất toàn cầu (UUID). Vì vậy tập lệnh nạp dữ liệu sinh ký hiệu UUID xác định theo băm MD5 của tên mã, và giữ tên gọi dễ đọc ở trường tên của hồ sơ.
 
@@ -71,7 +71,7 @@ Trang Tối ưu hóa dùng một endpoint mới, và trang Phân bổ dùng mộ
 
 Hình 5.3 mô tả luồng xử lý một yêu cầu. Máy chủ kiểm tra yêu cầu, lấy hồ sơ tài sản và khoản nắm giữ, đọc giá lịch sử, quy đổi giá về tiền tệ cơ sở, căn chỉnh chuỗi giá theo ngày, tính lợi suất, rồi chạy phương pháp đã chọn cùng ba phương pháp tham chiếu và các danh mục chuẩn. Nếu người dùng bật kiểm tra ngược, máy chủ chạy thêm vòng walk-forward. Cuối cùng máy chủ ghép kết quả và trả về một phản hồi.
 
-@FIG hinh/luong-xu-ly.png | Hình 5.3. Luồng xử lý một yêu cầu tối ưu hóa, từ kiểm tra dữ liệu vào đến phản hồi.
+@FIG hinh/luong-xu-ly.png | Hình 5.3. Luồng xử lý một yêu cầu tối ưu hóa, đọc từ trái sang phải ở hàng đầu rồi quay lại ở hàng sau. Ô vàng là bước tính toán; DTO: đối tượng truyền dữ liệu.
 
 @H3 5.3.6. Bảo mật và quyền riêng tư
 

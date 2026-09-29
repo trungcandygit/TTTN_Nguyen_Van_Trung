@@ -17,31 +17,49 @@ Nguyễn Văn Trung
 @H1N DANH MỤC TỪ VIẾT TẮT
 
 @TABLE
-| API | Application Programming Interface: giao diện lập trình ứng dụng |
 | AGPL | GNU Affero General Public License: giấy phép công cộng Affero của GNU |
+| API | Application Programming Interface: giao diện lập trình ứng dụng |
 | CBHD | Cán bộ hướng dẫn tại đơn vị thực tập |
 | CVaR | Conditional Value at Risk: giá trị chịu rủi ro có điều kiện |
+| DTO | Data Transfer Object: đối tượng truyền dữ liệu |
 | E2E | End to end: kiểm thử đầu cuối |
+| EMIS | Emerging Markets Information Service: cơ sở dữ liệu doanh nghiệp quốc tế |
+| EPM | Tên phòng của đơn vị, phụ trách chương trình kỹ thuật và dự án sản xuất mới |
+| ERP | Enterprise Resource Planning: hoạch định nguồn lực doanh nghiệp |
 | ETF | Exchange Traded Fund: quỹ hoán đổi danh mục |
 | FIRE | Financial Independence, Retire Early: độc lập tài chính, nghỉ hưu sớm |
+| FR | Functional Requirement: yêu cầu chức năng |
+| HMAC | Hash-based Message Authentication Code: mã xác thực thông điệp dựa trên băm |
 | HTTP | HyperText Transfer Protocol: giao thức truyền siêu văn bản |
 | IEC | International Electrotechnical Commission: Ủy ban Kỹ thuật điện Quốc tế |
 | IEEE | Institute of Electrical and Electronics Engineers: Viện Kỹ sư Điện và Điện tử |
 | ISO | International Organization for Standardization: Tổ chức Tiêu chuẩn hóa Quốc tế |
 | JSON | JavaScript Object Notation: định dạng dữ liệu văn bản |
 | JWT | JSON Web Token: mã thông báo dùng để xác thực |
+| KOSDAQ | Sàn chứng khoán KOSDAQ của Hàn Quốc |
+| MD5 | Message-Digest Algorithm 5: thuật toán băm MD5 |
+| MES | Manufacturing Execution System: hệ thống điều hành sản xuất |
 | MOSFET | Metal Oxide Semiconductor Field Effect Transistor: tranzito hiệu ứng trường |
 | NFC | Near Field Communication: giao tiếp trường gần |
+| NFR | Non-Functional Requirement: yêu cầu phi chức năng |
 | OWASP | Open Worldwide Application Security Project: dự án bảo mật ứng dụng web mở |
+| PCM | Protection Circuit Module: mô-đun mạch bảo vệ |
 | PMP | Protection Module Package: mô-đun bảo vệ pin |
 | POC | Protection One Chip: vi mạch bảo vệ một chip |
 | QA | Quality Assurance: kiểm thử chất lượng |
+| QCVN | Quy chuẩn kỹ thuật quốc gia |
 | REST | Representational State Transfer: kiểu kiến trúc dịch vụ web |
+| SHA | Secure Hash Algorithm: thuật toán băm an toàn |
 | SWR | Safe Withdrawal Rate: tỷ lệ rút an toàn |
+| TCVN | Tiêu chuẩn quốc gia Việt Nam |
 | TDD | Test Driven Development: phát triển hướng kiểm thử |
+| TNHH | Trách nhiệm hữu hạn |
+| TSP | Touch Screen Panel: màn hình cảm ứng |
+| UBND | Ủy ban nhân dân |
 | USD | Đô la Mỹ |
 | UUID | Universally Unique Identifier: mã định danh duy nhất toàn cầu |
 | VND | Đồng Việt Nam |
+| VSIP | Vietnam Singapore Industrial Park: khu công nghiệp Việt Nam - Singapore |
 
 @H1N TÓM TẮT
 

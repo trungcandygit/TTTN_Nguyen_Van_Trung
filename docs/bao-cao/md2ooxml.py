@@ -21,6 +21,7 @@ A_NS = 'http://schemas.openxmlformats.org/drawingml/2006/main'
 PIC_NS = 'http://schemas.openxmlformats.org/drawingml/2006/picture'
 R_NS = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships'
 
+PANDOC = os.environ.get('PANDOC', 'pandoc')
 CITE = re.compile(r'\[(P1|W\d|\d+)\]')
 
 
@@ -160,7 +161,7 @@ def table_xml(rows, ctx, header=True, widths=None, borders=True, size=None,
             xml = xml[:-len('<w:tr>')] + '<w:tr><w:trPr><w:cantSplit/></w:trPr>'
         for c in range(len(widths)):
             cell = row[c] if c < len(row) else ''
-            shade = '<w:shd w:val="clear" w:color="auto" w:fill="D9E2F3"/>' if is_head else ''
+            shade = ''
             key_cell = (not header) and c == 0 and len(widths) == 2
             paragraphs = ''.join(
                 para(line, size=size, bold=is_head or key_cell, after=20, before=20,
@@ -192,7 +193,7 @@ def omml(latex):
         out = os.path.join(tmp, 'eq.docx')
         with open(md, 'w', encoding='utf8') as f:
             f.write(f'$${latex}$$\n')
-        subprocess.run(['pandoc', '-f', 'markdown', '-t', 'docx', '-o', out, md], check=True)
+        subprocess.run([PANDOC, '-f', 'markdown', '-t', 'docx', '-o', out, md], check=True)
         xml = zipfile.ZipFile(out).read('word/document.xml').decode('utf8')
     match = re.search(r'<m:oMathPara>.*?</m:oMathPara>', xml, flags=re.S)
     if not match:
@@ -425,7 +426,8 @@ def render(blocks, ctx, refs=None):
             out.append(para(payload, style=style, keep_next=True, size=None if style else 26,
                             bold=not style))
         elif kind == 'P':
-            out.append(para(payload, style=ctx.style('Content'), jc='both', first_line=None, after=120))
+            out.append(para(payload, style=ctx.style('Content'), jc='both',
+                            first_line=567 if len(payload) > 90 else None, after=120))
         elif kind == 'BULLETS':
             for item in payload:
                 out.append(para(item, style=ctx.style('ListParagraph'), num=ctx.bullet_num_id, jc='both', after=60))
