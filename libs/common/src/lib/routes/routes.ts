@@ -219,6 +219,11 @@ export const internalRoutes = {
         routerLink: ['/portfolio', 'fire'],
         title: 'FIRE'
       },
+      optimizer: {
+        path: 'optimizer',
+        routerLink: ['/portfolio', 'optimizer'],
+        title: 'Tối ưu hóa'
+      },
       xRay: {
         path: 'x-ray',
         routerLink: ['/portfolio', 'x-ray'],

@@ -35,6 +35,8 @@ import {
   BenchmarkMarketDataDetailsResponse,
   BenchmarkResponse,
   BlackLittermanAllocationResponse,
+  PortfolioOptimizerRequest,
+  PortfolioOptimizerResponse,
   CreateStripeCheckoutSessionResponse,
   DataProviderHealthResponse,
   DataProviderHistoricalResponse,
@@ -636,6 +638,14 @@ export class DataService {
   public fetchBlackLittermanAllocation(): Observable<BlackLittermanAllocationResponse> {
     return this.http.get<BlackLittermanAllocationResponse>(
       '/api/v1/portfolio/allocations/black-litterman'
+    );
+  }
+
+  /** Portfolio optimizer (Markowitz, CVaR, Black-Litterman, risk parity). */
+  public fetchPortfolioOptimizer(request: PortfolioOptimizerRequest) {
+    return this.http.post<PortfolioOptimizerResponse>(
+      '/api/v1/portfolio/optimizer',
+      request
     );
   }
 

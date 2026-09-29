@@ -17,6 +17,7 @@ import { addIcons } from 'ionicons';
 import {
   analyticsOutline,
   calculatorOutline,
+  gitCompareOutline,
   pieChartOutline,
   scanOutline,
   swapVerticalOutline
@@ -67,6 +68,12 @@ export class PortfolioPageComponent {
               routerLink: internalRoutes.portfolio.subRoutes.fire.routerLink
             },
             {
+              iconName: 'git-compare-outline',
+              label: internalRoutes.portfolio.subRoutes.optimizer.title,
+              routerLink:
+                internalRoutes.portfolio.subRoutes.optimizer.routerLink
+            },
+            {
               iconName: 'scan-outline',
               label: internalRoutes.portfolio.subRoutes.xRay.title,
               routerLink: internalRoutes.portfolio.subRoutes.xRay.routerLink
@@ -81,6 +88,7 @@ export class PortfolioPageComponent {
     addIcons({
       analyticsOutline,
       calculatorOutline,
+      gitCompareOutline,
       pieChartOutline,
       scanOutline,
       swapVerticalOutline

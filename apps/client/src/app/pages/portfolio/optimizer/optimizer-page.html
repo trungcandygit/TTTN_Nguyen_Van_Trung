@@ -1,0 +1,485 @@
+<div class="container">
+  <div class="row mb-5">
+    <div class="col">
+      <h2 class="d-none d-sm-block h3 mb-1 text-center">Tối ưu hóa danh mục</h2>
+      <p class="intro mb-4 text-center">
+        Gợi ý phân bổ tài sản theo Markowitz, CVaR, Black-Litterman và Risk
+        Parity, kèm so sánh với các danh mục chuẩn và kiểm tra ngược trên dữ
+        liệu lịch sử. Kết quả chỉ mang tính tham khảo, không phải lời khuyên đầu
+        tư.
+      </p>
+
+      <section class="panel">
+        <h4>1. Chọn tài sản</h4>
+        <p class="hint">
+          Chọn các mã trong danh mục của bạn hoặc thêm mã khác để so sánh (cần
+          có dữ liệu giá lịch sử). Chọn từ 2 đến 20 tài sản.
+        </p>
+        @if (isLoadingHoldings) {
+          <div class="hint">Đang tải danh mục...</div>
+        }
+        <div class="asset-list">
+          @for (
+            candidate of candidates;
+            track candidate.dataSource + candidate.symbol
+          ) {
+            <label class="asset-chip" [class.selected]="candidate.selected">
+              <input
+                type="checkbox"
+                [name]="'asset-' + candidate.symbol"
+                [(ngModel)]="candidate.selected"
+              />
+              <span>{{ candidate.name }}</span>
+              @if (candidate.source === 'ADDED') {
+                <small class="hint">(thêm)</small>
+                <button
+                  aria-label="Bỏ mã này"
+                  class="remove"
+                  type="button"
+                  (click)="removeCandidate(candidate)"
+                >
+                  ×
+                </button>
+              }
+            </label>
+          }
+        </div>
+        <div class="search mt-3">
+          <mat-form-field appearance="outline" class="w-100">
+            <mat-label
+              >Thêm mã khác (tên hoặc mã, ví dụ VN-Index, Vinamilk,
+              AAPL)</mat-label
+            >
+            <input
+              matInput
+              name="asset-search"
+              type="search"
+              [ngModel]="searchQuery"
+              (ngModelChange)="onSearch($event)"
+            />
+          </mat-form-field>
+          @if (isSearching) {
+            <small class="hint">Đang tìm...</small>
+          }
+          @if (searchResults.length > 0) {
+            <ul class="search-results">
+              @for (
+                item of searchResults;
+                track item.dataSource + item.symbol
+              ) {
+                <li>
+                  <button type="button" (click)="addSearchResult(item)">
+                    {{ item.name }}
+                    <small class="hint"
+                      >{{ item.assetSubClass }} · {{ item.currency }}</small
+                    >
+                  </button>
+                </li>
+              }
+            </ul>
+          }
+        </div>
+        <div class="hint">Đã chọn: {{ selectedAssets.length }} tài sản</div>
+      </section>
+
+      <section class="panel">
+        <h4>2. Phương pháp và tham số</h4>
+        <div class="fields">
+          <mat-form-field appearance="outline" class="wide">
+            <mat-label>Phương pháp</mat-label>
+            <mat-select name="method" [(ngModel)]="form.method">
+              @for (option of methodOptions; track option.value) {
+                <mat-option [value]="option.value">{{
+                  option.label
+                }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Dữ liệu lịch sử</mat-label>
+            <mat-select name="lookback" [(ngModel)]="form.lookbackDays">
+              @for (option of lookbackOptions; track option.days) {
+                <mat-option [value]="option.days">{{
+                  option.label
+                }}</mat-option>
+              }
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Trọng số tối đa mỗi tài sản (%)</mat-label>
+            <input
+              matInput
+              max="100"
+              min="1"
+              name="max-weight"
+              step="1"
+              type="number"
+              [(ngModel)]="form.maxWeightPercent"
+            />
+          </mat-form-field>
+          <mat-form-field appearance="outline">
+            <mat-label>Lãi suất phi rủi ro (%/năm)</mat-label>
+            <input
+              matInput
+              max="50"
+              min="-5"
+              name="risk-free"
+              step="0.1"
+              type="number"
+              [(ngModel)]="form.riskFreeRatePercent"
+            />
+          </mat-form-field>
+          @if (form.method === 'MIN_CVAR') {
+            <mat-form-field appearance="outline">
+              <mat-label>Mức tin cậy CVaR (%)</mat-label>
+              <input
+                matInput
+                max="99"
+                min="80"
+                name="cvar-alpha"
+                step="1"
+                type="number"
+                [(ngModel)]="form.cvarAlphaPercent"
+              />
+            </mat-form-field>
+          }
+          @if (
+            form.method === 'MEAN_VARIANCE' || form.method === 'BLACK_LITTERMAN'
+          ) {
+            <mat-form-field appearance="outline">
+              <mat-label>Hệ số ngại rủi ro</mat-label>
+              <input
+                matInput
+                max="50"
+                min="0.1"
+                name="risk-aversion"
+                step="0.1"
+                type="number"
+                [(ngModel)]="form.riskAversion"
+              />
+            </mat-form-field>
+          }
+          @if (form.method === 'BLACK_LITTERMAN') {
+            <mat-form-field appearance="outline">
+              <mat-label>Độ bất định của prior (tau, %)</mat-label>
+              <input
+                matInput
+                max="100"
+                min="0.1"
+                name="tau"
+                step="0.5"
+                type="number"
+                [(ngModel)]="form.tauPercent"
+              />
+            </mat-form-field>
+          }
+        </div>
+        <p class="hint">{{ selectedMethod?.description }}</p>
+      </section>
+
+      @if (form.method === 'BLACK_LITTERMAN') {
+        <section class="panel">
+          <h4>3. Quan điểm của bạn (views)</h4>
+          <p class="hint">
+            Quan điểm tuyệt đối: "Tài sản A sẽ sinh lời x%/năm". Quan điểm tương
+            đối: "A sẽ vượt B x%/năm". Độ tin cậy càng cao thì quan điểm càng
+            kéo kết quả lệch khỏi cân bằng thị trường. Để trống thì kết quả bám
+            theo cân bằng thị trường.
+          </p>
+          @for (view of form.views; track $index) {
+            <div class="fields view-row">
+              <mat-form-field appearance="outline">
+                <mat-label>Loại</mat-label>
+                <mat-select
+                  [name]="'view-type-' + $index"
+                  [(ngModel)]="view.type"
+                >
+                  <mat-option value="ABSOLUTE">Tuyệt đối</mat-option>
+                  <mat-option value="RELATIVE">Tương đối</mat-option>
+                </mat-select>
+              </mat-form-field>
+              <mat-form-field appearance="outline" class="wide">
+                <mat-label>Tài sản</mat-label>
+                <mat-select
+                  [name]="'view-symbol-' + $index"
+                  [(ngModel)]="view.symbol"
+                >
+                  @for (asset of selectedAssets; track asset.symbol) {
+                    <mat-option [value]="asset.symbol">{{
+                      asset.name
+                    }}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+              @if (view.type === 'RELATIVE') {
+                <mat-form-field appearance="outline" class="wide">
+                  <mat-label>Vượt trội so với</mat-label>
+                  <mat-select
+                    [name]="'view-versus-' + $index"
+                    [(ngModel)]="view.versusSymbol"
+                  >
+                    @for (asset of selectedAssets; track asset.symbol) {
+                      <mat-option [value]="asset.symbol">{{
+                        asset.name
+                      }}</mat-option>
+                    }
+                  </mat-select>
+                </mat-form-field>
+              }
+              <mat-form-field appearance="outline">
+                <mat-label>Lợi suất (%/năm)</mat-label>
+                <input
+                  matInput
+                  step="0.5"
+                  type="number"
+                  [name]="'view-return-' + $index"
+                  [(ngModel)]="view.expectedReturnPercent"
+                />
+              </mat-form-field>
+              <div class="confidence">
+                <label>Độ tin cậy: {{ view.confidencePercent }}%</label>
+                <input
+                  max="95"
+                  min="5"
+                  step="5"
+                  type="range"
+                  [name]="'view-confidence-' + $index"
+                  [(ngModel)]="view.confidencePercent"
+                />
+              </div>
+              <button
+                mat-stroked-button
+                type="button"
+                (click)="removeView($index)"
+              >
+                Xóa
+              </button>
+            </div>
+          }
+          <button
+            mat-stroked-button
+            type="button"
+            [disabled]="selectedAssets.length < 2"
+            (click)="addView()"
+          >
+            + Thêm quan điểm
+          </button>
+        </section>
+      }
+
+      <section class="panel">
+        <h4>
+          {{ form.method === 'BLACK_LITTERMAN' ? '4' : '3' }}. Kiểm tra ngược
+          (backtest)
+        </h4>
+        <mat-checkbox name="backtest" [(ngModel)]="form.backtest">
+          Chạy backtest walk-forward: mỗi kỳ chỉ dùng dữ liệu trước đó để ước
+          lượng, rồi giữ danh mục đến kỳ cân bằng lại tiếp theo
+        </mat-checkbox>
+        @if (form.backtest) {
+          <div class="fields mt-2">
+            <mat-form-field appearance="outline">
+              <mat-label>Cửa sổ ước lượng (ngày giao dịch)</mat-label>
+              <input
+                matInput
+                max="1000"
+                min="60"
+                name="bt-window"
+                step="10"
+                type="number"
+                [(ngModel)]="form.backtestLookbackDays"
+              />
+            </mat-form-field>
+            <mat-form-field appearance="outline">
+              <mat-label>Cân bằng lại</mat-label>
+              <mat-select
+                name="bt-rebalance"
+                [(ngModel)]="form.backtestRebalance"
+              >
+                @for (option of rebalanceOptions; track option.value) {
+                  <mat-option [value]="option.value">{{
+                    option.label
+                  }}</mat-option>
+                }
+              </mat-select>
+            </mat-form-field>
+          </div>
+        }
+      </section>
+
+      <div class="mb-4 text-center">
+        <button
+          color="primary"
+          mat-flat-button
+          type="button"
+          [disabled]="isLoading"
+          (click)="run()"
+        >
+          {{ isLoading ? 'Đang tính toán...' : 'Tối ưu hóa danh mục' }}
+        </button>
+      </div>
+
+      @if (error) {
+        <div class="notice error" role="alert">{{ error }}</div>
+      }
+
+      @if (result) {
+        <div class="results">
+          <div class="hint mb-2">
+            Dữ liệu từ {{ result.from }} đến {{ result.to }},
+            {{ num(result.observations, 0) }} quan sát chung. Lợi suất và biến
+            động tính theo tiền tệ gốc của từng tài sản, chưa quy đổi tỷ giá.
+          </div>
+          @for (warning of result.warnings; track warning) {
+            <div class="notice warning" role="alert">{{ warning }}</div>
+          }
+
+          <h4 class="mt-3">Phân bổ đề xuất</h4>
+          <div class="chart-box"><canvas #weightsCanvas></canvas></div>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Tài sản</th>
+                  <th>Hiện tại</th>
+                  <th>Đề xuất</th>
+                  <th>Thay đổi</th>
+                  <th>Lợi suất năm</th>
+                  <th>Biến động năm</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (asset of result.assets; track asset.symbol) {
+                  <tr>
+                    <td>{{ asset.name }}</td>
+                    <td>{{ pct(asset.currentWeight) }}</td>
+                    <td class="strong">{{ pct(asset.optimizedWeight) }}</td>
+                    <td
+                      [class.down]="asset.optimizedWeight < asset.currentWeight"
+                      [class.up]="asset.optimizedWeight > asset.currentWeight"
+                    >
+                      {{ pct(asset.optimizedWeight - asset.currentWeight) }}
+                    </td>
+                    <td>{{ pct(asset.annualReturn) }}</td>
+                    <td>{{ pct(asset.annualVolatility) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="mt-4">
+            So sánh với các danh mục chuẩn (trên dữ liệu lịch sử)
+          </h4>
+          <div class="table-wrap">
+            <table class="data-table">
+              <thead>
+                <tr>
+                  <th>Danh mục</th>
+                  <th>Lợi suất năm</th>
+                  <th>Biến động năm</th>
+                  <th>Sharpe</th>
+                  <th>CVaR 95% (ngày)</th>
+                  <th>Sụt giảm tối đa</th>
+                </tr>
+              </thead>
+              <tbody>
+                @for (portfolio of result.portfolios; track portfolio.key) {
+                  <tr [class.strong]="portfolio.key === 'OPTIMIZED'">
+                    <td>{{ portfolio.label }}</td>
+                    <td>{{ pct(portfolio.metrics.annualReturn) }}</td>
+                    <td>{{ pct(portfolio.metrics.annualVolatility) }}</td>
+                    <td>{{ num(portfolio.metrics.sharpe, 2) }}</td>
+                    <td>{{ pct(portfolio.metrics.cvar95, 2) }}</td>
+                    <td>{{ pct(portfolio.metrics.maxDrawdown) }}</td>
+                  </tr>
+                }
+              </tbody>
+            </table>
+          </div>
+
+          <h4 class="mt-4">Đường biên hiệu quả</h4>
+          <div class="chart-box"><canvas #frontierCanvas></canvas></div>
+
+          @if (result.blackLitterman; as bl) {
+            <h4 class="mt-4">Lợi suất kỳ vọng Black-Litterman</h4>
+            <p class="hint">
+              Hệ số ngại rủi ro dùng: {{ num(bl.delta, 2) }}, tau:
+              {{ pct(bl.tau) }}. Lợi suất cân bằng (prior) suy ra từ danh mục
+              hiện tại, lợi suất hậu nghiệm (posterior) đã kết hợp quan điểm của
+              bạn.
+            </p>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Tài sản</th>
+                    <th>Lợi suất cân bằng</th>
+                    <th>Lợi suất hậu nghiệm</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (
+                    asset of result.assets;
+                    track asset.symbol;
+                    let i = $index
+                  ) {
+                    <tr>
+                      <td>{{ asset.name }}</td>
+                      <td>{{ pct(bl.impliedReturns[i]) }}</td>
+                      <td>{{ pct(bl.posteriorReturns[i]) }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+
+          @if (result.backtest; as bt) {
+            <h4 class="mt-4">Kết quả backtest</h4>
+            <p class="hint">
+              Cửa sổ ước lượng {{ bt.lookbackDays }} ngày, cân bằng lại mỗi
+              {{ bt.rebalanceEveryDays }} ngày ({{ bt.rebalances }} lần). Chỉ
+              tính phần ngoài mẫu. Các tài sản có ngày giao dịch khác nhau được
+              lấp giá gần nhất.
+            </p>
+            <div class="chart-box"><canvas #backtestCanvas></canvas></div>
+            <div class="table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>Chiến lược</th>
+                    <th>Tổng lợi suất</th>
+                    <th>Lợi suất năm</th>
+                    <th>Biến động năm</th>
+                    <th>Sharpe</th>
+                    <th>Sụt giảm tối đa</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  @for (row of bt.metrics; track row.key) {
+                    <tr>
+                      <td>{{ row.label }}</td>
+                      <td>{{ pct(row.metrics.totalReturn) }}</td>
+                      <td>{{ pct(row.metrics.annualReturn) }}</td>
+                      <td>{{ pct(row.metrics.annualVolatility) }}</td>
+                      <td>{{ num(row.metrics.sharpe, 2) }}</td>
+                      <td>{{ pct(row.metrics.maxDrawdown) }}</td>
+                    </tr>
+                  }
+                </tbody>
+              </table>
+            </div>
+          }
+
+          <p class="mt-4 hint">
+            Lưu ý: kết quả dựa trên dữ liệu quá khứ và không đảm bảo hiệu quả
+            trong tương lai. Ước lượng lợi suất từ lịch sử ngắn rất nhiễu, hãy
+            dùng trọng số tối đa để tránh dồn vốn vào ít tài sản. Phí giao dịch
+            và thuế chưa được tính.
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</div>
