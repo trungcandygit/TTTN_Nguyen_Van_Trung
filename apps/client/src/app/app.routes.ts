@@ -98,6 +98,13 @@ export const routes: Routes = [
       import('./pages/zen/zen-page.routes').then((m) => m.routes)
   },
   {
+    // the root goes to the home page (the AuthGuard sends visitors who are
+    // not logged in to the landing page)
+    path: '',
+    pathMatch: 'full',
+    redirectTo: internalRoutes.home.path
+  },
+  {
     // wildcard, if requested url doesn't match any paths for routes defined
     // earlier
     path: '**',
