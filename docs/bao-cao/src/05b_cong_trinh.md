@@ -1,8 +1,8 @@
 @H1N DANH MỤC CÔNG TRÌNH KHOA HỌC CỦA SINH VIÊN
 
-Ngoài dự án thực tập, sinh viên là tác giả liên hệ của 12 bản thảo nghiên cứu về tài chính, ngân hàng và quản trị doanh nghiệp. Bảng 0.1 liệt kê các bản thảo theo mức độ tiến triển, lấy từ hồ sơ công bố trong tệp README của kho mã và hồ sơ ORCID (0009-0008-3307-6569). Hàng in đậm là bài đã công bố, đã được duyệt đăng hoặc đã sửa xong vòng 2, gồm cả bài có nội dung nối trực tiếp với dự án. Dấu * chỉ tác giả liên hệ, et al. thay cho danh sách đồng tác giả. Chỉ hai bài đầu là công bố chính thức, các bài còn lại có thể thay đổi sau phản biện.
+Ngoài dự án thực tập, sinh viên là tác giả liên hệ của 12 bản thảo nghiên cứu về tài chính, ngân hàng và quản trị doanh nghiệp. Bảng C.1 liệt kê các bản thảo theo mức độ tiến triển, lấy từ hồ sơ công bố trong tệp README của kho mã và hồ sơ ORCID (0009-0008-3307-6569). Hàng in đậm là bài đã công bố, đã được duyệt đăng hoặc đã sửa xong vòng 2, gồm cả bài có nội dung nối trực tiếp với dự án. Dấu * chỉ tác giả liên hệ, et al. thay cho danh sách đồng tác giả. Chỉ hai bài đầu là công bố chính thức, các bài còn lại có thể thay đổi sau phản biện.
 
-@TABLE Bảng 0.1. Sản phẩm khoa học của sinh viên
+@TABLE Bảng C.1. Sản phẩm khoa học của sinh viên
 | STT | Tên bài | Tạp chí | Chỉ mục | Tình trạng |
 | **1** | **Black-Litterman portfolio optimization using regime switching CAPM and ABC-MCMC: Empirical evidence from the Vietnamese stock market period 2019-2025** | **Journal of Policy and Development Research, tập 01, tr. 81-99, 2026, doi: 10.63640/3030-4091/jpd.apd.194** | **Trong nước** | **Đã xuất bản** |
 | **2** | **Tiền gửi không kỳ hạn, hiệu quả hoạt động và ổn định tài chính ngân hàng: Bằng chứng từ mô hình ngưỡng tại Việt Nam** | **Tạp chí Kinh tế - Luật và Ngân hàng, 2026, doi: 10.59276/3030-4199/jelb.bav.895** | **Trong nước** | **Đã đăng** |

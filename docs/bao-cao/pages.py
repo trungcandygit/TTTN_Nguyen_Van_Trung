@@ -51,7 +51,7 @@ for (num, text), i in found.items():
     shown = roman(i - front_start + 1) if i < first_body else str(i - first_body + 1)
     result[text if not num else f'{num}|{text}'] = shown
 found_abbr = found[('', 'DANH MỤC TỪ VIẾT TẮT')]
-list_start = found[('', 'LỜI CẢM ƠN')]
+list_start = first_body
 skip = set(range(found[('', 'MỤC LỤC')], found_abbr))
 for key, items in meta['lists'].items():
     ptr = list_start

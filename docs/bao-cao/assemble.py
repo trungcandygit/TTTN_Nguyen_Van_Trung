@@ -283,7 +283,7 @@ summ = find_h1n(front, 'TÓM TẮT')
 abst = find_h1n(front, 'ABSTRACT')
 
 toc_front = [(1, '', 'THÔNG TIN CHUNG'), (1, '', 'THÔNG TIN VỀ HỌC PHẦN THỰC TẬP TỐT NGHIỆP'),
-             (1, '', 'LỜI CẢM ƠN'), (1, '', 'DANH MỤC CÔNG TRÌNH KHOA HỌC CỦA SINH VIÊN'), (1, '', 'MỤC LỤC'), (1, '', 'DANH MỤC BẢNG'), (1, '', 'DANH MỤC HÌNH')]
+             (1, '', 'LỜI CẢM ƠN'), (1, '', 'MỤC LỤC'), (1, '', 'DANH MỤC BẢNG'), (1, '', 'DANH MỤC HÌNH')]
 
 thanks_xml = gen(thanks, PORTRAIT)
 abbr_xml = gen(abbr, PORTRAIT, page_break_h1n=True)
@@ -317,7 +317,7 @@ apx = gen(blocks_by_file['07_phu_luc'], PORTRAIT, page_break_h1n=True)
 CAP = re.compile(r'<w:p><w:pPr><w:pStyle w:val="Heading[45]"/>.*?</w:p>', flags=re.S)
 CAP_HEAD = re.compile(r'^((?:Bảng|Hình) [\w.]+\. [^.]*)')
 lists = {'Bảng': [], 'Hình': []}
-for chunk in (cong_trinh, phan1, phan2, phan3, phan4, phan5, apx):
+for chunk in (phan1, phan2, phan3, phan4, phan5, cong_trinh, apx):
     for cp in CAP.findall(chunk):
         text = html_unescape(''.join(re.findall(r'<w:t(?: [^>]*)?>(.*?)</w:t>', cp, flags=re.S)))
         mt = CAP_HEAD.match(text)
@@ -365,7 +365,7 @@ all_toc = toc_front + [t for t in toc]
 # toc đã ở thứ tự sinh: thanks(không có H1N vì đã bỏ), abbr, summ, abst, phan1..5, refs, apx
 # sắp lại đúng thứ tự tài liệu: front phụ, Phần 1-5, tài liệu tham khảo, phụ lục
 front_extra = [t for t in toc if t[2] in ('DANH MỤC TỪ VIẾT TẮT', 'TÓM TẮT', 'ABSTRACT')]
-rest = [t for t in toc if t not in front_extra and t[2] != 'DANH MỤC CÔNG TRÌNH KHOA HỌC CỦA SINH VIÊN']
+rest = [t for t in toc if t not in front_extra]
 ref_i = next(i for i, t in enumerate(rest) if t[2] == 'TÀI LIỆU THAM KHẢO')
 apx_i = next(i for i, t in enumerate(rest) if t[2] == 'PHỤ LỤC')
 ordered = toc_front + front_extra + [t for t in rest if t[0] == 1 or True]
@@ -402,7 +402,7 @@ new += [e for i, e in enumerate(E[0:28]) if i not in (16, 19, 20, 25)]  # bìa (
 new += [e for i, e in enumerate(E[28:55], 28) if i not in (46, 47, 48, 49, 50)]  # thông tin chung
 new += E[55:75]           # thông tin học phần (bỏ mục hướng dẫn)
 new += [E[94].replace('<w:pStyle w:val="Heading1N"/>', '<w:pStyle w:val="Heading1N"/><w:pageBreakBefore/>', 1)]  # LỜI CẢM ƠN
-new += [thanks_xml, cong_trinh]
+new += [thanks_xml]
 new += [toc_xml(), list_xml('DANH MỤC BẢNG', 'Bảng', True), list_xml('DANH MỤC HÌNH', 'Hình', True)]
 new += [abbr_xml, summ_xml, abst_xml]
 new += [sect_only(E[143])]
@@ -410,7 +410,7 @@ new += [phan1, sect_only(E[151])]
 new += [phan2, sect_only(E[168])]
 new += [phan3, sect_only(E[182])]
 new += [phan4, sect_only(E[200])]
-new += [phan5, ref_xml, apx]
+new += [phan5, cong_trinh, ref_xml, apx]
 new += [E[210]]
 
 new_body = ''.join(new)
